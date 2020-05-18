@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Threading.Tasks;
+using WebAPI_PragueParking_Domain.Models;
+using WebAPI_PragueParking_Domain.Repository;
+
+namespace WebAPI_PragueParking_Domain.Service
+{
+    public class TicketsService : ITicketsService
+    {
+        private readonly ITicketsRepository _ticketsRepository;
+
+        public TicketsService(ITicketsRepository ticketsRepository)
+        {
+            _ticketsRepository = ticketsRepository;
+        }
+
+        public async Task<bool> AddTicket(Tickets ticket)
+        {
+            return await _ticketsRepository.AddTicket(ticket);
+        }
+
+        public Task<IEnumerable<Tickets>> GetTickets()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<Tickets> GetTicket(int id)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}
