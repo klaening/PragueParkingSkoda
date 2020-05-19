@@ -14,7 +14,7 @@ namespace WebAPI_PragueParking_Domain.Repository
 
         public VehicleTypesRepository(string connectionString)
         {
-            _connectionString = "Server=localhost;Database=PragueParkingSkoda;Trusted_Connection=True;Integrated Security=SSPI;";
+            _connectionString = connectionString;
         }
 
         public async Task<IEnumerable<VehicleTypes>> GetVehicleTypes()
