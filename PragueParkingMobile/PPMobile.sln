@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragueParkingMobile.Android", "PragueParkingMobile\PragueParkingMobile.Android\PragueParkingMobile.Android.csproj", "{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragueParkingMobile", "PragueParkingMobile\PragueParkingMobile\PragueParkingMobile.csproj", "{11EDDB08-86FC-4061-8008-CD39D23DF91C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PPMobile", "PragueParkingMobile\PragueParkingMobile\PPMobile.csproj", "{11EDDB08-86FC-4061-8008-CD39D23DF91C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

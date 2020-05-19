@@ -4,13 +4,10 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PragueParkingMobile.MainPage">
-
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-           HorizontalOptions="Center"
-           VerticalOptions="CenterAndExpand" />
+             x:Class="PPMobile.View.MainPage.UserMainPageDetail"
+             Title="Work Hard!">
+    <StackLayout Padding="10">
+        <Button Text="My workschedule"/>
+        <Button Text="Orders"/>
     </StackLayout>
-
 </ContentPage>

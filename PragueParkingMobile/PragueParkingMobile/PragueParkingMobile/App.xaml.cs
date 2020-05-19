@@ -1,8 +1,9 @@
-﻿using System;
+﻿using PPMobile.View;
+using PPMobile.View.MainPage;
+using System;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
-namespace PragueParkingMobile
+namespace PPMobile
 {
     public partial class App : Application
     {
@@ -10,8 +11,13 @@ namespace PragueParkingMobile
         {
             InitializeComponent();
 
-            MainPage = new MainPage();
+            MainPage = new UserMainPage();
         }
+
+        //private void InitializeComponent()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         protected override void OnStart()
         {
