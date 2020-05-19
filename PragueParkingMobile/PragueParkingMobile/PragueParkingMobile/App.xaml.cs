@@ -1,5 +1,6 @@
 ﻿using PPMobile.View;
 using PPMobile.View.MainPage;
+using PPMobile.View.OrdersPage;
 using System;
 using Xamarin.Forms;
 
@@ -11,7 +12,7 @@ namespace PPMobile
         {
             InitializeComponent();
 
-            MainPage = new UserMainPage();
+            MainPage = new UserTabbedPage();
         }
 
         //private void InitializeComponent()
