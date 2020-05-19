@@ -6,8 +6,26 @@
              mc:Ignorable="d"
              x:Class="PPMobile.View.OrdersPage.UserTabbedPage">
   <!--Pages can be added as references or inline-->
-    
-  <ContentPage Title="Park" />
-  <ContentPage Title="Active Orders" />
-  <ContentPage Title="Return" />
+
+    <ContentPage Title="Park">
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="Park these cars!"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Active Orders">
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="Active Orders!"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
+    <ContentPage Title="Return">
+        <ContentPage.Content>
+            <StackLayout>
+                <Label Text="Return these!"/>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>
 </TabbedPage>

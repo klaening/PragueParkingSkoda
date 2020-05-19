@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:PPMobile.View.MainPage"
              mc:Ignorable="d"
              x:Class="PPMobile.View.MainPage.UserMainPageMaster"
              Title="Master">
@@ -12,10 +12,10 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}">
       <d:ListView.ItemsSource>
-          <x:Array Type="{x:Type x:String}">
-              <x:String>Page 1</x:String>
-              <x:String>Page 2</x:String>
-              <x:String>Page 3</x:String>
+          <x:Array Type="{x:Type local:UserMainPageMasterMenuItem}">
+                <local:UserMainPageMasterMenuItem/>
+                <local:UserMainPageMasterMenuItem/>
+                <local:UserMainPageMasterMenuItem/>
           </x:Array>
       </d:ListView.ItemsSource>
       <ListView.Header>
