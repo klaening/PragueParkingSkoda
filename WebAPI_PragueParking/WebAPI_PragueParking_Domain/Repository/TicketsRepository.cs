@@ -14,7 +14,7 @@ namespace WebAPI_PragueParking_Domain.Repository
 
         public TicketsRepository(string connectionString)
         {
-            _connectionString = "Server=LAPTOP-T6RMDA3I;Database=PragueParkingSkoda;Trusted_Connection=True;Integrated Security=SSPI;";
+            _connectionString = connectionString;
         }
 
         public async Task<bool> AddTicket(Tickets ticket)
@@ -35,9 +35,20 @@ namespace WebAPI_PragueParking_Domain.Repository
             }
         }
 
-        public Task<IEnumerable<Tickets>> GetTickets()
+        public async Task<IEnumerable<Tickets>> GetTickets()
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    return await c.QueryAsync<Tickets>("SELECT * FROM Tickets");
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
         }
 
         public Task<Tickets> GetTickets(int id)
