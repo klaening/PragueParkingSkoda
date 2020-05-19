@@ -51,9 +51,38 @@ namespace WebAPI_PragueParking_Domain.Repository
             }
         }
 
-        public Task<Tickets> GetTickets(int id)
+        public async Task<Tickets> GetTicket(int id)
         {
-            throw new NotImplementedException();
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    return await c.QueryFirstOrDefaultAsync<Tickets>("SELECT * FROM Tickets WHERE ID = @id", new { id });
+                }
+                catch (Exception)
+                {
+
+                    throw;
+                }
+            }
+        }
+
+        public async Task<bool> UpdateTicket(Tickets ticket)
+        {
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("UPDATE Tickets SET RegNo = @regNo, RetrievalCode = @retrievalCode, PhoneNo = @phoneNo, PID = @PID, EstimatedParkingTime = @estimatedParkingTime, Comment = @comment, ParkingSpotsID = @parkingSpotsID, VehicleTypesID = @vehicleTypesID WHERE ID = @id", 
+                        new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.ID });
+                    
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

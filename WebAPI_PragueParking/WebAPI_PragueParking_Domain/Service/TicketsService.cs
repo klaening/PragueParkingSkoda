@@ -26,9 +26,14 @@ namespace WebAPI_PragueParking_Domain.Service
             return await _ticketsRepository.GetTickets();
         }
 
-        public Task<Tickets> GetTicket(int id)
+        public async Task<Tickets> GetTicket(int id)
         {
-            throw new NotImplementedException();
+            return await _ticketsRepository.GetTicket(id);
+        }
+
+        public async Task<bool> UpdateTicket(Tickets ticket)
+        {
+            return await _ticketsRepository.UpdateTicket(ticket);
         }
     }
 }

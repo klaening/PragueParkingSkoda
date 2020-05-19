@@ -11,5 +11,6 @@ namespace WebAPI_PragueParking_Domain.Service
         Task<bool> AddTicket(Tickets ticket);
         Task<IEnumerable<Tickets>> GetTickets();
         Task<Tickets> GetTicket(int id);
+        Task<bool> UpdateTicket(Tickets ticket);
     }
 }
