@@ -84,5 +84,23 @@ namespace WebAPI_PragueParking_Domain.Repository
                 }
             }
         }
+
+        public async Task<bool> DeleteTicket(int id)
+        {
+            using (var c = new SqlConnection(_connectionString))
+            {
+                try
+                {
+                    await c.ExecuteAsync("DELETE Tickets WHERE ID = @id", new { id });
+
+                    return true;
+                }
+                catch (Exception)
+                {
+                    return false;
+                    throw;
+                }
+            }
+        }
     }
 }

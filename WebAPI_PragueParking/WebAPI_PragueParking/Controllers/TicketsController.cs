@@ -42,5 +42,11 @@ namespace WebAPI_PragueParking.Controllers
         {
             return Ok(await _ticketsService.UpdateTicket(ticket));
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _ticketsService.DeleteTicket(id));
+        }
     }
 }

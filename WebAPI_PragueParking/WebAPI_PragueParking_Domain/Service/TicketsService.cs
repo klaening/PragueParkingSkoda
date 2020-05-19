@@ -35,5 +35,10 @@ namespace WebAPI_PragueParking_Domain.Service
         {
             return await _ticketsRepository.UpdateTicket(ticket);
         }
+
+        public async Task<bool> DeleteTicket(int id)
+        {
+            return await _ticketsRepository.DeleteTicket(id);
+        }
     }
 }
