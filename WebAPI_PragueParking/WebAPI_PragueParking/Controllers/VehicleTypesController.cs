@@ -23,5 +23,11 @@ namespace WebAPI_PragueParking.Controllers
         {
             return Ok(await _vehicleTypesService.GetVehicleTypes());
         }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> Get(int id)
+        {
+            return Ok(await _vehicleTypesService.GetVehicleType(id));
+        }
     }
 }
