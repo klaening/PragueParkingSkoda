@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30104.148
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragueParkingMobile.Android", "PragueParkingMobile\PragueParkingMobile.Android\PragueParkingMobile.Android.csproj", "{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PragueParkingMobile", "PragueParkingMobile\PragueParkingMobile\PragueParkingMobile.csproj", "{11EDDB08-86FC-4061-8008-CD39D23DF91C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{451AB16A-12EA-4661-B2B7-F2B3731A3BA4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{11EDDB08-86FC-4061-8008-CD39D23DF91C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11EDDB08-86FC-4061-8008-CD39D23DF91C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11EDDB08-86FC-4061-8008-CD39D23DF91C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{11EDDB08-86FC-4061-8008-CD39D23DF91C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11EDDB08-86FC-4061-8008-CD39D23DF91C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11EDDB08-86FC-4061-8008-CD39D23DF91C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8395B8B6-D7EE-4238-8921-CB22F71EF055}
+	EndGlobalSection
+EndGlobal
