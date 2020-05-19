@@ -34,7 +34,7 @@ namespace PPMobile.View.MainPage
             {
                 MenuItems = new ObservableCollection<UserMainPageMasterMenuItem>(new[]
                 {
-                    new UserMainPageMasterMenuItem { Id = 0, Title = "My Profile", TargetType= typeof(UserTabbedPage)},
+                    new UserMainPageMasterMenuItem { Id = 0, Title = "My Profile"},
                     new UserMainPageMasterMenuItem { Id = 1, Title = "Company" },
                     new UserMainPageMasterMenuItem { Id = 2, Title = "Sign Out" },
                 });
