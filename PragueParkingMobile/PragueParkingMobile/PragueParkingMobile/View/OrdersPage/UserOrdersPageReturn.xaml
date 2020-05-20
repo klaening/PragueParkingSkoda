@@ -9,8 +9,16 @@
     
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Return Orders"/>
-        </StackLayout>
+        <ListView>
+            <ListView.ItemsSource>
+                <!--Det här kommer ersättas med ticketsobjekt-->
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Return 1</x:String>
+                    <x:String>Return 2</x:String>
+                    <x:String>Return 3</x:String>
+                    <x:String>Return 4</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>

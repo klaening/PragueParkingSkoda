@@ -8,8 +8,16 @@
              Title="Active Orders">
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Active Orders"/>
-        </StackLayout>
+        <ListView>
+            <ListView.ItemsSource>
+                <!--Det här kommer ersättas med ticketsobjekt-->
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Active 1</x:String>
+                    <x:String>Active 2</x:String>
+                    <x:String>Active 3</x:String>
+                    <x:String>Active 4</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
