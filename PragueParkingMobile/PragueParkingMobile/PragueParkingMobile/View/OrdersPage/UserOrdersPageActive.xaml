@@ -3,21 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:PPMobile.ViewModel"
              mc:Ignorable="d"
              x:Class="PPMobile.View.OrdersPage.UserOrdersPageActive"
              Title="Active Orders">
+
+    <ContentPage.BindingContext>
+        <viewModels:UserOrdersPageVM></viewModels:UserOrdersPageVM>
+    </ContentPage.BindingContext>
     
     <ContentPage.Content>
-        <ListView>
-            <ListView.ItemsSource>
-                <!--Det här kommer ersättas med ticketsobjekt-->
-                <x:Array Type="{x:Type x:String}">
-                    <x:String>Active 1</x:String>
-                    <x:String>Active 2</x:String>
-                    <x:String>Active 3</x:String>
-                    <x:String>Active 4</x:String>
-                </x:Array>
-            </ListView.ItemsSource>
+        <ListView ItemsSource="{Binding TicketList}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding RegNo}"
+                                   Grid.Column="0"
+                                   Grid.Row="0"/>
+                            <Label Text="{Binding ParkingSpotNo}"
+                                   Grid.Column="1"
+                                   Grid.Row="0"
+                                   Grid.ColumnSpan="2"/>
+                            <Label Text="{Binding TimeCreated}"
+                                   Grid.Column="0"
+                                   Grid.Row="1"
+                                   Grid.ColumnSpan="2"/>
+                            <Button Text="View order"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
     </ContentPage.Content>
 </ContentPage>

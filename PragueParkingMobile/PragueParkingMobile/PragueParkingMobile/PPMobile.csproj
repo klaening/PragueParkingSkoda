@@ -16,11 +16,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="View\OrdersPage\UserOrdersPage.xaml.cs">
       <DependentUpon>UserOrdersPage.xaml</DependentUpon>
     </Compile>
