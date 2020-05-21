@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PPMobile.View.OrdersPage.AcceptOrderPage">
+    <ContentPage.Content>
+        <Grid>
+            <Frame VerticalOptions="StartAndExpand"  HorizontalOptions="StartAndExpand">
+                <StackLayout>
+                    <Grid>
+                        <Label Grid.Row="1" Grid.Column="0" Text="Type of order:" FontSize="Medium"/>
+                        <Label Grid.Row="1" Grid.Column="1" Text="Park / Return" FontSize="Medium"/>
+                        <Label Grid.Row="2" Grid.Column="0" Text="Car:" FontSize="Medium"/>
+                        <Label Grid.Row="2" Grid.Column="1" Text="Volvo 240" FontSize="Medium"/>
+                        <Label Grid.Row="3" Grid.Column="0"  Text="Color:" FontSize="Medium"/>
+                        <Label Grid.Row="3" Grid.Column="1" Text="Red" FontSize="Medium"/>
+                        <Label Grid.Row="4" Grid.Column="0" Text="Registration number" FontSize="Medium"/>
+                        <Label Grid.Row="4" Grid.Column="1" Text="5A6 3592" FontSize="Medium"/>
+                        <Label Grid.Row="5" Grid.Column="0" Text="Ticket Number:" FontSize="Medium"/>
+                        <Label Grid.Row="5" Grid.Column="1" Text="0000001" FontSize="Medium"/>
+                        <Label Grid.Row="6" Grid.Column="0" Text="Parking spot:" FontSize="Medium"/>
+                        <Label Grid.Row="6" Grid.Column="1" Text="39" FontSize="Medium"/>
+                    </Grid>
+                </StackLayout>
+            </Frame>
+
+            <StackLayout>
+                <Grid>
+                    <Button Grid.Row="7" 
+                            x:Name="AcceptOrderButton"
+                            Clicked="AcceptOrderButton_Clicked"
+                            Text="Accept Order"
+                            IsVisible="True"/>
+
+                    <Button Grid.Row="7" 
+                            x:Name="CarParkedButton"
+                            Clicked="CarParkedButton_Clicked"
+                            Text="Car Parked"
+                            IsVisible="False"/>
+
+                    <Button Grid.Row="7"
+                            x:Name="CarReturned"
+                            Clicked="CarReturnedButton_Clicked"
+                            Text="Car Returned"
+                            IsVisible="False"/>
+
+                    <Button Grid.Row="8"
+                            x:Name="RejectOrderButton"
+                            Text="Reject Order"
+                            IsVisible="False"/>
+                </Grid>
+            </StackLayout>
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
