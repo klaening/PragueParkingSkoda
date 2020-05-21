@@ -9,13 +9,14 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
         <Button
         Content="Go back"
             FontSize="100"
             HorizontalAlignment="Center"
-            Click="Button_Click"
-            >
-
-        </Button>
+            Click="Button_Click"/>
     </Grid>
 </Page>
