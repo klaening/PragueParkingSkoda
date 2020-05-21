@@ -27,9 +27,21 @@
 
         <ComboBox
             Header="Show tickets for:  "
-            FontSize="60"
- >
+            FontSize="30"
+            Grid.Column="0"
+            Grid.Row="0"
+            >
+            <ComboBoxItem Content="Prague Parking"/>
         </ComboBox>
+
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            Content="New ticket"
+            >
+            
+        </Button>
         
         <Button
             Grid.Row="5"
@@ -42,5 +54,26 @@
 
             
         </Button>
+
+        <Border
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="1"
+            BorderBrush="Black"
+            BorderThickness="6"
+            >
+            
+        </Border>
+
+            <StackPanel 
+           
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
+            
+            />
+
     </Grid>
 </Page>
