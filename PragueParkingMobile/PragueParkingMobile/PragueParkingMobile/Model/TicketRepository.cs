@@ -15,7 +15,7 @@ namespace PPMobile.Model
                 {
                     new Ticket
                     {
-                        RegNo = "ABC 123",
+                        RegNo = "ÅÄÖ 987",
                         ParkingSpotNo = 53,
                         TimeCreated = "2020-05-20"
                     },
