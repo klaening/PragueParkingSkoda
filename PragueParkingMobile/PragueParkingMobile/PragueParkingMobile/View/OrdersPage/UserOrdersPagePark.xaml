@@ -8,8 +8,16 @@
              Title="Park Orders">
     
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Park these cars!"/>
-        </StackLayout>
+        <ListView>
+            <ListView.ItemsSource>
+                <!--Det här kommer ersättas med ticketsobjekt-->
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Park 1</x:String>
+                    <x:String>Park 2</x:String>
+                    <x:String>Park 3</x:String>
+                    <x:String>Park 4</x:String>
+                </x:Array>
+            </ListView.ItemsSource>
+        </ListView>
     </ContentPage.Content>
 </ContentPage>
