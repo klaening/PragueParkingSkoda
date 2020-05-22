@@ -1,8 +1,10 @@
 ﻿<Page
-    x:Class="PP_Desktop.Views.UsersMainPage"
+    x:Class="PP_Desktop.Views.StaffMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:model="using:PP_Desktop.Models"
     xmlns:local="using:PP_Desktop.Views"
+    xmlns:viewModel="using:PP_Desktop.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -14,15 +16,22 @@
                               MinWidth="300"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        
+
         <StackPanel Grid.Column="0">
             <TextBlock Text="List of Staff"
                        FontSize="50"/>
-            
+
             <ListBox MinHeight="500"
                      HorizontalAlignment="Left"
-                     MaxWidth="400"/>
-            
+                     MaxWidth="400"
+                     ItemsSource="{x:Bind staffPage.StaffList}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate x:DataType="model:Staff">
+                        <TextBlock Text="{x:Bind StaffInfo}"/>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
             <Button Content="Add Staff"
                     FontSize="50"/>
 
@@ -56,7 +65,7 @@
                     <TextBlock Text="ID:"/>
                     <TextBlock Text=" Här ska det bindas ID nummer"/>
                 </StackPanel>
-                
+
                 <TextBlock Grid.Row="2" Grid.Column="0" 
                            Text="Role:"/>
                 <ComboBox x:Name="Departments" 

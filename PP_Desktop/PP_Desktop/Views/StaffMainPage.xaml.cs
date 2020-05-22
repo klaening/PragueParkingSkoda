@@ -1,8 +1,10 @@
-﻿using System;
+﻿using PP_Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -20,16 +22,20 @@ namespace PP_Desktop.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UsersMainPage : Page
+    public sealed partial class StaffMainPage : Page
     {
-        public UsersMainPage()
+        public StaffPageViewModel staffPage { get; set; }
+
+        public StaffMainPage()
         {
             this.InitializeComponent();
+
+            this.staffPage = new StaffPageViewModel();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(AdminMainPage));
+
         }
     }
 }

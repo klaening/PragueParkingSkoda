@@ -124,6 +124,9 @@
     </Compile>
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BaseViewModel.cs" />
+    <Compile Include="ViewModels\StaffItem.cs" />
+    <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="Views\AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
@@ -133,11 +136,11 @@
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\StaffMainPage.xaml.cs">
+      <DependentUpon>StaffMainPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TicketsMainPage.xaml.cs">
       <DependentUpon>TicketsMainPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\UsersMainPage.xaml.cs">
-      <DependentUpon>UsersMainPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -176,11 +179,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TicketsMainPage.xaml">
+    <Page Include="Views\StaffMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UsersMainPage.xaml">
+    <Page Include="Views\TicketsMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

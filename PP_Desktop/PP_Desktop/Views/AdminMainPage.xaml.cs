@@ -28,7 +28,7 @@ namespace PP_Desktop.Views
 
         private void Users_Btn_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UsersMainPage));
+            Frame.Navigate(typeof(StaffMainPage));
             
         }
 
