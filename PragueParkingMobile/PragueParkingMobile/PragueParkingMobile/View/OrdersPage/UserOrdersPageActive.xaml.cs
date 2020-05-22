@@ -19,5 +19,10 @@ namespace PPMobile.View.OrdersPage
             InitializeComponent();
             BindingContext = ViewModelLocator.UserOrdersPageVM;
         }
+
+        private void ViewCell_Tapped(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AcceptOrderPage());
+        }
     }
 }

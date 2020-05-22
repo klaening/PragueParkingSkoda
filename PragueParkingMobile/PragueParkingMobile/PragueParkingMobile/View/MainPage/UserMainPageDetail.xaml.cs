@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PPMobile.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace PPMobile.View.MainPage
         public UserMainPageDetail()
         {
             InitializeComponent();
+            BindingContext = new UserMainPageVM(Navigation);
         }
     }
 }
