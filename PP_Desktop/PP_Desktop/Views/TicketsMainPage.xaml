@@ -25,6 +25,21 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        
+        <ListView x:Name="TicketInfo_List" Grid.Row="1" Grid.Column="0">
+            
+            <Grid>
+        
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Binding REG" Grid.Column="0"/>
+                <TextBlock Text="Binding STATUS" Grid.Column="1"/>
+            </Grid>
+
+        </ListView>
+        
         <ComboBox
             Header="Show tickets for:  "
             FontSize="30"
@@ -47,14 +62,39 @@
             Grid.Row="5"
             Grid.Column="3"
             Content="Go back"
-            FontSize="100"
+            FontSize="30"
             HorizontalAlignment="Center"
             Click="Button_Click"
             >
 
+        </Button>
+
+        <Button
+            Grid.Row="4"
+            Grid.Column="1"
+            Content="Request"
+            HorizontalAlignment="Center"
+            >
+     
+        </Button>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="1"
+            Content="Mark Returned"
+            HorizontalAlignment="Center"
+            >
             
         </Button>
 
+        <Button
+            Grid.Row="5"
+            Grid.Column="2"
+            Content="Damage Report"
+            HorizontalAlignment="Center"
+            >
+            
+        </Button>
         <Border
             Grid.Row="1"
             Grid.RowSpan="4"
@@ -65,15 +105,18 @@
             >
             
         </Border>
-
+        <Grid x:Name="Ticket_Info" Grid.Row="1" Grid.RowSpan="3"
+              Grid.Column="1" Grid.ColumnSpan="2"
+              >
+      
             <StackPanel 
            
-            Grid.Row="1"
-            Grid.RowSpan="4"
-            Grid.Column="0"
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="1"
             Grid.ColumnSpan="2"
-            
-            />
 
+            />
+        </Grid>
     </Grid>
 </Page>
