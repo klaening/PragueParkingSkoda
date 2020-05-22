@@ -13,6 +13,7 @@ namespace PPMobile.View.MainPage
             TargetType = typeof(UserMainPageMasterMenuItem);
         }
         public int Id { get; set; }
+
         public string Title { get; set; }
 
         public Type TargetType { get; set; }

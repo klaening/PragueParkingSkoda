@@ -13,7 +13,7 @@ namespace PPMobile
             InitializeComponent();
 
             //MainPage = new UserTabbedPage();
-            MainPage = new UserMainPage();
+            MainPage = new NavigationPage(new LoginPage());
         }
 
         //private void InitializeComponent()

@@ -1,5 +1,4 @@
-﻿using PPMobile.View.MainPage;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,16 +10,11 @@ using Xamarin.Forms.Xaml;
 namespace PPMobile.View
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginPage : ContentPage
+    public partial class CompanyInfoPage : ContentPage
     {
-        public LoginPage()
+        public CompanyInfoPage()
         {
             InitializeComponent();
-        }
-
-        private async void LogInBtn_Clicked(object sender, EventArgs e)
-        {
-           await Navigation.PushAsync(new UserMainPage());
         }
     }
 }

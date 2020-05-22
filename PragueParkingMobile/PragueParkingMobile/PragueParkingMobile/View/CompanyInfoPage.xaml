@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PPMobile.View.UserProfilePage">
+             x:Class="PPMobile.View.CompanyInfoPage">
     <ContentPage.Content>
         <Grid>
             <!--HEADER-->
@@ -19,7 +19,7 @@
             </StackLayout>
 
             <!--USER DETAIL INFO-->
-            <StackLayout Spacing="10" Padding="40" Margin="0,30,0,0">
+            <StackLayout Spacing="10" Padding="40" Margin="0,90,0,0">
                 <Grid>
                     <Image Source="" Margin="0,0,0,15"/>
                     <Label Grid.Row="1" Grid.Column="0" Text="Name:" FontSize="Medium"/>

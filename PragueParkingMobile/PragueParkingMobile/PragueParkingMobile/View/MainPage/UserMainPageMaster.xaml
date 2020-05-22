@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:local="clr-namespace:PPMobile.View.MainPage"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:local="clr-namespace:PPMobile.View.MainPage"
              mc:Ignorable="d"
              x:Class="PPMobile.View.MainPage.UserMainPageMaster"
              Title="Master">
@@ -10,12 +11,11 @@
     <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
               HasUnevenRows="true"
-              ItemsSource="{Binding MenuItems}">
+              ItemsSource="{Binding MenuItems}"
+              ItemTapped="MenuItemsListView_ItemTapped">
       <d:ListView.ItemsSource>
           <x:Array Type="{x:Type local:UserMainPageMasterMenuItem}">
-                <local:UserMainPageMasterMenuItem/>
-                <local:UserMainPageMasterMenuItem/>
-                <local:UserMainPageMasterMenuItem/>
+                    <local:UserMainPageMasterMenuItem Title="Test" TargetType="{x:Type local:UserProfilePage}"/>
           </x:Array>
       </d:ListView.ItemsSource>
       <ListView.Header>
@@ -42,12 +42,12 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-              <Label VerticalOptions="FillAndExpand" 
+                            <Label VerticalOptions="FillAndExpand" 
                     VerticalTextAlignment="Center" 
                     Text="{Binding Title}" 
                     d:Text="{Binding .}"
                     FontSize="24"/>
-            </StackLayout>
+                        </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

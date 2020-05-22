@@ -13,7 +13,9 @@
                        Keyboard="Email"/>
                 <Entry Placeholder="Password"
                        IsPassword="True"/>
-                <Button Text="Login"/>
+                <Button x:Name="LogInBtn"
+                        Text="Login"
+                        Clicked="LogInBtn_Clicked"/>
             </StackLayout>
         </Grid>
         
