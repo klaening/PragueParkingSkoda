@@ -4,7 +4,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:model="using:PP_Desktop.Models"
     xmlns:local="using:PP_Desktop.Views"
-    xmlns:viewModel="using:PP_Desktop.ViewModels"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
@@ -18,30 +17,34 @@
         </Grid.ColumnDefinitions>
 
         <StackPanel Grid.Column="0">
-            <TextBlock Text="List of Staff"
-                       FontSize="50"/>
-
+            <TextBlock Text="List of staff"/>
             <ListBox MinHeight="500"
                      HorizontalAlignment="Left"
                      MaxWidth="400"
-                     ItemsSource="{x:Bind staffPage.StaffList}">
+                     ItemsSource="{Binding Items}"
+                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
-                    <DataTemplate x:DataType="model:Staff">
-                        <TextBlock Text="{x:Bind StaffInfo}"/>
+                    <DataTemplate>
+                        <StackPanel>
+                            <TextBlock Text="{Binding StaffInfo}"/>
+                        </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
 
-            <Button Content="Add Staff"
-                    FontSize="50"/>
+            <Button x:Name="AddStaff_Btn"
+                    Content="Add Staff"
+                    Click="AddStaff_Btn_Click"/>
 
-            <Button Content="Go back"
-                    FontSize="50"
-                    Click="Button_Click"/>
+            <Button x:Name="GoBack_Btn"
+                    Content="Go back"
+                    Click="GoBack_Btn_Click"/>
         </StackPanel>
 
-        <StackPanel x:Name="StaffDetails" Grid.Column="1"
+        <StackPanel DataContext="{Binding SelectedItem}"
+                    Grid.Column="1"
                     HorizontalAlignment="Left">
+
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -52,39 +55,39 @@
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.ColumnSpan="2"
-                           Text="Här ska det bindas Staff Name"
+
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                           Text="{Binding FullName}"
                            FontSize="50" FontWeight="Bold"/>
 
                 <StackPanel Grid.Row="1" Grid.Column="0"
                             Orientation="Horizontal"
                             Margin="0,0,0,50">
                     <TextBlock Text="ID:"/>
-                    <TextBlock Text=" Här ska det bindas ID nummer"/>
+                    <TextBlock Text="{Binding ID}"/>
                 </StackPanel>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" 
                            Text="Role:"/>
-                <ComboBox x:Name="Departments" 
-                          Grid.Row="2" Grid.Column="1"/>
+                <ComboBox Grid.Row="2" Grid.Column="1"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
                            Text="Username:"/>
-                <TextBlock Grid.Row="3" Grid.Column="1"
-                           Text="Här ska det bindas Username"/>
+                <TextBlock Grid.Row="3" Grid.Column="1" 
+                           Text="{Binding UserName}"/>
 
-                <TextBlock Grid.Row="4" Grid.Column="0"
+                <TextBlock Grid.Row="4" Grid.Column="0" 
                            Text="Phone number:"/>
-                <TextBlock Grid.Row="4" Grid.Column="1"
-                           Text="Här ska det bindas Phone Number"/>
+                <TextBlock Grid.Row="4" Grid.Column="1" 
+                           Text="{Binding PhoneNo}"/>
 
-                <TextBlock Grid.Row="5" Grid.Column="0"
+                <TextBlock Grid.Row="5" Grid.Column="0" 
                            Text="Email:"/>
-                <TextBlock Grid.Row="5" Grid.Column="1"
-                           Text="Här ska det bindas Email"/>
+                <TextBlock Grid.Row="5" Grid.Column="1" 
+                           Text="{Binding Email}"/>
             </Grid>
         </StackPanel>
     </Grid>

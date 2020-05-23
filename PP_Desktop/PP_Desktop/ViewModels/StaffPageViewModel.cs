@@ -10,28 +10,31 @@ using System.Threading.Tasks;
 
 namespace PP_Desktop.ViewModels
 {
-    public class StaffPageViewModel : INotifyPropertyChanged
+    public class StaffPageViewModel : BindableBase
     {
-        private ObservableCollection<Staff> staffList = new ObservableCollection<Staff>();
+        private List<Staff> _items;
+        private Staff _selectedItem;
 
-        public ObservableCollection<Staff> StaffList 
-        { 
-            get { return staffList; } 
+        public List<Staff> Items 
+        {
+            get => _items;
+            set => SetProperty(ref _items, value);
+        }
+
+        public Staff SelectedItem
+        {
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
         }
 
         public StaffPageViewModel()
         {
-            this.StaffList.Add(new Staff { ID = 1, FirstName = "Fredrik", LastName = "Karlsson" });
-            this.StaffList.Add(new Staff { ID = 2, FirstName = "Karl", LastName = "Fredriksson" });
+            Items = new List<Staff>()
+            {
+                new Staff { ID = 1, PID = "851220-2342", FirstName = "Fredrik", LastName = "Karlsson", UserName = "f.karlsson", PhoneNo = "(+420)745263712", Email = "f.karlsson@gmail.com" },
+                new Staff { ID = 2, PID = "740312-6423", FirstName = "Karl", LastName = "Fredriksson", UserName = "k.fredriksson", PhoneNo = "(420)738492153", Email = "k.fredriksson@hotmail.com" },
+                new Staff { ID = 3, PID = "760312-6423", FirstName = "Sven", LastName = "Svensson", UserName = "s.svensson", PhoneNo = "(420)763549201", Email = "s.svensson@outlook.com" }
+            };
         }
-
-        //public StaffItem StaffItem { get; set; }
-
-        //public StaffPageViewModel(StaffItem staffItem)
-        //{
-        //    StaffItem = staffItem;
-        //}
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

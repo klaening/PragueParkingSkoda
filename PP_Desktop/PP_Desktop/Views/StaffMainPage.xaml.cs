@@ -24,16 +24,22 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class StaffMainPage : Page
     {
-        public StaffPageViewModel staffPage { get; set; }
+        private readonly StaffPageViewModel _viewModel;
 
         public StaffMainPage()
         {
             this.InitializeComponent();
 
-            this.staffPage = new StaffPageViewModel();
+            _viewModel = new StaffPageViewModel();
+            DataContext = _viewModel;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void GoBack_Btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddStaff_Btn_Click(object sender, RoutedEventArgs e)
         {
 
         }
