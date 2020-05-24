@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              mc:Ignorable="d"
              x:Class="PPMobile.View.OrdersPage.UserOrdersPagePark"
-             Title="Park Orders">
+             Title="Park Orders"
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
         <ListView ItemsSource="{Binding TicketList}">

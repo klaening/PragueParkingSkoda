@@ -13,11 +13,11 @@
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}"
               ItemTapped="MenuItemsListView_ItemTapped">
-      <d:ListView.ItemsSource>
-          <x:Array Type="{x:Type local:UserMainPageMasterMenuItem}">
-                    <local:UserMainPageMasterMenuItem Title="Test" TargetType="{x:Type local:UserProfilePage}"/>
-          </x:Array>
-      </d:ListView.ItemsSource>
+      <!--<d:ListView.ItemsSource>
+          --><!--<x:Array Type="{x:Type local:UserMainPageMasterMenuItem}">
+                    --><!--<local:UserMainPageMasterMenuItem Title="Test" TargetType="{x:Type local:UserProfilePage}"/>--><!--
+          </x:Array>--><!--
+      </d:ListView.ItemsSource>-->
       <ListView.Header>
         <Grid BackgroundColor="#03A9F4">
           <Grid.ColumnDefinitions>

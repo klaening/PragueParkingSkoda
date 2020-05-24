@@ -34,9 +34,9 @@ namespace PPMobile.View.MainPage
             {
                 MenuItems = new ObservableCollection<UserMainPageMasterMenuItem>(new[]
                 {
-                    new UserMainPageMasterMenuItem { Id = 0, Title = "My Profile", TargetType = typeof(UserProfilePage)},
-                    new UserMainPageMasterMenuItem { Id = 1, Title = "Company", TargetType = typeof(CompanyInfoPage)},
-                    new UserMainPageMasterMenuItem { Id = 2, Title = "Sign Out", TargetType = typeof(LoginPage)},
+                    new UserMainPageMasterMenuItem { Id = 0, Title = "My Profile", TargetType = typeof(UserMainPageDetail)},
+                    new UserMainPageMasterMenuItem { Id = 1, Title = "Company", TargetType = typeof(UserMainPageDetail)},
+                    new UserMainPageMasterMenuItem { Id = 2, Title = "Sign Out", TargetType = typeof(UserMainPageDetail)},
                 });
             }
 
@@ -53,8 +53,8 @@ namespace PPMobile.View.MainPage
         }
 
         private void MenuItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {           
-            //Kanske en ItemTapped för att navigera? 
+        {
+            Navigation.PushAsync(new UserProfilePage());
         }
     }
 }

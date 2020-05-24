@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="PPMobile.View.MainPage.UserMainPage"
-             xmlns:pages="clr-namespace:PPMobile.View.MainPage">
+             xmlns:pages="clr-namespace:PPMobile.View.MainPage"
+                  NavigationPage.HasNavigationBar="False">
   <MasterDetailPage.Master>
     <pages:UserMainPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>

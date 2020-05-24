@@ -21,7 +21,7 @@ namespace PPMobile.ViewModel
 
         public async Task OrdersPageNav()
         {
-            await Navigation.PushAsync(new UserTabbedPage());
+            await Navigation.PushAsync(new NavigationPage(new UserTabbedPage()));
         }
 
         

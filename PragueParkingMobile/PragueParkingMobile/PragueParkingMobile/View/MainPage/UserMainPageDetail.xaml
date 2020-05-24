@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="PPMobile.View.MainPage.UserMainPageDetail"
              Title="Work Hard!">
+    
     <StackLayout Padding="10">
         <Button Text="My workschedule"/>
         <Button Command="{Binding OrdersBtnClicked}" Text="Orders"/>
