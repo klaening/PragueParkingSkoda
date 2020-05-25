@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PPMobile.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,9 +13,11 @@ namespace PPMobile.View.OrdersPage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AcceptOrderPage : ContentPage
     {
-        public AcceptOrderPage()
+        public AcceptOrderPage(Ticket ticket)
         {
             InitializeComponent();
+            RegNo_label.Text = ticket.RegNo;
+            ParkingNo_label.Text = ticket.ParkingSpotNo.ToString();
         }
 
         public 

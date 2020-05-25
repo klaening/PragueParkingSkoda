@@ -13,7 +13,7 @@
         <ListView ItemsSource="{Binding TicketList}"
                   HasUnevenRows="True"
                   CachingStrategy="RecycleElement"
-                  SelectedItem="{Binding SelectedTicket}">
+                  ItemTapped="{Binding command}">
             
             <ListView.ItemTemplate>
                 <DataTemplate>
