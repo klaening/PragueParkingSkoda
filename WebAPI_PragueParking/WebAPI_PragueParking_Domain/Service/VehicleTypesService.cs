@@ -20,5 +20,10 @@ namespace WebAPI_PragueParking_Domain.Service
         {
             return await _vehicleTypesRepository.GetVehicleTypes();
         }
+
+        public async Task<VehicleTypes> GetVehicleType(int id)
+        {
+            return await _vehicleTypesRepository.GetVehicleType(id);
+        }
     }
 }

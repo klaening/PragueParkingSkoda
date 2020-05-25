@@ -9,5 +9,7 @@ namespace WebAPI_PragueParking_Domain.Service
     public interface IVehicleTypesService
     {
         Task<IEnumerable<VehicleTypes>> GetVehicleTypes();
+        Task<VehicleTypes> GetVehicleType(int id);
+
     }
 }

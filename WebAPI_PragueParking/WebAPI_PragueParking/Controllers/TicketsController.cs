@@ -19,6 +19,12 @@ namespace WebAPI_PragueParking.Controllers
             _ticketsService = ticketsService;
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] Tickets ticket)
+        {
+            return Ok(await _ticketsService.AddTicket(ticket));
+        }
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {
@@ -31,10 +37,16 @@ namespace WebAPI_PragueParking.Controllers
             return Ok(await _ticketsService.GetTicket(id));
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Add([FromBody] Tickets ticket)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Tickets ticket)
         {
-            return Ok(await _ticketsService.AddTicket(ticket));
+            return Ok(await _ticketsService.UpdateTicket(ticket));
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            return Ok(await _ticketsService.DeleteTicket(id));
         }
     }
 }
