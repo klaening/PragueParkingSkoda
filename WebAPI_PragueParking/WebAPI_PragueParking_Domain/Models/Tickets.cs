@@ -6,7 +6,7 @@ namespace WebAPI_PragueParking_Domain.Models
 {
     public class Tickets
     {
-        public string ID { get; set; }
+        public int ID { get; set; }
         public string RegNo { get; set; }
         public string RetrievalCode { get; set; }
         public string PhoneNo { get; set; }
