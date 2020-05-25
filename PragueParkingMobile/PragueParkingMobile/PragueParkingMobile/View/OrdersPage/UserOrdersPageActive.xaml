@@ -10,10 +10,14 @@
 
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TicketList}">
+        <ListView ItemsSource="{Binding TicketList}"
+                  HasUnevenRows="True"
+                  CachingStrategy="RecycleElement"
+                  SelectedItem="{Binding SelectedTicket}">
+            
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Tapped="ViewCell_Tapped">
+                    <ViewCell>
                         <Grid>
                             <Label Text="{Binding RegNo}"
                                    Grid.Column="0"
