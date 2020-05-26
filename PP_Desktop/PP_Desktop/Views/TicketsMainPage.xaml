@@ -121,9 +121,20 @@
         <Grid x:Name="Ticket_Info" Grid.Row="1" Grid.RowSpan="3"
               Grid.Column="1" Grid.ColumnSpan="2"
               >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
 
-            <StackPanel DataContext="{Binding SelectedItem}">
-                <TextBlock Text="{Binding RegNo}"/>
+            <StackPanel DataContext="{Binding SelectedItem}" HorizontalAlignment="Center">
+                <TextBlock Text="Showing ticket for:" FontSize="30"/>
+                <TextBlock Text="{Binding RegNo}" FontSize="40"/>
+                <TextBlock Text="{Binding ID}" FontSize="30"/>
+                <TextBlock Text="{Binding RetrievalCode}" FontSize="30"/>
             </StackPanel>
         </Grid>
     </Grid>

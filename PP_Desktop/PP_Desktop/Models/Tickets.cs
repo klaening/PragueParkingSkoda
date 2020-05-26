@@ -41,9 +41,9 @@ namespace PP_Desktop.Models
 
                 new Tickets()
                 {
-                    ID = 1,
+                    ID = 3,
                     RegNo = "GHJ 789",
-                    RetrievalCode = "Parked",
+                    RetrievalCode = "Left-Off",
 
                 }
 
