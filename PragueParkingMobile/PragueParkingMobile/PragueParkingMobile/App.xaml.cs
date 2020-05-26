@@ -1,4 +1,5 @@
-﻿using PPMobile.View;
+﻿using PPMobile.APIServices;
+using PPMobile.View;
 using PPMobile.View.MainPage;
 using PPMobile.View.OrdersPage;
 using System;
@@ -8,6 +9,7 @@ namespace PPMobile
 {
     public partial class App : Application
     {
+        public static TicketDataService TicketDataService { get; } = new TicketDataService();
         public App()
         {
             InitializeComponent();

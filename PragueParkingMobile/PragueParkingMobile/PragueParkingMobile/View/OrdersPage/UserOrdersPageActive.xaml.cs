@@ -1,4 +1,6 @@
-﻿using PPMobile.Utility;
+﻿using PPMobile.Model;
+using PPMobile.Utility;
+using PPMobile.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,12 +19,13 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPageActive()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.UserOrdersPageVM;
+            BindingContext = new UserOrdersPageActiveVM();
         }
 
         private void ViewCell_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AcceptOrderPage());
         }
+        
     }
 }
