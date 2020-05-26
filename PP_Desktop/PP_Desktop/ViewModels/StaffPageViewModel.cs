@@ -1,4 +1,6 @@
-﻿using PP_Desktop.Models;
+﻿using Newtonsoft.Json;
+using PP_Desktop.Models;
+using PP_Desktop.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,10 +14,10 @@ namespace PP_Desktop.ViewModels
 {
     public class StaffPageViewModel : BindableBase
     {
-        private List<Staff> _items;
+        private ObservableCollection<Staff> _items;
         private Staff _selectedItem;
 
-        public List<Staff> Items 
+        public ObservableCollection<Staff> Items 
         {
             get => _items;
             set => SetProperty(ref _items, value);
@@ -29,12 +31,16 @@ namespace PP_Desktop.ViewModels
 
         public StaffPageViewModel()
         {
-            Items = new List<Staff>()
-            {
-                new Staff { ID = 1, PID = "851220-2342", FirstName = "Fredrik", LastName = "Karlsson", UserName = "f.karlsson", PhoneNo = "(+420)745263712", Email = "f.karlsson@gmail.com" },
-                new Staff { ID = 2, PID = "740312-6423", FirstName = "Karl", LastName = "Fredriksson", UserName = "k.fredriksson", PhoneNo = "(420)738492153", Email = "k.fredriksson@hotmail.com" },
-                new Staff { ID = 3, PID = "760312-6423", FirstName = "Sven", LastName = "Svensson", UserName = "s.svensson", PhoneNo = "(420)763549201", Email = "s.svensson@outlook.com" }
-            };
+            var path = "staff";
+
+            var response = Database.GetRequest(path);
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            var resultList = JsonConvert.DeserializeObject<List<Staff>>(result);
+
+            ObservableCollection<Staff> staffList = new ObservableCollection<Staff>(resultList);
+
+            Items = staffList;
         }
     }
 }

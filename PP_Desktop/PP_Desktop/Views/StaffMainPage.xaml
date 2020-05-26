@@ -64,8 +64,7 @@
                            FontSize="50" FontWeight="Bold"/>
 
                 <StackPanel Grid.Row="1" Grid.Column="0"
-                            Orientation="Horizontal"
-                            Margin="0,0,0,50">
+                            Orientation="Horizontal">
                     <TextBlock Text="ID:"/>
                     <TextBlock Text="{Binding ID}"/>
                 </StackPanel>
@@ -88,6 +87,11 @@
                            Text="Email:"/>
                 <TextBlock Grid.Row="5" Grid.Column="1" 
                            Text="{Binding Email}"/>
+
+                <TextBlock x:Name="ShowStaff"
+                           Height="700"
+                           Width="1000"
+                           Grid.Row="6" Grid.Column="0"/>
             </Grid>
         </StackPanel>
     </Grid>

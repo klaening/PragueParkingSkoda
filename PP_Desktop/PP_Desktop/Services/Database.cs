@@ -10,8 +10,10 @@ namespace PP_Desktop.Services
 {
     public class Database
     {
-        public const string HOST = "https://localhost:44364/api/";
+        public const string HOST = "http://localhost:59893/api/";
         public const string JSONMEDIATYPE = "application/json";
+
+        //Mycket möjligt att vi inte kommer att ha det såhär!
 
         public static async Task PostRequestAsync(string path, Object objectclass)
         {
@@ -26,7 +28,7 @@ namespace PP_Desktop.Services
             var response = await client.PostAsync(HOST + path, content);
         }
 
-        public static HttpResponseMessage GetRequestAsync(string path)
+        public static HttpResponseMessage GetRequest(string path)
         {
             var client = new HttpClient();
 
