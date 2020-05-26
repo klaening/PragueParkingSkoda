@@ -19,7 +19,7 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPageActive()
         {
             InitializeComponent();
-            BindingContext = new UserOrdersPageActiveVM();
+            BindingContext = ViewModelLocator.UserOrdersPageVM;
         }
 
         private void ViewCell_Tapped(object sender, EventArgs e)

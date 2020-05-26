@@ -17,7 +17,7 @@ namespace PPMobile.View.MainPage
         public UserMainPageDetail()
         {
             InitializeComponent();
-            BindingContext = new UserMainPageVM();
+            BindingContext = new UserMainPageVM(Navigation);
         }
 
         private async void Button_Clicked(object sender, EventArgs e)

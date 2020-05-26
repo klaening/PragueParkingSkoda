@@ -1,8 +1,11 @@
-﻿using PPMobile.Model;
+﻿using Newtonsoft.Json;
+using PPMobile.Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PPMobile.ViewModel
 {
@@ -15,13 +18,13 @@ namespace PPMobile.ViewModel
             set
             {
                 _ticketList = value;
+                
                 OnPropertyChanged("TicketList");
             }
         }
-
         public UserOrdersPageActiveVM()
         {
-            TicketList = new ObservableCollection<Ticket>(App.TicketDataService.GetAllTickets());
+            TicketList = new ObservableCollection<Ticket>(TicketRepository.TicketList);
         }
     }
 }

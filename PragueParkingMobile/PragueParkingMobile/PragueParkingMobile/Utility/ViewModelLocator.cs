@@ -9,7 +9,7 @@ namespace PPMobile.Utility
     public static class ViewModelLocator
     {
         public static UserOrdersPageVM UserOrdersPageVM { get; set; } = new UserOrdersPageVM();
-        public static UserMainPageVM UserMainPageVM { get; set; } = new UserMainPageVM();
+        public static UserMainPageVM UserMainPageVM { get; set; } = new UserMainPageVM(Navigation);
 
         public static INavigation Navigation { get; set; }
     }
