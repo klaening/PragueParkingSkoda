@@ -28,6 +28,7 @@ namespace PP_Desktop.Views
         {
             this.InitializeComponent();
             this.DataContext = new TicketsMainPage_VM();
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

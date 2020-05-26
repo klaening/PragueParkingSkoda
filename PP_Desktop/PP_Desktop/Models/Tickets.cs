@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using PP_Desktop.Models;
 
 namespace PP_Desktop.Models
 {
@@ -19,7 +20,7 @@ namespace PP_Desktop.Models
         public int ParkingSpotsID { get; set; }
         public int VehicleTypesID { get; set; }
 
-        public static ObservableCollection<Tickets> TicketsList()
+        public static ObservableCollection<Tickets> GetTicketsList()
         {
             ObservableCollection<Tickets> ticket = new ObservableCollection<Tickets>()
             {
@@ -50,5 +51,7 @@ namespace PP_Desktop.Models
 
             return ticket;
         }
+
+      
     }
 }

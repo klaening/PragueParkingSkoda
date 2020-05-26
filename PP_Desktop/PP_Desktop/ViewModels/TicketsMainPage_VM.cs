@@ -8,24 +8,26 @@ using PP_Desktop.Models;
 
 namespace PP_Desktop.ViewModels
 {
-    public class TicketsMainPage_VM
+    public class TicketsMainPage_VM : BindableBase
     {
-        private ObservableCollection<Tickets> tickets_;
-        public ObservableCollection<Tickets> Ticketss
+        private ObservableCollection<Tickets> _tickets;
+
+        private Tickets _selectedItem;
+        public ObservableCollection<Tickets> TicketList
         {
-            get
-            {
-                return tickets_;
-            }
-            set
-            {
-                tickets_ = value;
-            }
+            get => _tickets;
+            set => SetProperty(ref _tickets, value);
+        }
+
+        public Tickets SelectedItem
+        {
+            get => _selectedItem;
+            set => SetProperty(ref _selectedItem, value);
         }
 
         public TicketsMainPage_VM()
         {
-            tickets_ = new ObservableCollection<Tickets>(Tickets.TicketsList());
+            TicketList = new ObservableCollection<Tickets>(Tickets.GetTicketsList());
         }
             
         
