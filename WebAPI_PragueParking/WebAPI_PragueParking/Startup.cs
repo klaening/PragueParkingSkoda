@@ -33,6 +33,9 @@ namespace WebAPI_PragueParking
             services.AddSingleton<IVehicleTypesService, VehicleTypesService>();
             services.AddSingleton<IVehicleTypesRepository>(c => new VehicleTypesRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<IStaffService, StaffService>();
+            services.AddSingleton<IStaffRepository>(c => new StaffRepository(Configuration["ConnectionString"]));
+
             services.AddControllers();
         }
 
