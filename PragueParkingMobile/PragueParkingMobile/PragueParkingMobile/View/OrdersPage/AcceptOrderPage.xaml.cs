@@ -17,8 +17,7 @@ namespace PPMobile.View.OrdersPage
             InitializeComponent();
         }
 
-        public 
-        void AcceptOrderButton_Clicked(object sender, EventArgs e)
+        public void AcceptOrderButton_Clicked(object sender, EventArgs e)
         {
             AcceptOrderButton.IsVisible = false;
             CarParkedButton.IsVisible = true;

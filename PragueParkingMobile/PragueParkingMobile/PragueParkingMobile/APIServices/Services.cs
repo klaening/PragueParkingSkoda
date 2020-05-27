@@ -32,14 +32,16 @@ namespace PPMobile.APIServices
 
             return statusCode;
         }
-        public static HttpResponseMessage GetRequest(string path)
+        public static string GetRequest(string path)
         {
             var client = new HttpClient();
 
             var response = client.GetAsync(HOST + path);
             var statusCode = response.Result;
 
-            return statusCode;
+            string result = statusCode.Content.ReadAsStringAsync().Result;
+
+            return result;
         }
 
         public static async Task PutRequestAsync(string path, Object objectclass)

@@ -1,4 +1,5 @@
 ﻿using PPMobile.Utility;
+using PPMobile.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPageReturn()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.UserOrdersPageVM;
+            BindingContext = new UserOrdersPageActiveVM();
         }
     }
 }

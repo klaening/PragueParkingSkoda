@@ -28,13 +28,7 @@ namespace PPMobile.ViewModel
             var path = "tickets";
 
             var response = Services.GetRequest(path);
-            string result = response.Content.ReadAsStringAsync().Result;
-
-            var resultList = JsonConvert.DeserializeObject<List<Tickets>>(result);
-
-            ObservableCollection<Tickets> dbTicketList = new ObservableCollection<Tickets>(resultList);
-
-            TicketList = dbTicketList;
+            TicketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(response);
         }
     }
 }
