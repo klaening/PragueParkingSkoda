@@ -2,9 +2,9 @@
     x:Class="PP_Desktop.Views.TicketsMainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:PP_Desktop.Views"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:PP_Desktop.Models"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -25,11 +25,38 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
 
+        <ListView Name="TicketListGrid"
+            ItemsSource = "{Binding TicketList}"
+            Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"
+                  Margin="17"
+            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:Tickets">
+                    
+                    <StackPanel Orientation='Horizontal'>
+                        <TextBlock Text="{x:Bind RegNo}"
+                                       Name="RegTxt"
+                                       FontSize="18"
+                                       TextWrapping="Wrap"
+                                       Margin="10"/>
+                        <TextBlock Text="{x:Bind RetrievalCode}"
+                                       Name="RetrievalTxt"
+                                       FontSize="18"
+                                       TextWrapping="Wrap"
+                                       Margin="10"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    
+
         <ComboBox
-            Header="Show tickets for:  "
+            Header="Show tickets for:"
             FontSize="30"
             Grid.Column="0"
             Grid.Row="0"
+            Margin="10"
             >
             <ComboBoxItem Content="Prague Parking"/>
         </ComboBox>
@@ -47,33 +74,68 @@
             Grid.Row="5"
             Grid.Column="3"
             Content="Go back"
-            FontSize="100"
+            FontSize="30"
             HorizontalAlignment="Center"
             Click="Button_Click"
             >
 
+        </Button>
+
+        <Button
+            Grid.Row="4"
+            Grid.Column="1"
+            Content="Request"
+            HorizontalAlignment="Center"
+            >
+     
+        </Button>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="1"
+            Content="Mark Returned"
+            HorizontalAlignment="Center"
+            >
             
         </Button>
 
+        <Button
+            Grid.Row="5"
+            Grid.Column="2"
+            Content="Damage Report"
+            HorizontalAlignment="Center"
+            >
+            
+        </Button>
         <Border
             Grid.Row="1"
             Grid.RowSpan="4"
             Grid.Column="0"
             Grid.ColumnSpan="1"
             BorderBrush="Black"
-            BorderThickness="6"
+            BorderThickness="3"
+            Margin="5"
             >
             
         </Border>
+        <Grid x:Name="Ticket_Info" Grid.Row="1" Grid.RowSpan="3"
+              Grid.Column="1" Grid.ColumnSpan="2"
+              >
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                
+            </Grid.RowDefinitions>
 
-            <StackPanel 
-           
-            Grid.Row="1"
-            Grid.RowSpan="4"
-            Grid.Column="0"
-            Grid.ColumnSpan="2"
-            
-            />
-
+            <StackPanel DataContext="{Binding SelectedItem}" HorizontalAlignment="Center">
+                <TextBlock Text="Showing ticket for:" FontSize="30"/>
+                <TextBlock Text="{Binding RegNo}" FontSize="40"/>
+                <TextBlock Text="{Binding ID}" FontSize="30"/>
+                <TextBlock Text="{Binding RetrievalCode}" FontSize="30"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Page>
