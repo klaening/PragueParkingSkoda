@@ -31,14 +31,8 @@ namespace PP_Desktop.ViewModels
 
         public StaffPageViewModel()
         {
-            var path = "staff";
-
-            var response = Database.GetRequest(path);
-            string result = response.Content.ReadAsStringAsync().Result;
-
-            var resultList = JsonConvert.DeserializeObject<List<Staff>>(result);
-
-            ObservableCollection<Staff> staffList = new ObservableCollection<Staff>(resultList);
+            var result = Requests.GetRequest(Paths.staff);
+            var staffList = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
 
             Items = staffList;
         }

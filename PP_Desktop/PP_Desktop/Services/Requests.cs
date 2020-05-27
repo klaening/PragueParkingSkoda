@@ -8,10 +8,9 @@ using System.Threading.Tasks;
 
 namespace PP_Desktop.Services
 {
-    public class Database
+    public class Requests
     {
         public const string HOST = "http://localhost:59893/api/";
-        public const string JSONMEDIATYPE = "application/json";
 
         //Mycket möjligt att vi inte kommer att ha det såhär!
 
@@ -23,19 +22,21 @@ namespace PP_Desktop.Services
                 NullValueHandling = NullValueHandling.Ignore
             });
 
-            HttpContent content = new StringContent(json, Encoding.UTF8, JSONMEDIATYPE);
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync(HOST + path, content);
         }
 
-        public static HttpResponseMessage GetRequest(string path)
+        public static string GetRequest(string path)
         {
             var client = new HttpClient();
 
             var response = client.GetAsync(HOST + path);
             var statusCode = response.Result;
 
-            return statusCode;
+            string result = statusCode.Content.ReadAsStringAsync().Result;
+
+            return result;
         }
     }
 }

@@ -70,7 +70,7 @@
                 </StackPanel>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" 
-                           Text="Role:"/>
+                           Text="Department:"/>
                 <ComboBox Grid.Row="2" Grid.Column="1"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
