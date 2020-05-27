@@ -12,8 +12,8 @@ namespace PPMobile.ViewModel
 {
     public class UserOrdersPageActiveVM : BaseViewModel
     {
-        private ObservableCollection<Ticket> _ticketList;
-        public ObservableCollection<Ticket> TicketList
+        private ObservableCollection<Tickets> _ticketList;
+        public ObservableCollection<Tickets> TicketList
         {
             get => _ticketList;
             set
@@ -30,9 +30,9 @@ namespace PPMobile.ViewModel
             var response = Services.GetRequest(path);
             string result = response.Content.ReadAsStringAsync().Result;
 
-            var resultList = JsonConvert.DeserializeObject<List<Ticket>>(result);
+            var resultList = JsonConvert.DeserializeObject<List<Tickets>>(result);
 
-            ObservableCollection<Ticket> dbTicketList = new ObservableCollection<Ticket>(resultList);
+            ObservableCollection<Tickets> dbTicketList = new ObservableCollection<Tickets>(resultList);
 
             TicketList = dbTicketList;
         }
