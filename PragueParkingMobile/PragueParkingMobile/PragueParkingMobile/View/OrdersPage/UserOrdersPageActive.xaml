@@ -17,18 +17,14 @@
                             <Label Text="{Binding RegNo}"
                                    Grid.Column="0"
                                    Grid.Row="0"/>
-                            <Label Text="{Binding ParkingSpotNo}"
+                            <Label Text="{Binding PhoneNo}"
                                    Grid.Column="1"
                                    Grid.Row="0"
                                    Grid.ColumnSpan="2"/>
-                            <Label Text="{Binding TimeCreated}"
+                            <Label Text="Hej!"
                                    Grid.Column="0"
                                    Grid.Row="1"
                                    Grid.ColumnSpan="2"/>
-                            <Button Text="View order"
-                                    Grid.Column="2"
-                                    Grid.Row="0"
-                                    Grid.RowSpan="2"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

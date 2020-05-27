@@ -1,8 +1,12 @@
-﻿using PPMobile.Utility;
+﻿using Newtonsoft.Json;
+using PPMobile.Model;
+using PPMobile.Utility;
+using PPMobile.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,12 +21,14 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPageActive()
         {
             InitializeComponent();
-            BindingContext = ViewModelLocator.UserOrdersPageVM;
+            BindingContext = new UserOrdersPageActiveVM();
         }
 
         private void ViewCell_Tapped(object sender, EventArgs e)
         {
             Navigation.PushAsync(new AcceptOrderPage());
         }
+     
+
     }
 }

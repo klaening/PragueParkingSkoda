@@ -8,6 +8,6 @@
              Title="Work Hard!">
     <StackLayout Padding="10">
         <Button Text="My workschedule"/>
-        <Button Command="{Binding OrdersBtnClicked}" Text="Orders"/>
+        <Button Clicked="Button_Clicked" Command="{Binding OrdersBtnClicked}" Text="Orders"/>
     </StackLayout>
 </ContentPage>

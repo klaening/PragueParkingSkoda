@@ -1,4 +1,5 @@
-﻿using PPMobile.ViewModel;
+﻿using PPMobile.View.OrdersPage;
+using PPMobile.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace PPMobile.View.MainPage
         {
             InitializeComponent();
             BindingContext = new UserMainPageVM(Navigation);
+        }
+
+        private async void Button_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new UserTabbedPage());
         }
     }
 }

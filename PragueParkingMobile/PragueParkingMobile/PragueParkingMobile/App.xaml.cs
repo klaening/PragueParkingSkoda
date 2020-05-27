@@ -1,4 +1,5 @@
-﻿using PPMobile.View;
+﻿using PPMobile.APIServices;
+using PPMobile.View;
 using PPMobile.View.MainPage;
 using PPMobile.View.OrdersPage;
 using System;
@@ -8,11 +9,11 @@ namespace PPMobile
 {
     public partial class App : Application
     {
+
         public App()
         {
             InitializeComponent();
 
-            //MainPage = new UserTabbedPage();
             MainPage = new NavigationPage(new LoginPage());
         }
 

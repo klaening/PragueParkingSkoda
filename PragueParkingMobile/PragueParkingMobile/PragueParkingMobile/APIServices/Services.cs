@@ -9,7 +9,7 @@ namespace PPMobile.APIServices
 {
     public class Services
     {
-        private const string HOST = "https://localhost:44364/api/";
+        private const string HOST = "http://10.0.2.2:59893/api/";
         public static async Task PostRequestAsync(string path, Object objectclass)
         {
             var client = new HttpClient();
@@ -28,6 +28,15 @@ namespace PPMobile.APIServices
             var client = new HttpClient();
 
             var response = client.GetAsync(HOST + path + source);
+            var statusCode = response.Result;
+
+            return statusCode;
+        }
+        public static HttpResponseMessage GetRequest(string path)
+        {
+            var client = new HttpClient();
+
+            var response = client.GetAsync(HOST + path);
             var statusCode = response.Result;
 
             return statusCode;
