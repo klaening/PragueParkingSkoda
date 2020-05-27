@@ -9,7 +9,7 @@
 
 
     <ContentPage.Content>
-        <ListView x:Name="TicketActiveList">
+        <ListView ItemsSource="{Binding TicketList}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell Tapped="ViewCell_Tapped">

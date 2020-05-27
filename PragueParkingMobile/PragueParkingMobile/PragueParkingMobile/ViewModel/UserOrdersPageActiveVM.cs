@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PPMobile.APIServices;
 using PPMobile.Model;
 using System;
 using System.Collections.Generic;
@@ -24,7 +25,16 @@ namespace PPMobile.ViewModel
         }
         public UserOrdersPageActiveVM()
         {
-            TicketList = new ObservableCollection<Ticket>(TicketRepository.TicketList);
+            var path = "tickets";
+
+            var response = Services.GetRequest(path);
+            string result = response.Content.ReadAsStringAsync().Result;
+
+            var resultList = JsonConvert.DeserializeObject<List<Ticket>>(result);
+
+            ObservableCollection<Ticket> dbTicketList = new ObservableCollection<Ticket>(resultList);
+
+            TicketList = dbTicketList;
         }
     }
 }

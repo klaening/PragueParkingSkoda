@@ -9,12 +9,11 @@ namespace PPMobile
 {
     public partial class App : Application
     {
-        public static TicketDataService TicketDataService { get; } = new TicketDataService();
+
         public App()
         {
             InitializeComponent();
 
-            //MainPage = new UserTabbedPage();
             MainPage = new NavigationPage(new LoginPage());
         }
 
