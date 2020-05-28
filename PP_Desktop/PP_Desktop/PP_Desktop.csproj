@@ -119,6 +119,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\Tickets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -127,6 +128,9 @@
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="ViewModels\TicketsMainPage_VM.cs" />
+    <Compile Include="Views\AddStaffPage.xaml.cs">
+      <DependentUpon>AddStaffPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\AdminMainPage.xaml.cs">
       <DependentUpon>AdminMainPage.xaml</DependentUpon>
     </Compile>
@@ -163,6 +167,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\AddStaffPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AdminMainPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

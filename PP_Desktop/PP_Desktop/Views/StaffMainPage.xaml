@@ -21,7 +21,7 @@
             <ListBox MinHeight="500"
                      HorizontalAlignment="Left"
                      MaxWidth="400"
-                     ItemsSource="{Binding Items}"
+                     ItemsSource="{Binding StaffItems}"
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -41,7 +41,7 @@
                     Click="GoBack_Btn_Click"/>
         </StackPanel>
 
-        <StackPanel DataContext="{Binding SelectedItem}"
+        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
                     Grid.Column="1"
                     HorizontalAlignment="Left">
 
@@ -71,7 +71,8 @@
 
                 <TextBlock Grid.Row="2" Grid.Column="0" 
                            Text="Department:"/>
-                <ComboBox Grid.Row="2" Grid.Column="1"/>
+                <TextBlock Grid.Row="2" Grid.Column="1"
+                           Text="{Binding DepartmentsID}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
                            Text="Username:"/>
@@ -94,5 +95,29 @@
                            Grid.Row="6" Grid.Column="0"/>
             </Grid>
         </StackPanel>
+
+        <!--<Popup VerticalOffset="10" HorizontalOffset="500" x:Name="AddStaff_PopUp">
+            <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
+                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
+                BorderThickness="1" MinWidth="400">
+                <StackPanel>
+                    <TextBlock Text="Add new staff" FontSize="25" HorizontalAlignment="Center"/>
+                    <TextBox x:Name="PID" Header="PID" PlaceholderText="Enter PID"/>
+                    <TextBox x:Name="FirstName" Header="FirstName" PlaceholderText="Enter FirstName"/>
+                    <TextBox x:Name="LastName" Header="LastName" PlaceholderText="Enter LastName"/>
+                    <TextBox x:Name="StaffAddress" Header="StaffAddress" PlaceholderText="Enter StaffAddress"/>
+                    <TextBox x:Name="PhoneNo" Header="PhoneNo" PlaceholderText="Enter PhoneNo"/>
+                    <TextBox x:Name="Email" Header="Email" PlaceholderText="Enter Email"/>
+                    <TextBox x:Name="BankAccount" Header="BankAccount" PlaceholderText="Enter BankAccount"/>
+                    <TextBox x:Name="ICE" Header="ICE" PlaceholderText="Enter ICE"/>
+                    <TextBox x:Name="UserName" Header="UserName" PlaceholderText="Enter UserName"/>
+                    <TextBox x:Name="UserPassword" Header="UserPassword" PlaceholderText="Enter UserPassword"/>
+                    <TextBox x:Name="DepartmentsID" Header="DepartmentsID" PlaceholderText="Enter DepartmentsID"/>
+                    
+                    <Button x:Name="AddStaffToDB_Btn"  Content="Add staff" Click="AddStaffToDB_Btn_Click"/>
+                    <Button Content="Close" Click="ClosePopupClicked"/>
+                </StackPanel>
+            </Border>
+        </Popup>-->
     </Grid>
 </Page>
