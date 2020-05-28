@@ -14,7 +14,7 @@ namespace PP_Desktop.Services
 
         //Mycket möjligt att vi inte kommer att ha det såhär!
 
-        public static async Task PostRequestAsync(string path, Object objectclass)
+        public static async Task<HttpResponseMessage> PostRequestAsync(string path, Object objectclass)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(objectclass, new JsonSerializerSettings
@@ -25,6 +25,8 @@ namespace PP_Desktop.Services
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
             var response = await client.PostAsync(HOST + path, content);
+
+            return response;
         }
 
         public static string GetRequest(string path)

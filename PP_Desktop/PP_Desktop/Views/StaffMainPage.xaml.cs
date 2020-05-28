@@ -35,7 +35,6 @@ namespace PP_Desktop.Views
     {
         private readonly StaffPageViewModel _viewModel;
 
-
         public StaffMainPage()
         {
             this.InitializeComponent();
@@ -46,22 +45,29 @@ namespace PP_Desktop.Views
 
         private void GoBack_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.GoBack();
         }
 
         private async void AddStaff_Btn_Click(object sender, RoutedEventArgs e)
         {
-            AppWindow appWindow = await AppWindow.TryCreateAsync();
-            Frame appWindowContentFrame = new Frame();
-            appWindowContentFrame.Navigate(typeof(AddStaffPage));
-            ElementCompositionPreview.SetAppWindowContent(appWindow, appWindowContentFrame);
-            await appWindow.TryShowAsync();
+            Frame.Navigate(typeof(AddStaffPage));
 
-            appWindow.Closed += delegate
-            {
-                appWindowContentFrame.Content = null;
-                appWindow = null;
-            };
+            //AppWindow appWindow = await AppWindow.TryCreateAsync();
+            //Frame appWindowContentFrame = new Frame();
+            //appWindowContentFrame.Navigate(typeof(AddStaffPage));
+            //ElementCompositionPreview.SetAppWindowContent(appWindow, appWindowContentFrame);
+            //await appWindow.TryShowAsync();
+
+            //appWindow.Closed += delegate
+            //{
+            //    appWindowContentFrame.Content = null;
+            //    appWindow = null;
+            //};
+        }
+
+        private void DeleteStaff_Btn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
 
         //private void ClosePopupClicked(object sender, RoutedEventArgs e)

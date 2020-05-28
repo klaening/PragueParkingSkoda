@@ -17,10 +17,8 @@ namespace PP_Desktop.ViewModels
     {
         private ObservableCollection<Staff> _items;
         private Staff _selectedItem;
-        private ObservableCollection<Departments> _departments;
-        private Departments _selectedDepartment;
 
-        public ObservableCollection<Staff> StaffItems 
+        public ObservableCollection<Staff> Items 
         {
             get => _items;
             set => SetProperty(ref _items, value);
@@ -32,26 +30,12 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        public ObservableCollection<Departments> DepartmentItems
-        {
-            get => _departments;
-            set
-            {
-                _departments = value;
-            }
-        }
-
         public StaffPageViewModel()
         {
-            var result = Requests.GetRequest(Paths.staff);
+            var result = Requests.GetRequest(Paths.Staff);
             var staffList = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
 
-            StaffItems = staffList;
-
-            result = Requests.GetRequest(Paths.departments);
-            var departmentList = JsonConvert.DeserializeObject<ObservableCollection<Departments>>(result);
-
-            DepartmentItems = departmentList;
+            Items = staffList;
         }
     }
 }

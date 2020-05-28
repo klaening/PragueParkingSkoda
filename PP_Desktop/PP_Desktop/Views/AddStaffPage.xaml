@@ -13,20 +13,24 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Add new staff" FontSize="25" HorizontalAlignment="Center"/>
-            <TextBox x:Name="PID" Header="PID" PlaceholderText="Enter PID"/>
-            <TextBox x:Name="FirstName" Header="FirstName" PlaceholderText="Enter FirstName"/>
-            <TextBox x:Name="LastName" Header="LastName" PlaceholderText="Enter LastName"/>
-            <TextBox x:Name="StaffAddress" Header="StaffAddress" PlaceholderText="Enter StaffAddress"/>
-            <TextBox x:Name="PhoneNo" Header="PhoneNo" PlaceholderText="Enter PhoneNo"/>
-            <TextBox x:Name="Email" Header="Email" PlaceholderText="Enter Email"/>
-            <TextBox x:Name="BankAccount" Header="BankAccount" PlaceholderText="Enter BankAccount"/>
-            <TextBox x:Name="ICE" Header="ICE" PlaceholderText="Enter ICE"/>
-            <TextBox x:Name="UserName" Header="UserName" PlaceholderText="Enter UserName"/>
-            <TextBox x:Name="UserPassword" Header="UserPassword" PlaceholderText="Enter UserPassword"/>
-            <TextBox x:Name="DepartmentsID" Header="DepartmentsID" PlaceholderText="Enter DepartmentsID"/>
+            <TextBox x:Name="InputPID" Header="PID" PlaceholderText="Enter PID"/>
+            <TextBox x:Name="InputFirstName" Header="First Name" PlaceholderText="Enter First Name"/>
+            <TextBox x:Name="InputLastName" Header="Last Name" PlaceholderText="Enter Last Name"/>
+            <TextBox x:Name="InputStaffAddress" Header="Staff Address" PlaceholderText="Enter Staff Address"/>
+            <TextBox x:Name="InputPhoneNo" Header="Phone Number" PlaceholderText="Enter Phone Number"/>
+            <TextBox x:Name="InputEmail" Header="Email" PlaceholderText="Enter Email"/>
+            <TextBox x:Name="InputBankAccount" Header="Bank Account" PlaceholderText="Enter Bank Account"/>
+            <TextBox x:Name="InputICE" Header="ICE" PlaceholderText="Enter ICE"/>
+            <TextBox x:Name="InputUserName" Header="Username" PlaceholderText="Enter Username"/>
+            <TextBox x:Name="InputUserPassword" Header="Password" PlaceholderText="Enter Password"/>
 
-            <Button x:Name="AddStaffToDB_Btn"  Content="Add staff" Click="AddStaffToDB_Btn_Click"/>
-            <Button Content="Close" Click="ClosePopupClicked"/>
+            <ComboBox x:Name="InputDepartmentsIDChoice" 
+                      ItemsSource="{Binding Items}" 
+                      PlaceholderText="Choose Department"
+                      DisplayMemberPath="DepartmentName"/>
+
+            <Button x:Name="SaveToDB_Btn" Content="Save" Click="SaveToDB_Btn_Click"/>
+            <Button Content="Cancel" Click="Cancel_Clicked"/>
         </StackPanel>
     </Grid>
 </Page>

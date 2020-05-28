@@ -17,7 +17,7 @@ namespace WebAPI_PragueParking_Domain.Models
         public string BankAccount { get; set; }
         public string ICE { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
+        public string UserPassword { get; set; }
         public int DepartmentsID { get; set; }
     }
 }

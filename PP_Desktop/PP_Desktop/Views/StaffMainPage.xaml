@@ -10,18 +10,23 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"
                               MinWidth="300"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Column="0">
+        <StackPanel Grid.Row="0" Grid.Column="0">
             <TextBlock Text="List of staff"/>
-            <ListBox MinHeight="500"
+            <ListBox x:Name="StaffListBox"
+                     MinHeight="500"
                      HorizontalAlignment="Left"
                      MaxWidth="400"
-                     ItemsSource="{Binding StaffItems}"
+                     ItemsSource="{Binding Items}"
                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
@@ -31,14 +36,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-
-            <Button x:Name="AddStaff_Btn"
-                    Content="Add Staff"
-                    Click="AddStaff_Btn_Click"/>
-
-            <Button x:Name="GoBack_Btn"
-                    Content="Go back"
-                    Click="GoBack_Btn_Click"/>
         </StackPanel>
 
         <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
@@ -88,36 +85,19 @@
                            Text="Email:"/>
                 <TextBlock Grid.Row="5" Grid.Column="1" 
                            Text="{Binding Email}"/>
-
-                <TextBlock x:Name="ShowStaff"
-                           Height="700"
-                           Width="1000"
-                           Grid.Row="6" Grid.Column="0"/>
             </Grid>
         </StackPanel>
 
-        <!--<Popup VerticalOffset="10" HorizontalOffset="500" x:Name="AddStaff_PopUp">
-            <Border BorderBrush="{StaticResource ApplicationForegroundThemeBrush}" 
-                Background="{StaticResource ApplicationPageBackgroundThemeBrush}"
-                BorderThickness="1" MinWidth="400">
-                <StackPanel>
-                    <TextBlock Text="Add new staff" FontSize="25" HorizontalAlignment="Center"/>
-                    <TextBox x:Name="PID" Header="PID" PlaceholderText="Enter PID"/>
-                    <TextBox x:Name="FirstName" Header="FirstName" PlaceholderText="Enter FirstName"/>
-                    <TextBox x:Name="LastName" Header="LastName" PlaceholderText="Enter LastName"/>
-                    <TextBox x:Name="StaffAddress" Header="StaffAddress" PlaceholderText="Enter StaffAddress"/>
-                    <TextBox x:Name="PhoneNo" Header="PhoneNo" PlaceholderText="Enter PhoneNo"/>
-                    <TextBox x:Name="Email" Header="Email" PlaceholderText="Enter Email"/>
-                    <TextBox x:Name="BankAccount" Header="BankAccount" PlaceholderText="Enter BankAccount"/>
-                    <TextBox x:Name="ICE" Header="ICE" PlaceholderText="Enter ICE"/>
-                    <TextBox x:Name="UserName" Header="UserName" PlaceholderText="Enter UserName"/>
-                    <TextBox x:Name="UserPassword" Header="UserPassword" PlaceholderText="Enter UserPassword"/>
-                    <TextBox x:Name="DepartmentsID" Header="DepartmentsID" PlaceholderText="Enter DepartmentsID"/>
-                    
-                    <Button x:Name="AddStaffToDB_Btn"  Content="Add staff" Click="AddStaffToDB_Btn_Click"/>
-                    <Button Content="Close" Click="ClosePopupClicked"/>
-                </StackPanel>
-            </Border>
-        </Popup>-->
+        <StackPanel Grid.Row="1" Grid.Column="0" 
+                    Orientation="Horizontal" 
+                    VerticalAlignment="Top">
+            <Button x:Name="AddStaff_Btn"
+                    Content="Add Staff"
+                    Click="AddStaff_Btn_Click"/>
+
+            <Button x:Name="GoBack_Btn"
+                    Content="Go back"
+                    Click="GoBack_Btn_Click"/>
+        </StackPanel>
     </Grid>
 </Page>

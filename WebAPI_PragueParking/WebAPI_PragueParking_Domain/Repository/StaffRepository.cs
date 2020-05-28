@@ -23,8 +23,8 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Staff (PID, FirstName, LastName, StaffAddress, PhoneNo, Email, BankAccount, ICE, UserName, Password, DepartmentsID) VALUES (@PID, @FirstName, @LastName, @StaffAddress, @PhoneNo, @Email, @BankAccount, @ICE, @UserName, @Password, @DepartmentsID)",
-                        new { staff.PID, staff.FirstName, staff.LastName, staff.StaffAddress, staff.PhoneNo, staff.Email, staff.BankAccount, staff.ICE, staff.UserName, staff.Password, staff.DepartmentsID });
+                    await c.ExecuteAsync("INSERT INTO Staff (PID, FirstName, LastName, StaffAddress, PhoneNo, Email, BankAccount, ICE, UserName, UserPassword, DepartmentsID) VALUES (@PID, @FirstName, @LastName, @StaffAddress, @PhoneNo, @Email, @BankAccount, @ICE, @UserName, @UserPassword, @DepartmentsID)",
+                        new { staff.PID, staff.FirstName, staff.LastName, staff.StaffAddress, staff.PhoneNo, staff.Email, staff.BankAccount, staff.ICE, staff.UserName, staff.UserPassword, staff.DepartmentsID });
 
                     return true;
                 }
@@ -73,8 +73,8 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Staff SET PID = @PID, FirstName = @FirstName, LastName = @LastName, StaffAddress = @StaffAddress, PhoneNo = @PhoneNo, Email = @Email, BankAccount = @BankAccount, ICE = @ICE, UserName = @UserName, Password = @Password, DepartmentsID = @DepartmentsID",
-                        new { staff.PID, staff.FirstName, staff.LastName, staff.StaffAddress, staff.PhoneNo, staff.Email, staff.BankAccount, staff.ICE, staff.UserName, staff.Password, staff.DepartmentsID });
+                    await c.ExecuteAsync("UPDATE Staff SET PID = @PID, FirstName = @FirstName, LastName = @LastName, StaffAddress = @StaffAddress, PhoneNo = @PhoneNo, Email = @Email, BankAccount = @BankAccount, ICE = @ICE, UserName = @UserName, UserPassword = @UserPassword, DepartmentsID = @DepartmentsID",
+                        new { staff.PID, staff.FirstName, staff.LastName, staff.StaffAddress, staff.PhoneNo, staff.Email, staff.BankAccount, staff.ICE, staff.UserName, staff.UserPassword, staff.DepartmentsID });
 
                     return true;
                 }
