@@ -10,17 +10,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"
                               MinWidth="300"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <StackPanel Grid.Row="0" Grid.Column="0">
+        <StackPanel Grid.Column="0">
             <TextBlock Text="List of staff"/>
             <ListBox x:Name="StaffListBox"
                      MinHeight="500"
@@ -36,6 +32,13 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
+            <Button x:Name="AddStaff_Btn"
+                    Content="Add Staff"
+                    Click="AddStaff_Btn_Click"/>
+
+            <Button x:Name="GoBack_Btn"
+                    Content="Go back"
+                    Click="GoBack_Btn_Click"/>
         </StackPanel>
 
         <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
@@ -63,7 +66,7 @@
                 <StackPanel Grid.Row="1" Grid.Column="0"
                             Orientation="Horizontal">
                     <TextBlock Text="ID:"/>
-                    <TextBlock Text="{Binding ID}"/>
+                    <TextBlock x:Name="ID" Text="{Binding ID}"/>
                 </StackPanel>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" 
@@ -86,18 +89,8 @@
                 <TextBlock Grid.Row="5" Grid.Column="1" 
                            Text="{Binding Email}"/>
             </Grid>
-        </StackPanel>
 
-        <StackPanel Grid.Row="1" Grid.Column="0" 
-                    Orientation="Horizontal" 
-                    VerticalAlignment="Top">
-            <Button x:Name="AddStaff_Btn"
-                    Content="Add Staff"
-                    Click="AddStaff_Btn_Click"/>
-
-            <Button x:Name="GoBack_Btn"
-                    Content="Go back"
-                    Click="GoBack_Btn_Click"/>
+            <Button DataContext="{x:Bind _viewModel}" Name="browseButton" Content="Delete Staff execute View Model" Grid.Column="1" Command="{Binding DeleteCommand}"/>
         </StackPanel>
     </Grid>
 </Page>

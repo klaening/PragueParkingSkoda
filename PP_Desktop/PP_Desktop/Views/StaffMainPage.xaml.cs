@@ -9,11 +9,13 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -51,36 +53,6 @@ namespace PP_Desktop.Views
         private async void AddStaff_Btn_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(AddStaffPage));
-
-            //AppWindow appWindow = await AppWindow.TryCreateAsync();
-            //Frame appWindowContentFrame = new Frame();
-            //appWindowContentFrame.Navigate(typeof(AddStaffPage));
-            //ElementCompositionPreview.SetAppWindowContent(appWindow, appWindowContentFrame);
-            //await appWindow.TryShowAsync();
-
-            //appWindow.Closed += delegate
-            //{
-            //    appWindowContentFrame.Content = null;
-            //    appWindow = null;
-            //};
         }
-
-        private void DeleteStaff_Btn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        //private void ClosePopupClicked(object sender, RoutedEventArgs e)
-        //{
-        //    if (AddStaff_PopUp.IsOpen) { AddStaff_PopUp.IsOpen = false; }
-        //}
-
-        //private void AddStaffToDB_Btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Staff newStaff = new Staff 
-        //    { 
-        //        PID = AddStaff_PopUp
-        //    };
-        //}
     }
 }

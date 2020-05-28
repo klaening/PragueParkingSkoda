@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Appointments.DataProvider;
 
 namespace PP_Desktop.Services
 {
@@ -39,6 +41,15 @@ namespace PP_Desktop.Services
             string result = statusCode.Content.ReadAsStringAsync().Result;
 
             return result;
+        }
+
+        public static Task<HttpResponseMessage> DeleteRequestAsync(string path, int id)
+        {
+            var client = new HttpClient();
+
+            var response = client.DeleteAsync(HOST + path + id);
+
+            return response;
         }
     }
 }
