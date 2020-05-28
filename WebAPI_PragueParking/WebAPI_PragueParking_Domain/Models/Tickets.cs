@@ -15,5 +15,6 @@ namespace WebAPI_PragueParking_Domain.Models
         public string Comment { get; set; }
         public int ParkingSpotsID { get; set; }
         public int VehicleTypesID { get; set; }
+        public string TicketStatusesID { get; set; }
     }
 }
