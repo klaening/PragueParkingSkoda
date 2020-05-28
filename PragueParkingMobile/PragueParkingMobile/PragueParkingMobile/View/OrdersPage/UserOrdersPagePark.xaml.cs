@@ -18,7 +18,7 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPagePark()
         {
             InitializeComponent();
-            BindingContext = new UserOrdersPageActiveVM();
+            BindingContext = new UserOrdersPageParkVM();
         }
     }
 }
