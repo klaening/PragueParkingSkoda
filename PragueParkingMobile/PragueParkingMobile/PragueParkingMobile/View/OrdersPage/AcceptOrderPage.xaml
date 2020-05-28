@@ -17,11 +17,11 @@
                         <Label Grid.Row="3" Grid.Column="0"  Text="Color:" FontSize="Medium"/>
                         <Label Grid.Row="3" Grid.Column="1" Text="Red" FontSize="Medium"/>
                         <Label Grid.Row="4" Grid.Column="0" Text="Registration number" FontSize="Medium"/>
-                        <Label Grid.Row="4" Grid.Column="1" Text="5A6 3592" FontSize="Medium"/>
+                        <Label x:Name="RegNo_Label" Grid.Row="4" Grid.Column="1" Text="{Binding RegNo}" FontSize="Medium"/>
                         <Label Grid.Row="5" Grid.Column="0" Text="Ticket Number:" FontSize="Medium"/>
                         <Label Grid.Row="5" Grid.Column="1" Text="0000001" FontSize="Medium"/>
                         <Label Grid.Row="6" Grid.Column="0" Text="Parking spot:" FontSize="Medium"/>
-                        <Label Grid.Row="6" Grid.Column="1" Text="39" FontSize="Medium"/>
+                        <Label x:Name="ParkingSpot_Lable" Grid.Row="6" Grid.Column="1" Text="{Binding ParkingSpotsId}" FontSize="Medium"/>
                     </Grid>
                 </StackLayout>
             </Frame>

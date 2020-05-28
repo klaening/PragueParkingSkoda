@@ -9,10 +9,11 @@
 
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TicketList}">
+        <ListView ItemsSource="{Binding TicketList}"
+                  ItemSelected ="ListView_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Tapped="ViewCell_Tapped">
+                    <ViewCell>
                         <Grid>
                             <Label Text="{Binding RegNo}"
                                    Grid.Column="0"

@@ -2,6 +2,7 @@
 using PPMobile.Model;
 using PPMobile.Utility;
 using PPMobile.ViewModel;
+using PPMobile.ViewModel.OrdersPageVM;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,11 +25,9 @@ namespace PPMobile.View.OrdersPage
             BindingContext = new UserOrdersPageActiveVM();
         }
 
-        private void ViewCell_Tapped(object sender, EventArgs e)
+        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            Navigation.PushAsync(new AcceptOrderPage());
+            await Navigation.PushModalAsync(new AcceptOrderPage(e.SelectedItem as Tickets));
         }
-     
-
     }
 }
