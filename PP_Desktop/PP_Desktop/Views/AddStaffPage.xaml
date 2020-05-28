@@ -13,23 +13,24 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Add new staff" FontSize="25" HorizontalAlignment="Center"/>
-            <TextBox x:Name="InputPID" Header="PID" PlaceholderText="Enter PID"/>
-            <TextBox x:Name="InputFirstName" Header="First Name" PlaceholderText="Enter First Name"/>
-            <TextBox x:Name="InputLastName" Header="Last Name" PlaceholderText="Enter Last Name"/>
-            <TextBox x:Name="InputStaffAddress" Header="Staff Address" PlaceholderText="Enter Staff Address"/>
-            <TextBox x:Name="InputPhoneNo" Header="Phone Number" PlaceholderText="Enter Phone Number"/>
-            <TextBox x:Name="InputEmail" Header="Email" PlaceholderText="Enter Email"/>
-            <TextBox x:Name="InputBankAccount" Header="Bank Account" PlaceholderText="Enter Bank Account"/>
-            <TextBox x:Name="InputICE" Header="ICE" PlaceholderText="Enter ICE"/>
-            <TextBox x:Name="InputUserName" Header="Username" PlaceholderText="Enter Username"/>
-            <TextBox x:Name="InputUserPassword" Header="Password" PlaceholderText="Enter Password"/>
+            <TextBox Header="PID" PlaceholderText="Enter PID" Text="{Binding PID}"/>
+            <TextBox Header="First Name" PlaceholderText="Enter First Name" Text="{Binding FirstName, Mode=TwoWay}"/>
+            <TextBox Header="Last Name" PlaceholderText="Enter Last Name" Text="{Binding LastName, Mode=TwoWay}"/>
+            <TextBox Header="Staff Address" PlaceholderText="Enter Staff Address" Text="{Binding StaffAddress, Mode=TwoWay}"/>
+            <TextBox Header="Phone Number" PlaceholderText="Enter Phone Number" Text="{Binding PhoneNo, Mode=TwoWay}"/>
+            <TextBox Header="Email" PlaceholderText="Enter Email" Text="{Binding Email, Mode=TwoWay}"/>
+            <TextBox Header="Bank Account" PlaceholderText="Enter Bank Account" Text="{Binding BankAccount, Mode=TwoWay}"/>
+            <TextBox Header="ICE" PlaceholderText="Enter ICE" Text="{Binding ICE, Mode=TwoWay}"/>
+            <TextBox Header="Username" PlaceholderText="Enter Username" Text="{Binding UserName, Mode=TwoWay}"/>
+            <TextBox Header="Password" PlaceholderText="Enter Password" Text="{Binding UserPassword, Mode=TwoWay}"/>
 
             <ComboBox x:Name="InputDepartmentsIDChoice" 
-                      ItemsSource="{Binding Items}" 
+                      ItemsSource="{Binding Items}"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                       PlaceholderText="Choose Department"
                       DisplayMemberPath="DepartmentName"/>
 
-            <Button x:Name="SaveToDB_Btn" Content="Save" Click="SaveToDB_Btn_Click"/>
+            <Button Content="Add Staff" Command="{Binding AddCommand}"/>
             <Button Content="Cancel" Click="Cancel_Clicked"/>
         </StackPanel>
     </Grid>

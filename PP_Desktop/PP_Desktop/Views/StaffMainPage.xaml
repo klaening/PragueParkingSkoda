@@ -90,7 +90,7 @@
                            Text="{Binding Email}"/>
             </Grid>
 
-            <Button DataContext="{x:Bind _viewModel}" Name="browseButton" Content="Delete Staff execute View Model" Grid.Column="1" Command="{Binding DeleteCommand}"/>
+            <Button Name="browseButton" Content="Delete Staff execute View Model" Grid.Column="1" Command="{x:Bind _viewModel.DeleteCommand}"/>
         </StackPanel>
     </Grid>
 </Page>

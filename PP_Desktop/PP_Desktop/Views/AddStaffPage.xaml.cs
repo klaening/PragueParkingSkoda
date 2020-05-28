@@ -38,46 +38,46 @@ namespace PP_Desktop.Views
             DataContext = _viewModel;
         }
 
-        private async void SaveToDB_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            var depChoice = (Departments)InputDepartmentsIDChoice.SelectedItem;
+        //private async void SaveToDB_Btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    var depChoice = (Departments)InputDepartmentsIDChoice.SelectedItem;
 
-            Staff staff = new Staff
-            {
-                PID = InputPID.Text,
-                FirstName = InputFirstName.Text,
-                LastName = InputLastName.Text,
-                StaffAddress = InputStaffAddress.Text,
-                PhoneNo = InputPhoneNo.Text,
-                Email = InputEmail.Text,
-                BankAccount = InputBankAccount.Text,
-                ICE = InputICE.Text,
-                UserName = InputUserName.Text,
-                UserPassword = InputUserPassword.Text,
-                DepartmentsID = depChoice.ID
-            };
+        //    Staff staff = new Staff
+        //    {
+        //        //PID = InputPID.Text,
+        //        FirstName = InputFirstName.Text,
+        //        //LastName = InputLastName.Text,
+        //        //StaffAddress = InputStaffAddress.Text,
+        //        //PhoneNo = InputPhoneNo.Text,
+        //        //Email = InputEmail.Text,
+        //        //BankAccount = InputBankAccount.Text,
+        //        //ICE = InputICE.Text,
+        //        //UserName = InputUserName.Text,
+        //        //UserPassword = InputUserPassword.Text,
+        //        DepartmentsID = depChoice.ID
+        //    };
 
-            HttpStatusCode statusCode = HttpStatusCode.BadRequest;
+        //    HttpStatusCode statusCode = HttpStatusCode.BadRequest;
 
-            try
-            {
-                var response = await Requests.PostRequestAsync(Paths.Staff, staff);
-                statusCode = response.StatusCode;
-            }
-            catch (Exception)
-            {
-                var dialog = new MessageDialog("Something went wrong", "Error");
-                await dialog.ShowAsync();
-            }
+        //    try
+        //    {
+        //        var response = await Requests.PostRequestAsync(Paths.Staff, staff);
+        //        statusCode = response.StatusCode;
+        //    }
+        //    catch (Exception)
+        //    {
+        //        var dialog = new MessageDialog("Something went wrong", "Error");
+        //        await dialog.ShowAsync();
+        //    }
 
-            if (statusCode == HttpStatusCode.OK)
-            {
-                var dialog = new MessageDialog("Staff successfully saved", "Success");
-                await dialog.ShowAsync();
+        //    if (statusCode == HttpStatusCode.OK)
+        //    {
+        //        var dialog = new MessageDialog("Staff successfully saved", "Success");
+        //        await dialog.ShowAsync();
                 
-                Frame.GoBack();
-            }
-        }
+        //        Frame.GoBack();
+        //    }
+        //}
 
         private void Cancel_Clicked(object sender, RoutedEventArgs e)
         {
