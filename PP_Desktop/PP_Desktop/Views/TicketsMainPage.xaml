@@ -118,24 +118,26 @@
             >
             
         </Border>
-        <Grid x:Name="Ticket_Info" Grid.Row="1" Grid.RowSpan="3"
-              Grid.Column="1" Grid.ColumnSpan="2"
-              >
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                
-            </Grid.RowDefinitions>
 
-            <StackPanel DataContext="{Binding SelectedItem}" HorizontalAlignment="Center">
-                <TextBlock Text="Showing ticket for:" FontSize="30"/>
-                <TextBlock Text="{Binding RegNo}" FontSize="40"/>
-                <TextBlock Text="{Binding ID}" FontSize="30"/>
-                <TextBlock Text="{Binding RetrievalCode}" FontSize="30"/>
-            </StackPanel>
-        </Grid>
+        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}" 
+                        Grid.Row="1" Grid.Column="1" 
+                        Grid.ColumnSpan="2" Margin="15">
+            
+            <TextBlock Text="Showing ticket for:" FontSize="30" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding RegNo}" FontSize="40" HorizontalAlignment="center"/>
+        </StackPanel>
+        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
+                    Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="15" HorizontalAlignment="Center">
+            <TextBlock Text="ID: " FontSize="30"/>
+            <TextBlock Text="RetrievalCode: " FontSize="30"/>
+        </StackPanel>
+
+        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
+                    Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Margin="15" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding ID}" FontSize="30"/>
+            <TextBlock Text="{Binding RetrievalCode}" FontSize="30"/>
+        </StackPanel>
+
+
     </Grid>
 </Page>
