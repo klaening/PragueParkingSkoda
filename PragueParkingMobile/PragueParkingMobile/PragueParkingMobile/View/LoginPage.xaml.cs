@@ -20,7 +20,7 @@ namespace PPMobile.View
 
         private async void LogInBtn_Clicked(object sender, EventArgs e)
         {
-           await Navigation.PushAsync(new UserMainPage());
+           await Navigation.PushModalAsync(new UserMainPage());
         }
     }
 }
