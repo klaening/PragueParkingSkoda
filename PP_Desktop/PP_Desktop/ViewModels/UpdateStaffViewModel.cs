@@ -2,24 +2,25 @@
 using Newtonsoft.Json;
 using PP_Desktop.Models;
 using PP_Desktop.Services;
-using PP_Desktop.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.Popups;
-using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Navigation;
 
 namespace PP_Desktop.ViewModels
 {
-    public class AddStaffPageViewModel : BindableBase
+    public class UpdateStaffViewModel : BindableBase
     {
         private ObservableCollection<Departments> _departments;
-        private Departments _selectedDepartment;
         private NavigationService _navigationService;
+        private Staff _selectedStaff;
+        private Departments _selectedDepartment;
         private string _PID;
         private string _firstName;
         private string _lastName;
@@ -30,59 +31,86 @@ namespace PP_Desktop.ViewModels
         private string _ICE;
         private string _userName;
         private string _userPassword;
+
         #region Properties
+        public Staff SelectedStaff
+        {
+            get => _selectedStaff;
+            set
+            {
+                _selectedStaff = value;
+
+                PID = _selectedStaff.PID;
+                FirstName = _selectedStaff.FirstName;
+                LastName = _selectedStaff.LastName;
+                StaffAddress = _selectedStaff.StaffAddress;
+                PhoneNo = _selectedStaff.PhoneNo;
+                Email = _selectedStaff.Email;
+                BankAccount = _selectedStaff.BankAccount;
+                ICE = _selectedStaff.ICE;
+                UserName = _selectedStaff.UserName;
+                UserPassword = _selectedStaff.UserPassword;
+                SelectedDepartment = Departments.FirstOrDefault(x => x.ID == _selectedStaff.ID);
+            }
+        }
+        public Departments SelectedDepartment
+        {
+            get => _selectedDepartment;
+            set => SetProperty(ref _selectedDepartment, value);
+        }
         public string PID
         {
-            get => _PID;
+            get => _PID; 
             set => SetProperty(ref _PID, value);
         }
         public string FirstName
         {
-            get { return _firstName; }
-            set => SetProperty(ref _firstName, value);
+            get => _firstName;
+            set => SetProperty(ref _firstName, value);        
         }
         public string LastName
         {
-            get { return _lastName; }
+            get => _lastName;
             set => SetProperty(ref _lastName, value);
         }
         public string StaffAddress
         {
-            get { return _staffAddress; }
+            get => _staffAddress;
             set => SetProperty(ref _staffAddress, value);
         }
         public string PhoneNo
         {
-            get { return _phoneNo; }
+            get => _phoneNo;
             set => SetProperty(ref _phoneNo, value);
         }
         public string Email
         {
-            get { return _email; }
+            get => _email;
             set => SetProperty(ref _email, value);
         }
         public string BankAccount
         {
-            get { return _bankAccount; }
+            get => _bankAccount;
             set => SetProperty(ref _bankAccount, value);
         }
         public string ICE
         {
-            get { return _ICE; }
+            get => _ICE;
             set => SetProperty(ref _ICE, value);
         }
         public string UserName
         {
-            get { return _userName; }
+            get => _userName;
             set => SetProperty(ref _userName, value);
         }
         public string UserPassword
         {
-            get { return _userPassword; }
+            get => _userPassword;
             set => SetProperty(ref _userPassword, value);
         }
         #endregion
-        public AddStaffPageViewModel()
+
+        public UpdateStaffViewModel()
         {
             _navigationService = new NavigationService();
 
@@ -91,7 +119,7 @@ namespace PP_Desktop.ViewModels
 
             Departments = departmentList;
 
-            AddCommand = new RelayCommand(AddStaffCommand, () => true);
+            UpdateCommand = new RelayCommand(UpdateStaffCommand, () => true);
         }
 
         public ObservableCollection<Departments> Departments
@@ -103,19 +131,13 @@ namespace PP_Desktop.ViewModels
             }
         }
 
-        public Departments SelectedDepartment
-        {
-            get => _selectedDepartment;
-            set => SetProperty(ref _selectedDepartment, value);
-        }
-
-        public RelayCommand AddCommand
+        public RelayCommand UpdateCommand
         {
             get;
             private set;
         }
 
-        private async void AddStaffCommand()
+        private async void UpdateStaffCommand()
         {
             Staff staff = new Staff
             {
@@ -134,12 +156,12 @@ namespace PP_Desktop.ViewModels
 
             try
             {
-                var response = await Requests.PostRequestAsync(Paths.Staff, staff);
+                var response = await Requests.PutRequestAsync(Paths.Staff, staff);
                 var statusCode = response.StatusCode;
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    var dialog = new MessageDialog("Staff successfully saved", "Success");
+                    var dialog = new MessageDialog("Staff successfully updated", "Success");
                     await dialog.ShowAsync();
 
                     _navigationService.GoBack();

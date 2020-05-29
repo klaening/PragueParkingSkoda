@@ -131,7 +131,8 @@
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="ViewModels\TicketsMainPage_VM.cs" />
-    <Compile Include="Views\AddStaffPage.xaml.cs">
+    <Compile Include="ViewModels\UpdateStaffViewModel.cs" />
+    <Compile Include="Views\StaffPages\AddStaffPage.xaml.cs">
       <DependentUpon>AddStaffPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\AdminMainPage.xaml.cs">
@@ -143,8 +144,11 @@
     <Compile Include="Views\LoginPage.xaml.cs">
       <DependentUpon>LoginPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StaffMainPage.xaml.cs">
+    <Compile Include="Views\StaffPages\StaffMainPage.xaml.cs">
       <DependentUpon>StaffMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\StaffPages\UpdateStaff.xaml.cs">
+      <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TicketsMainPage.xaml.cs">
       <DependentUpon>TicketsMainPage.xaml</DependentUpon>
@@ -170,7 +174,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\AddStaffPage.xaml">
+    <Page Include="Views\StaffPages\AddStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -186,7 +190,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StaffMainPage.xaml">
+    <Page Include="Views\StaffPages\StaffMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\StaffPages\UpdateStaff.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

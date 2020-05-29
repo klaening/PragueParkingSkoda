@@ -13,7 +13,7 @@
     <Grid>
         <StackPanel>
             <TextBlock Text="Add new staff" FontSize="25" HorizontalAlignment="Center"/>
-            <TextBox Header="PID" PlaceholderText="Enter PID" Text="{Binding PID}"/>
+            <TextBox Header="PID" PlaceholderText="Enter PID" Text="{Binding PID, Mode=TwoWay}"/>
             <TextBox Header="First Name" PlaceholderText="Enter First Name" Text="{Binding FirstName, Mode=TwoWay}"/>
             <TextBox Header="Last Name" PlaceholderText="Enter Last Name" Text="{Binding LastName, Mode=TwoWay}"/>
             <TextBox Header="Staff Address" PlaceholderText="Enter Staff Address" Text="{Binding StaffAddress, Mode=TwoWay}"/>
@@ -25,8 +25,8 @@
             <TextBox Header="Password" PlaceholderText="Enter Password" Text="{Binding UserPassword, Mode=TwoWay}"/>
 
             <ComboBox x:Name="InputDepartmentsIDChoice" 
-                      ItemsSource="{Binding Items}"
-                      SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                      ItemsSource="{Binding Departments}"
+                      SelectedItem="{Binding SelectedDepartment, Mode=TwoWay}"
                       PlaceholderText="Choose Department"
                       DisplayMemberPath="DepartmentName"/>
 

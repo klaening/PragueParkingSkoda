@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using PP_Desktop.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -43,6 +44,20 @@ namespace PP_Desktop.Services
             return result;
         }
 
+        public async static Task<HttpResponseMessage> PutRequestAsync(string path, Object objectClass)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(objectClass, new JsonSerializerSettings
+            {
+                NullValueHandling = NullValueHandling.Ignore
+            });
+
+            HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var response = await client.PutAsync(HOST + path, content);
+
+            return response;
+        }
         public static Task<HttpResponseMessage> DeleteRequestAsync(string path, int id)
         {
             var client = new HttpClient();

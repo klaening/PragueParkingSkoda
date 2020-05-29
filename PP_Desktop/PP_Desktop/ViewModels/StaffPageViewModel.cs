@@ -18,9 +18,9 @@ using Windows.UI.Xaml;
 
 namespace PP_Desktop.ViewModels
 {
-    public class StaffPageViewModel : BindableBase
+    public class StaffPageViewModel : BindableBase, INotifyPropertyChanged
     {
-        private ObservableCollection<Staff> _items;
+        private ObservableCollection<Staff> _staff;
         private Staff _selectedItem;
         private ObservableCollection<Staff> staffList;
 
@@ -29,15 +29,15 @@ namespace PP_Desktop.ViewModels
             var result = Requests.GetRequest(Paths.Staff);
             staffList = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
 
-            Items = staffList;
+            Staff = staffList;
 
             DeleteCommand = new RelayCommand(DeleteStaffCommand, () => true);
         }
 
-        public ObservableCollection<Staff> Items 
+        public ObservableCollection<Staff> Staff 
         {
-            get => _items;
-            set => SetProperty(ref _items, value);
+            get => _staff;
+            set => SetProperty(ref _staff, value);
         }
 
         public Staff SelectedItem
@@ -56,22 +56,17 @@ namespace PP_Desktop.ViewModels
         {
             int id = SelectedItem.ID;
 
-            var statusCode = HttpStatusCode.BadRequest;
-
             try
             {
                 var response = await Requests.DeleteRequestAsync(Paths.Staff, id);
-                statusCode = response.StatusCode;
+                var statusCode = response.StatusCode;
+
+                var dialog = new MessageDialog("Successfully deleted staff", "Success");
+                await dialog.ShowAsync();
             }
             catch (Exception)
             {
                 var dialog = new MessageDialog("Something went wrong", "Error");
-                await dialog.ShowAsync();
-            }
-
-            if (statusCode == HttpStatusCode.OK)
-            {
-                var dialog = new MessageDialog("Successfully deleted staff", "Success");
                 await dialog.ShowAsync();
             }
         }

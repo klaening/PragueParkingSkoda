@@ -73,8 +73,8 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Staff SET PID = @PID, FirstName = @FirstName, LastName = @LastName, StaffAddress = @StaffAddress, PhoneNo = @PhoneNo, Email = @Email, BankAccount = @BankAccount, ICE = @ICE, UserName = @UserName, UserPassword = @UserPassword, DepartmentsID = @DepartmentsID",
-                        new { staff.PID, staff.FirstName, staff.LastName, staff.StaffAddress, staff.PhoneNo, staff.Email, staff.BankAccount, staff.ICE, staff.UserName, staff.UserPassword, staff.DepartmentsID });
+                    await c.ExecuteAsync("UPDATE Staff SET PID = @PID, FirstName = @FirstName, LastName = @LastName, StaffAddress = @StaffAddress, PhoneNo = @PhoneNo, Email = @Email, BankAccount = @BankAccount, ICE = @ICE, UserName = @UserName, UserPassword = @UserPassword, DepartmentsID = @DepartmentsID WHERE ID = @id",
+                        new { staff.PID, staff.FirstName, staff.LastName, staff.StaffAddress, staff.PhoneNo, staff.Email, staff.BankAccount, staff.ICE, staff.UserName, staff.UserPassword, staff.DepartmentsID, staff.ID });
 
                     return true;
                 }

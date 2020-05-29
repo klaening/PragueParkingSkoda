@@ -18,33 +18,21 @@
 
         <StackPanel Grid.Column="0">
             <TextBlock Text="List of staff"/>
-            <ListBox x:Name="StaffListBox"
-                     MinHeight="500"
-                     HorizontalAlignment="Left"
-                     MaxWidth="400"
-                     ItemsSource="{Binding Items}"
-                     SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            <ListBox x:Name="StaffListBox" MinHeight="500" HorizontalAlignment="Left" MaxWidth="400"
+                     ItemsSource="{Binding Staff}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <StackPanel>
+                        <StackPanel Orientation="Horizontal">
                             <TextBlock Text="{Binding StaffInfo}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            <Button x:Name="AddStaff_Btn"
-                    Content="Add Staff"
-                    Click="AddStaff_Btn_Click"/>
-
-            <Button x:Name="GoBack_Btn"
-                    Content="Go back"
-                    Click="GoBack_Btn_Click"/>
+            <Button x:Name="AddStaff_Btn" Content="Add Staff" Click="AddStaff_Btn_Click"/>
+            <Button x:Name="GoBack_Btn" Content="Go back" Click="GoBack_Btn_Click"/>
         </StackPanel>
 
-        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
-                    Grid.Column="1"
-                    HorizontalAlignment="Left">
-
+        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -59,14 +47,12 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
-                           Text="{Binding FullName}"
-                           FontSize="50" FontWeight="Bold"/>
+                <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="50" FontWeight="Bold"
+                           Text="{Binding FullName}"/>
 
-                <StackPanel Grid.Row="1" Grid.Column="0"
-                            Orientation="Horizontal">
+                <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
                     <TextBlock Text="ID:"/>
-                    <TextBlock x:Name="ID" Text="{Binding ID}"/>
+                    <TextBlock Text="{Binding ID}"/>
                 </StackPanel>
 
                 <TextBlock Grid.Row="2" Grid.Column="0" 
@@ -90,7 +76,8 @@
                            Text="{Binding Email}"/>
             </Grid>
 
-            <Button Name="browseButton" Content="Delete Staff execute View Model" Grid.Column="1" Command="{x:Bind _viewModel.DeleteCommand}"/>
+            <Button Content="Delete Staff" Command="{x:Bind _viewModel.DeleteCommand}"/>
+            <Button x:Name="Update_Btn" Content="Update Staff" Click="Update_Btn_Click"/>
         </StackPanel>
     </Grid>
 </Page>
