@@ -121,7 +121,9 @@
     </Compile>
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\Staff.cs" />
+    <Compile Include="Models\TicketInfoView.cs" />
     <Compile Include="Models\Tickets.cs" />
+    <Compile Include="Models\TicketStatuses.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Requests.cs" />
     <Compile Include="Services\Paths.cs" />

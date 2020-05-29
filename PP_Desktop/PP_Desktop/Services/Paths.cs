@@ -18,5 +18,6 @@ namespace PP_Desktop.Services
         public const string statusChanges = "statusChanges";
         public const string ticketStatuses = "ticketStatuses";
         public const string departments = "departments";
+        public const string ticketInfoView = "ticketInfoView";
     }
 }
