@@ -9,8 +9,10 @@
 
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TicketList}"
-                  ItemSelected ="ListView_ItemSelected">
+        <ListView x:Name="OrdersActivePage"
+                    ItemsSource="{Binding TicketList}"
+                    ItemSelected ="OrdersActivePage_ItemSelected"
+                    SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

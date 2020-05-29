@@ -1,4 +1,5 @@
-﻿using PPMobile.Utility;
+﻿using PPMobile.Model;
+using PPMobile.Utility;
 using PPMobile.ViewModel;
 using PPMobile.ViewModel.OrdersPageVM;
 using System;
@@ -19,6 +20,11 @@ namespace PPMobile.View.OrdersPage
         {
             InitializeComponent();
             BindingContext = new UserOrdersPageParkVM();
+        }
+
+        private async void OrdersParkPage_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushAsync(new AcceptOrderPage(e.SelectedItem as Tickets));
         }
     }
 }

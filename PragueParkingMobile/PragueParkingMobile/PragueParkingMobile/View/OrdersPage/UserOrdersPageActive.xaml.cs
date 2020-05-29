@@ -25,7 +25,7 @@ namespace PPMobile.View.OrdersPage
             BindingContext = new UserOrdersPageActiveVM();
         }
 
-        private async void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void OrdersActivePage_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             await Navigation.PushAsync(new AcceptOrderPage(e.SelectedItem as Tickets));
         }

@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="PPMobile.View.OrdersPage.AcceptOrderPage">
+             x:Class="PPMobile.View.OrdersPage.AcceptOrderPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
             <Frame VerticalOptions="StartAndExpand"  HorizontalOptions="StartAndExpand">

@@ -8,7 +8,9 @@
              Title="Park Orders">
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TicketList}">
+        <ListView x:Name="OrdersParkPage"
+                    ItemsSource="{Binding TicketList}"
+                    ItemSelected="OrdersParkPage_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

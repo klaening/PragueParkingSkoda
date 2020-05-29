@@ -8,7 +8,9 @@
              Title="Return Orders">
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TicketList}">
+        <ListView x:Name="OrdersReturnPage"
+                  ItemsSource="{Binding TicketList}"
+                  ItemSelected="OrdersReturnPage_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
