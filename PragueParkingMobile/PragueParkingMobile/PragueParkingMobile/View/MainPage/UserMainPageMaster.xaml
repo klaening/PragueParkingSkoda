@@ -29,7 +29,9 @@
           <Label
               Grid.Column="1"
               Grid.Row="2"
-              Text="Hi!"
+              FontSize="25"
+              TextColor="White"
+              Text="Where you wanna go?"
               Style="{DynamicResource SubtitleStyle}"/>
         </Grid>
       </ListView.Header>
@@ -40,7 +42,7 @@
                 <Label VerticalOptions="FillAndExpand" 
                        VerticalTextAlignment="Center" 
                        Text="{Binding Title}" 
-                       d:Text="{Binding Title}"
+                       d:Text="{Binding .}"
                        FontSize="24"/>
             </StackLayout>
           </ViewCell>
