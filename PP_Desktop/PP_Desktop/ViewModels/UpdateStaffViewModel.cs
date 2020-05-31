@@ -20,7 +20,6 @@ namespace PP_Desktop.ViewModels
         private ObservableCollection<Departments> _departments;
         private NavigationService _navigationService;
         private Staff _selectedStaff;
-        private Departments _selectedDepartment;
         private string _PID;
         private string _firstName;
         private string _lastName;
@@ -31,6 +30,7 @@ namespace PP_Desktop.ViewModels
         private string _ICE;
         private string _userName;
         private string _userPassword;
+        private Departments _selectedDepartment;
 
         #region Properties
         public Staff SelectedStaff
@@ -50,13 +50,8 @@ namespace PP_Desktop.ViewModels
                 ICE = _selectedStaff.ICE;
                 UserName = _selectedStaff.UserName;
                 UserPassword = _selectedStaff.UserPassword;
-                SelectedDepartment = Departments.FirstOrDefault(x => x.ID == _selectedStaff.ID);
+                SelectedDepartment = Departments.FirstOrDefault(x => x.ID == _selectedStaff.DepartmentsID);
             }
-        }
-        public Departments SelectedDepartment
-        {
-            get => _selectedDepartment;
-            set => SetProperty(ref _selectedDepartment, value);
         }
         public string PID
         {
@@ -108,6 +103,11 @@ namespace PP_Desktop.ViewModels
             get => _userPassword;
             set => SetProperty(ref _userPassword, value);
         }
+        public Departments SelectedDepartment
+        {
+            get => _selectedDepartment;
+            set => SetProperty(ref _selectedDepartment, value);
+        }
         #endregion
 
         public UpdateStaffViewModel()
@@ -139,8 +139,10 @@ namespace PP_Desktop.ViewModels
 
         private async void UpdateStaffCommand()
         {
+            //Vi behöver ID:t också
             Staff staff = new Staff
             {
+                ID = SelectedStaff.ID,
                 PID = this.PID,
                 FirstName = this.FirstName,
                 LastName = this.LastName,
