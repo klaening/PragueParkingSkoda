@@ -14,19 +14,19 @@
         <StackPanel>
             <TextBlock Text="Update staff" FontSize="25" HorizontalAlignment="Center"/>
             
-            <TextBox Header="PID" PlaceholderText="Enter PID" Text="{x:Bind _viewModel.PID, Mode=TwoWay}"/>
-            <TextBox Header="First Name" PlaceholderText="Enter first name" Text="{x:Bind _viewModel.FirstName, Mode=TwoWay}"/>
-            <TextBox Header="Last Name" PlaceholderText="Enter last name" Text="{x:Bind _viewModel.LastName, Mode=TwoWay}"/>
-            <TextBox Header="Staff Address" PlaceholderText="Enter address" Text="{x:Bind _viewModel.StaffAddress, Mode=TwoWay}"/>
-            <TextBox Header="Phone Number" PlaceholderText="Enter phone number" Text="{x:Bind _viewModel.PhoneNo, Mode=TwoWay}"/>
-            <TextBox Header="Email" PlaceholderText="Enter email" Text="{x:Bind _viewModel.Email, Mode=TwoWay}"/>
-            <TextBox Header="Bank Account" PlaceholderText="Enter bank account" Text="{x:Bind _viewModel.BankAccount, Mode=TwoWay}"/>
-            <TextBox Header="ICE" PlaceholderText="Enter ICE" Text="{x:Bind _viewModel.ICE, Mode=TwoWay}"/>
-            <TextBox Header="Username" PlaceholderText="Enter username" Text="{x:Bind _viewModel.UserName, Mode=TwoWay}"/>
-            <TextBox Header="Password" PlaceholderText="Enter password" Text="{x:Bind _viewModel.UserPassword, Mode=TwoWay}"/>
+            <TextBox Header="PID" PlaceholderText="Enter PID" Text="{Binding PID, Mode=TwoWay}"/>
+            <TextBox Header="First Name" PlaceholderText="Enter first name" Text="{Binding FirstName, Mode=TwoWay}"/>
+            <TextBox Header="Last Name" PlaceholderText="Enter last name" Text="{Binding LastName, Mode=TwoWay}"/>
+            <TextBox Header="Staff Address" PlaceholderText="Enter address" Text="{Binding StaffAddress, Mode=TwoWay}"/>
+            <TextBox Header="Phone Number" PlaceholderText="Enter phone number" Text="{Binding PhoneNo, Mode=TwoWay}"/>
+            <TextBox Header="Email" PlaceholderText="Enter email" Text="{Binding Email, Mode=TwoWay}"/>
+            <TextBox Header="Bank Account" PlaceholderText="Enter bank account" Text="{Binding BankAccount, Mode=TwoWay}"/>
+            <TextBox Header="ICE" PlaceholderText="Enter ICE" Text="{Binding ICE, Mode=TwoWay}"/>
+            <TextBox Header="Username" PlaceholderText="Enter username" Text="{Binding UserName, Mode=TwoWay}"/>
+            <TextBox Header="Password" PlaceholderText="Enter password" Text="{Binding UserPassword, Mode=TwoWay}"/>
 
             <ComboBox x:Name="InputDepartmentsIDChoice" 
-                      ItemsSource="{x:Bind _viewModel.Departments}" Text="{x:Bind _viewModel.SelectedDepartment}" SelectedItem="{x:Bind _viewModel.SelectedDepartment, Mode=TwoWay}"
+                      ItemsSource="{Binding Departments}" Text="{Binding SelectedDepartment}" SelectedItem="{Binding SelectedDepartment, Mode=TwoWay}"
                       PlaceholderText="Choose Department"
                       DisplayMemberPath="DepartmentName"/>
 

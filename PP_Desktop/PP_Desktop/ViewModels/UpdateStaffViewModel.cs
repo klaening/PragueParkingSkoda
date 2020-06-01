@@ -139,7 +139,6 @@ namespace PP_Desktop.ViewModels
 
         private async void UpdateStaffCommand()
         {
-            //Vi behöver ID:t också
             Staff staff = new Staff
             {
                 ID = SelectedStaff.ID,

@@ -19,7 +19,7 @@
         <StackPanel Grid.Column="0">
             <TextBlock Text="List of staff"/>
             <ListBox x:Name="StaffListBox" MinHeight="500" HorizontalAlignment="Left" MaxWidth="400"
-                     ItemsSource="{Binding Staff}" SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+                     ItemsSource="{Binding Staff}" SelectedItem="{Binding SelectedStaff, Mode=TwoWay}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -32,7 +32,7 @@
             <Button x:Name="GoBack_Btn" Content="Go back" Click="GoBack_Btn_Click"/>
         </StackPanel>
 
-        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left">
+        <StackPanel DataContext="{Binding SelectedStaff, Mode=TwoWay}" Grid.Column="1" HorizontalAlignment="Left">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition/>
@@ -58,7 +58,7 @@
                 <TextBlock Grid.Row="2" Grid.Column="0" 
                            Text="Department:"/>
                 <TextBlock Grid.Row="2" Grid.Column="1"
-                           Text="{Binding DepartmentsID}"/>
+                           Text="{x:Bind _viewModel.Department.DepartmentName, Mode=TwoWay}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
                            Text="Username:"/>
