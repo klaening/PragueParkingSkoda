@@ -82,10 +82,12 @@
         </Button>
 
         <Button
+            x:Name="Update_Btn"
             Grid.Row="4"
             Grid.Column="1"
-            Content="Request"
+            Content="Update Ticket"
             HorizontalAlignment="Center"
+            Click="Update_Btn_Click"
             >
      
         </Button>
