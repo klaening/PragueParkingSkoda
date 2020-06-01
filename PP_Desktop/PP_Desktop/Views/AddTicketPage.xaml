@@ -20,10 +20,10 @@
             <TextBox Header="EstimatedParkingTime" PlaceholderText="Enter Estimated parking time" Text="{Binding EstimatedParkingTime, Mode=TwoWay}"/>
             <TextBox Header="Comment" PlaceholderText="Enter Comment" Text="{Binding Comment, Mode=TwoWay}"/>
 
-            <ComboBox ItemsSource="{Binding VehicleType}"
+            <ComboBox ItemsSource="{Binding AvailableVehicleTypes}"
                       SelectedItem="{Binding SelectedVehicleType, Mode=TwoWay}"
                       PlaceholderText="Choose Vehicle type"
-                      DisplayMemberPath="DepartmentName"/>
+                      DisplayMemberPath="TypeName"/>
 
             <!--<ComboBox ItemsSource="{x:Bind _viewModel.TimeEstimates}"
                       Text="{Binding TimeEstimates}"

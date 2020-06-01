@@ -5,6 +5,7 @@ using PP_Desktop.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -16,7 +17,10 @@ namespace PP_Desktop.ViewModels
     public class AddTicketViewModel : BindableBase
     {
         private ObservableCollection<ParkingSpots> _availableParkingSpots;
+        private ObservableCollection<VehicleTypes> _vehicleTypes;
+        private ObservableCollection<TicketStatuses> _ticketStatuses;
         private ParkingSpots _selectedParkingSpot;
+        private VehicleTypes _selectedVehicleType;
         private NavigationService _navigationService;
 
         private int ID;
@@ -89,6 +93,22 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _selectedParkingSpot, value);
         }
 
+        public ObservableCollection<VehicleTypes> AvailableVehicleTypes
+        {
+            get => _vehicleTypes;
+            set => _vehicleTypes = value;
+        }
+        public VehicleTypes SelectedVehicleType
+        {
+            get => _selectedVehicleType;
+            set => _selectedVehicleType = value;
+        }
+
+        public ObservableCollection<TicketStatuses> AvailableTicketStatuses
+        {
+            get => _ticketStatuses;
+            set => _ticketStatuses = value;
+        }
         //public ObservableCollection<decimal> TimeEstimates = new ObservableCollection<decimal>()
         //{
         //    0.5m, 1, 1.5m, 2, 4, 8, 24 
@@ -102,6 +122,11 @@ namespace PP_Desktop.ViewModels
             var availableParkingSpotList = JsonConvert.DeserializeObject<ObservableCollection<ParkingSpots>>(result);
 
             AvailableParkingSpots = availableParkingSpotList;
+
+            result = Requests.GetRequest(Paths.VehicleTypes);
+            var vehicleTypes = JsonConvert.DeserializeObject<ObservableCollection<VehicleTypes>>(result);
+
+            AvailableVehicleTypes = vehicleTypes;
 
             AddCommand = new RelayCommand(AddTicketCommand, () => true);
         }
@@ -123,8 +148,8 @@ namespace PP_Desktop.ViewModels
                 //EstimatedParkingTime = this.EstimatedParkingTime,
                 Comment = this.Comment,
                 ParkingSpotsID = SelectedParkingSpot.ID,
-                VehicleTypesID = this.VehicleTypesID,
-                TicketStatusesID = this.TicketStatusesID
+                VehicleTypesID = SelectedVehicleType.ID,
+                TicketStatusesID = 1 //Kan vi lägga detta i en enum?
             };
 
             try
