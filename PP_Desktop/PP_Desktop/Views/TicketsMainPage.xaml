@@ -26,13 +26,13 @@
         </Grid.ColumnDefinitions>
 
         <ListView Name="TicketListGrid"
-            ItemsSource = "{Binding TicketList}"
+            ItemsSource = "{Binding TicketInfoViews}"
             Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"
                   Margin="17"
-            SelectedItem="{Binding SelectedItem, Mode=TwoWay}">
+            SelectedItem="{Binding SelectedItemView, Mode=TwoWay}">
             
             <ListView.ItemTemplate>
-                <DataTemplate x:DataType="data:Tickets">
+                <DataTemplate x:DataType="data:TicketInfoView">
                     
                     <StackPanel Orientation='Horizontal'>
                         <TextBlock Text="{x:Bind RegNo}"
@@ -40,7 +40,7 @@
                                        FontSize="18"
                                        TextWrapping="Wrap"
                                        Margin="10"/>
-                        <TextBlock Text="{x:Bind RetrievalCode}"
+                        <TextBlock Text="{x:Bind StatusName}"
                                        Name="RetrievalTxt"
                                        FontSize="18"
                                        TextWrapping="Wrap"
@@ -119,23 +119,25 @@
             
         </Border>
 
-        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}" 
+        <StackPanel DataContext="{Binding SelectedItemView, Mode=TwoWay}" 
                         Grid.Row="1" Grid.Column="1" 
                         Grid.ColumnSpan="2" Margin="15">
             
             <TextBlock Text="Showing ticket for:" FontSize="30" HorizontalAlignment="Center"/>
             <TextBlock Text="{Binding RegNo}" FontSize="40" HorizontalAlignment="center"/>
         </StackPanel>
-        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
+        <StackPanel DataContext="{Binding SelectedItemView, Mode=TwoWay}"
                     Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="15" HorizontalAlignment="Center">
             <TextBlock Text="ID: " FontSize="30"/>
-            <TextBlock Text="RetrievalCode: " FontSize="30"/>
+            <TextBlock Text="Status: " FontSize="30"/>
+            <TextBlock Text="Parking spot: : " FontSize="30"/>
         </StackPanel>
 
-        <StackPanel DataContext="{Binding SelectedItem, Mode=TwoWay}"
+        <StackPanel DataContext="{Binding SelectedItemView, Mode=TwoWay}"
                     Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Margin="15" HorizontalAlignment="Center">
-            <TextBlock Text="{Binding ID}" FontSize="30"/>
-            <TextBlock Text="{Binding RetrievalCode}" FontSize="30"/>
+            <TextBlock Text="{Binding TicketsID}" FontSize="30"/>
+            <TextBlock Text="{Binding StatusName}" FontSize="30"/>
+            <TextBlock Text="{Binding SpotNo}" FontSize="30"/>
         </StackPanel>
 
 

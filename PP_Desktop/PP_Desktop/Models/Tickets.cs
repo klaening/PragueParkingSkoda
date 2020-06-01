@@ -19,39 +19,20 @@ namespace PP_Desktop.Models
         public string Comment { get; set; }
         public int ParkingSpotsID { get; set; }
         public int VehicleTypesID { get; set; }
+        public int TicketStatusesID { get; set; }
+
 
         public static ObservableCollection<Tickets> GetTicketsList()
         {
             ObservableCollection<Tickets> ticket = new ObservableCollection<Tickets>()
             {
-                new Tickets()
-                {
-                    ID = 1,
-                    RegNo = "ABC 123",
-                    RetrievalCode = "Parked",
 
-                },
-                new Tickets()
-                {
-                    ID = 2,
-                    RegNo = "DEF 456",
-                    RetrievalCode = "Recieved",
-
-                },
-
-                new Tickets()
-                {
-                    ID = 3,
-                    RegNo = "GHJ 789",
-                    RetrievalCode = "Left-Off",
-
-                }
 
             };
 
             return ticket;
         }
 
-      
+
     }
 }
