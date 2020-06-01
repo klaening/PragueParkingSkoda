@@ -19,7 +19,7 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPagePark()
         {
             InitializeComponent();
-            BindingContext = new UserOrdersPageParkVM();
+            BindingContext = new UserOrdersPageVM();
         }
 
         private async void OrdersParkPage_ItemSelected(object sender, SelectedItemChangedEventArgs e)

@@ -19,7 +19,7 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPageReturn()
         {
             InitializeComponent();
-            BindingContext = new UserOrdersPageReturnVM();
+            BindingContext = new UserOrdersPageVM();
         }
 
         private async void OrdersReturnPage_ItemSelected(object sender, SelectedItemChangedEventArgs e)

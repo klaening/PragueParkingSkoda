@@ -10,7 +10,7 @@
 
     <ContentPage.Content>
         <ListView x:Name="OrdersActivePage"
-                    ItemsSource="{Binding TicketList}"
+                    ItemsSource="{Binding ActiveList}"
                     ItemSelected ="OrdersActivePage_ItemSelected"
                     SelectionMode="Single">
             <ListView.ItemTemplate>

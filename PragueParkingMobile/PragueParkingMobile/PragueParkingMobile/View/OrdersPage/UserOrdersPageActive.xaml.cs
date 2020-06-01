@@ -22,7 +22,7 @@ namespace PPMobile.View.OrdersPage
         public UserOrdersPageActive()
         {
             InitializeComponent();
-            BindingContext = new UserOrdersPageActiveVM();
+            BindingContext = new UserOrdersPageVM();
         }
 
         private async void OrdersActivePage_ItemSelected(object sender, SelectedItemChangedEventArgs e)
