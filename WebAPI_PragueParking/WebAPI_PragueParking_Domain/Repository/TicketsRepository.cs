@@ -23,8 +23,8 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Tickets (RegNo, RetrievalCode, PhoneNo, PID, EstimatedParkingTime, Comment, ParkingSpotsID, VehicleTypesID, TicketStatusesID) VALUES (@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)",
-                        new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketstatusesID });
+                    await c.ExecuteAsync("INSERT INTO Tickets (RegNo, RetrievalCode, PhoneNo, PID, EstimatedParkingTime, Comment, ParkingSpotsID, VehicleTypesID) VALUES (@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)",
+                        new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketStatusesID });
                     
                     return true;
                 }
