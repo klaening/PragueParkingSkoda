@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
 using PP_Desktop.Models;
 using PP_Desktop.Services;
 using System;
@@ -6,24 +7,37 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Net;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Windows.Networking.Proximity;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 
 namespace PP_Desktop.ViewModels
 {
-    public class StaffPageViewModel : BindableBase
+    public class StaffPageViewModel : BindableBase, INotifyPropertyChanged
     {
-        private ObservableCollection<Staff> _items;
+        private ObservableCollection<Staff> _staff;
         private Staff _selectedItem;
-        private ObservableCollection<Departments> _departments;
-        private Departments _selectedDepartment;
+        private ObservableCollection<Staff> staffList;
 
-        public ObservableCollection<Staff> StaffItems 
+        public StaffPageViewModel()
         {
-            get => _items;
-            set => SetProperty(ref _items, value);
+            var result = Requests.GetRequest(Paths.Staff);
+            staffList = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
+
+            Staff = staffList;
+
+            DeleteCommand = new RelayCommand(DeleteStaffCommand, () => true);
+        }
+
+        public ObservableCollection<Staff> Staff 
+        {
+            get => _staff;
+            set => SetProperty(ref _staff, value);
         }
 
         public Staff SelectedItem
@@ -32,26 +46,29 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _selectedItem, value);
         }
 
-        public ObservableCollection<Departments> DepartmentItems
+        public RelayCommand DeleteCommand
         {
-            get => _departments;
-            set
-            {
-                _departments = value;
-            }
+            get;
+            private set;
         }
 
-        public StaffPageViewModel()
+        private async void DeleteStaffCommand()
         {
-            var result = Requests.GetRequest(Paths.staff);
-            var staffList = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
+            int id = SelectedItem.ID;
 
-            StaffItems = staffList;
+            try
+            {
+                var response = await Requests.DeleteRequestAsync(Paths.Staff, id);
+                var statusCode = response.StatusCode;
 
-            result = Requests.GetRequest(Paths.departments);
-            var departmentList = JsonConvert.DeserializeObject<ObservableCollection<Departments>>(result);
-
-            DepartmentItems = departmentList;
+                var dialog = new MessageDialog("Successfully deleted staff", "Success");
+                await dialog.ShowAsync();
+            }
+            catch (Exception)
+            {
+                var dialog = new MessageDialog("Something went wrong", "Error");
+                await dialog.ShowAsync();
+            }
         }
     }
 }

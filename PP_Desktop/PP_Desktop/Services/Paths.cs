@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PP_Desktop.Services
 {
-    public class Paths
+    public static class Paths
     {
         public const string staff = "staff";
         public const string tickets = "tickets";

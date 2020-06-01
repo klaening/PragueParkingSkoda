@@ -1,7 +1,9 @@
-﻿using Newtonsoft.Json;
+﻿using GalaSoft.MvvmLight.Messaging;
+using Newtonsoft.Json;
 using PP_Desktop.Models;
 using PP_Desktop.Services;
 using PP_Desktop.ViewModels;
+using PP_Desktop.Views.StaffPages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,11 +11,13 @@ using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.Cryptography.X509Certificates;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.WindowManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,7 +39,6 @@ namespace PP_Desktop.Views
     {
         private readonly StaffPageViewModel _viewModel;
 
-
         public StaffMainPage()
         {
             this.InitializeComponent();
@@ -46,35 +49,17 @@ namespace PP_Desktop.Views
 
         private void GoBack_Btn_Click(object sender, RoutedEventArgs e)
         {
-
+            Frame.GoBack();
         }
 
-        private async void AddStaff_Btn_Click(object sender, RoutedEventArgs e)
+        private void AddStaff_Btn_Click(object sender, RoutedEventArgs e)
         {
-            AppWindow appWindow = await AppWindow.TryCreateAsync();
-            Frame appWindowContentFrame = new Frame();
-            appWindowContentFrame.Navigate(typeof(AddStaffPage));
-            ElementCompositionPreview.SetAppWindowContent(appWindow, appWindowContentFrame);
-            await appWindow.TryShowAsync();
-
-            appWindow.Closed += delegate
-            {
-                appWindowContentFrame.Content = null;
-                appWindow = null;
-            };
+            Frame.Navigate(typeof(AddStaffPage));
         }
 
-        //private void ClosePopupClicked(object sender, RoutedEventArgs e)
-        //{
-        //    if (AddStaff_PopUp.IsOpen) { AddStaff_PopUp.IsOpen = false; }
-        //}
-
-        //private void AddStaffToDB_Btn_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Staff newStaff = new Staff 
-        //    { 
-        //        PID = AddStaff_PopUp
-        //    };
-        //}
+        private void Update_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(UpdateStaff), _viewModel.SelectedItem);
+        }
     }
 }
