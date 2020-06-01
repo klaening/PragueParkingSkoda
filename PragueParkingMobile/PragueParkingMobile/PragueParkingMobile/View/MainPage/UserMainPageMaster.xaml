@@ -8,17 +8,12 @@
              x:Class="PPMobile.View.MainPage.UserMainPageMaster"
              Title="Master">
   <StackLayout>
-    <ListView x:Name="MenuItemsListView"
+        <ListView x:Name="MenuItemsListView"
               SeparatorVisibility="None"
               HasUnevenRows="true"
               ItemsSource="{Binding MenuItems}"
               ItemTapped="MenuItemsListView_ItemTapped">
-      <d:ListView.ItemsSource>
-          <x:Array Type="{x:Type local:UserMainPageMasterMenuItem}">
-                    <local:UserMainPageMasterMenuItem Title="Test" TargetType="{x:Type local:UserProfilePage}"/>
-          </x:Array>
-      </d:ListView.ItemsSource>
-      <ListView.Header>
+            <ListView.Header>
         <Grid BackgroundColor="#03A9F4">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
@@ -34,7 +29,9 @@
           <Label
               Grid.Column="1"
               Grid.Row="2"
-              Text="Hi!"
+              FontSize="25"
+              TextColor="White"
+              Text="Where you wanna go?"
               Style="{DynamicResource SubtitleStyle}"/>
         </Grid>
       </ListView.Header>
@@ -42,12 +39,12 @@
         <DataTemplate>
           <ViewCell>
             <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
-                            <Label VerticalOptions="FillAndExpand" 
-                    VerticalTextAlignment="Center" 
-                    Text="{Binding Title}" 
-                    d:Text="{Binding .}"
-                    FontSize="24"/>
-                        </StackLayout>
+                <Label VerticalOptions="FillAndExpand" 
+                       VerticalTextAlignment="Center" 
+                       Text="{Binding Title}" 
+                       d:Text="{Binding .}"
+                       FontSize="24"/>
+            </StackLayout>
           </ViewCell>
         </DataTemplate>
       </ListView.ItemTemplate>

@@ -9,19 +9,23 @@
 
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding TicketList}">
+        <ListView x:Name="OrdersActivePage"
+                    ItemsSource="{Binding TicketList}"
+                    ItemSelected ="OrdersActivePage_ItemSelected"
+                    SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell Tapped="ViewCell_Tapped">
+                    <ViewCell>
                         <Grid>
-                            <Label Text="{Binding PhoneNo}"
-                                   Grid.Column="0"
-                                   Grid.Row="0"
-                                   Grid.ColumnSpan="2"/>
                             <Label Text="{Binding RegNo}"
                                    Grid.Column="0"
-                                   Grid.Row="1"
-                                   Grid.ColumnSpan="2"/>
+                                   Grid.Row="0"/>
+                            <Label Text="{Binding ParkingSpotsId}"
+                                   Grid.Column="1"
+                                   Grid.Row="0"/>
+                            <Label Text="2020-05-27 14:21"
+                                   Grid.Column="0"
+                                   Grid.Row="1"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

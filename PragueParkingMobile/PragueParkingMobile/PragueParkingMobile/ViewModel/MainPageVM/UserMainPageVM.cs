@@ -19,6 +19,10 @@ namespace PPMobile.ViewModel
             this.OrdersBtnClicked = new Command(async () => await OrdersPageNav());
         }
 
+        public UserMainPageVM()
+        {
+        }
+
         public async Task OrdersPageNav()
         {
             await Navigation.PushAsync(new UserTabbedPage());

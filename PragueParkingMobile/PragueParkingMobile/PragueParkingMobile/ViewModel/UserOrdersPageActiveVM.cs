@@ -25,16 +25,19 @@ namespace PPMobile.ViewModel
         }
         public UserOrdersPageActiveVM()
         {
+            TicketList = new ObservableCollection<Tickets>();
+
             var path = "tickets";
 
             var response = Services.GetRequest(path);
-            string result = response.Content.ReadAsStringAsync().Result;
+            
+            var tempList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(response);
 
-            var resultList = JsonConvert.DeserializeObject<List<Tickets>>(result);
-
-            ObservableCollection<Tickets> dbTicketList = new ObservableCollection<Tickets>(resultList);
-
-            TicketList = dbTicketList;
+            foreach (var ticket in tempList)
+            {
+                if (ticket.RegNo == "ABC 123")
+                    TicketList.Add(ticket);
+            }
         }
     }
 }

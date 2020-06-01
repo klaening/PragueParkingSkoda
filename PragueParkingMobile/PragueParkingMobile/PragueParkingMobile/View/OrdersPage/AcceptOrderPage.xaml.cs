@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PPMobile.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,14 @@ namespace PPMobile.View.OrdersPage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AcceptOrderPage : ContentPage
     {
-        public AcceptOrderPage()
+        public AcceptOrderPage(Tickets ticket)
         {
             InitializeComponent();
+            RegNo_Label.Text = ticket.RegNo;
+            ParkingSpot_Lable.Text = ticket.ParkingSpotsId.ToString();
         }
 
-        public 
-        void AcceptOrderButton_Clicked(object sender, EventArgs e)
+        public void AcceptOrderButton_Clicked(object sender, EventArgs e)
         {
             AcceptOrderButton.IsVisible = false;
             CarParkedButton.IsVisible = true;

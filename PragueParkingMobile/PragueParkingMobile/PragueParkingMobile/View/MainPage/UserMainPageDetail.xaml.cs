@@ -17,12 +17,12 @@ namespace PPMobile.View.MainPage
         public UserMainPageDetail()
         {
             InitializeComponent();
-            BindingContext = new UserMainPageVM(Navigation);
+            //BindingContext = new UserMainPageVM();
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new UserTabbedPage());
+            await Navigation.PushAsync(new NavigationPage(new UserTabbedPage()));
         }
     }
 }
