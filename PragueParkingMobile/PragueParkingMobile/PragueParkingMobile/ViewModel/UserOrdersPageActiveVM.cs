@@ -12,8 +12,8 @@ namespace PPMobile.ViewModel
 {
     public class UserOrdersPageActiveVM : BaseViewModel
     {
-        private ObservableCollection<Tickets> _ticketList;
-        public ObservableCollection<Tickets> TicketList
+        private ObservableCollection<TicketView> _ticketList;
+        public ObservableCollection<TicketView> TicketList
         {
             get => _ticketList;
             set
@@ -25,19 +25,19 @@ namespace PPMobile.ViewModel
         }
         public UserOrdersPageActiveVM()
         {
-            TicketList = new ObservableCollection<Tickets>();
+            TicketList = new ObservableCollection<TicketView>();
 
-            var path = "tickets";
+            var path = "ticketview";
 
             var response = Services.GetRequest(path);
             
-            var tempList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(response);
+            var tempList = JsonConvert.DeserializeObject<ObservableCollection<TicketView>>(response);
 
-            foreach (var ticket in tempList)
-            {
-                if (ticket.RegNo == "ABC 123")
-                    TicketList.Add(ticket);
-            }
+            //foreach (var ticket in tempList)
+            //{
+            //    if (ticket.Reg == "Return Accepted")
+            //        TicketList.Add(ticket);
+            //}
         }
     }
 }
