@@ -120,6 +120,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\Departments.cs" />
+    <Compile Include="Models\ParkingSpots.cs" />
     <Compile Include="Models\Staff.cs" />
     <Compile Include="Models\TicketInfoView.cs" />
     <Compile Include="Models\Tickets.cs" />
@@ -130,10 +131,14 @@
     <Compile Include="Services\Requests.cs" />
     <Compile Include="Services\Paths.cs" />
     <Compile Include="ViewModels\AddStaffPageViewModel.cs" />
+    <Compile Include="ViewModels\AddTicketViewModel.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
     <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="ViewModels\TicketsMainPage_VM.cs" />
     <Compile Include="ViewModels\UpdateStaffViewModel.cs" />
+    <Compile Include="Views\AddTicketPage.xaml.cs">
+      <DependentUpon>AddTicketPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\StaffPages\AddStaffPage.xaml.cs">
       <DependentUpon>AddStaffPage.xaml</DependentUpon>
     </Compile>
@@ -176,6 +181,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Views\AddTicketPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\StaffPages\AddStaffPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
