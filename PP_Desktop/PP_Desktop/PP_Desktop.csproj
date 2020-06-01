@@ -157,8 +157,11 @@
     <Compile Include="Views\StaffPages\UpdateStaff.xaml.cs">
       <DependentUpon>UpdateStaff.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\TicketsMainPage.xaml.cs">
+    <Compile Include="Views\TicketsPages\TicketsMainPage.xaml.cs">
       <DependentUpon>TicketsMainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TicketsPages\UpdateTickets.xaml.cs">
+      <DependentUpon>UpdateTickets.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -209,7 +212,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\TicketsMainPage.xaml">
+    <Page Include="Views\TicketsPages\TicketsMainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TicketsPages\UpdateTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
