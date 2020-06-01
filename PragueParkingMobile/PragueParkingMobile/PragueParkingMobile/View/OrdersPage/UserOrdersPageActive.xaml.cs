@@ -27,7 +27,7 @@ namespace PPMobile.View.OrdersPage
 
         private async void OrdersActivePage_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushAsync(new AcceptOrderPage(e.SelectedItem as Tickets));
+            await Navigation.PushAsync(new AcceptOrderPage(e.SelectedItem as TicketInfoView));
         }
     }
 }

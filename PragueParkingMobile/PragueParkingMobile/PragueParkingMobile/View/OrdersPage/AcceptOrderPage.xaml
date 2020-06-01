@@ -12,7 +12,7 @@
                 <StackLayout>
                     <Grid>
                         <Label Grid.Row="1" Grid.Column="0" Text="Type of order:" FontSize="Medium"/>
-                        <Label Grid.Row="1" Grid.Column="1" Text="Park / Return" FontSize="Medium"/>
+                        <Label x:Name="Order_Label" Grid.Row="1" Grid.Column="1" Text="" FontSize="Medium"/>
                         <Label Grid.Row="2" Grid.Column="0" Text="Car:" FontSize="Medium"/>
                         <Label Grid.Row="2" Grid.Column="1" Text="Volvo 240" FontSize="Medium"/>
                         <Label Grid.Row="3" Grid.Column="0"  Text="Color:" FontSize="Medium"/>
@@ -22,7 +22,7 @@
                         <Label Grid.Row="5" Grid.Column="0" Text="Ticket Number:" FontSize="Medium"/>
                         <Label Grid.Row="5" Grid.Column="1" Text="0000001" FontSize="Medium"/>
                         <Label Grid.Row="6" Grid.Column="0" Text="Parking spot:" FontSize="Medium"/>
-                        <Label x:Name="ParkingSpot_Lable" Grid.Row="6" Grid.Column="1" Text="{Binding ParkingSpotsId}" FontSize="Medium"/>
+                        <Label x:Name="ParkingSpot_Label" Grid.Row="6" Grid.Column="1" Text="{Binding ParkingSpotsId}" FontSize="Medium"/>
                     </Grid>
                 </StackLayout>
             </Frame>
