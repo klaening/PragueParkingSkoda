@@ -40,5 +40,10 @@ namespace PP_Desktop.Views
         {
             Frame.Navigate(typeof(UpdateTickets));
         }
+
+        private void Add_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AddTicketPage));
+        }
     }
 }

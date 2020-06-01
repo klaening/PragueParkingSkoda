@@ -16,7 +16,7 @@ namespace PP_Desktop.ViewModels
     public class AddTicketViewModel : BindableBase
     {
         private ObservableCollection<ParkingSpots> _availableParkingSpots;
-        private Departments _selectedDepartment;
+        private ParkingSpots _selectedParkingSpot;
         private NavigationService _navigationService;
 
         private int ID;
@@ -30,6 +30,7 @@ namespace PP_Desktop.ViewModels
         private int _vehicleTypesID;
         private int _ticketStatusesID;
 
+        #region Properties
         public string RegNo
         {
             get => _regNo;
@@ -50,11 +51,11 @@ namespace PP_Desktop.ViewModels
             get => _PID;
             set => SetProperty(ref _PID, value);
         }
-        public decimal EstimatedParkingTime
-        {
-            get => _estimatedParkingTime;
-            set => SetProperty(ref _estimatedParkingTime, value);
-        }
+        //public decimal EstimatedParkingTime
+        //{
+        //    get => _estimatedParkingTime;
+        //    set => SetProperty(ref _estimatedParkingTime, value);
+        //}
         public string Comment
         {
             get => _comment;
@@ -75,20 +76,32 @@ namespace PP_Desktop.ViewModels
             get => _ticketStatusesID;
             set => SetProperty(ref _ticketStatusesID, value);
         }
+
+        #endregion
         public ObservableCollection<ParkingSpots> AvailableParkingSpots
         {
             get => _availableParkingSpots;
-            set => SetProperty(ref _availableParkingSpots, value);
+            set => _availableParkingSpots = value;
         }
+        public ParkingSpots SelectedParkingSpot
+        {
+            get => _selectedParkingSpot;
+            set => SetProperty(ref _selectedParkingSpot, value);
+        }
+
+        //public ObservableCollection<decimal> TimeEstimates = new ObservableCollection<decimal>()
+        //{
+        //    0.5m, 1, 1.5m, 2, 4, 8, 24 
+        //};
 
         public AddTicketViewModel()
         {
             _navigationService = new NavigationService();
 
-            var result = Requests.GetRequest(Paths.ParkingSpots);
-            var parkingSpotList = JsonConvert.DeserializeObject<ObservableCollection<ParkingSpots>>(result);
+            var result = Requests.GetRequest(Paths.AvailableParkingSpots);
+            var availableParkingSpotList = JsonConvert.DeserializeObject<ObservableCollection<ParkingSpots>>(result);
 
-            AvailableParkingSpots = parkingSpotList;
+            AvailableParkingSpots = availableParkingSpotList;
 
             AddCommand = new RelayCommand(AddTicketCommand, () => true);
         }
@@ -107,9 +120,9 @@ namespace PP_Desktop.ViewModels
                 RetrievalCode = this.RetrievalCode,
                 PhoneNo = this.PhoneNo,
                 PID = this.PID,
-                EstimatedParkingTime = this.EstimatedParkingTime,
+                //EstimatedParkingTime = this.EstimatedParkingTime,
                 Comment = this.Comment,
-                ParkingSpotsID = this.ParkingSpotsID,
+                ParkingSpotsID = SelectedParkingSpot.ID,
                 VehicleTypesID = this.VehicleTypesID,
                 TicketStatusesID = this.TicketStatusesID
             };

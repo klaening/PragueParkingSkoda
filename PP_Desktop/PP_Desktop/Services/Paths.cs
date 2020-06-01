@@ -11,6 +11,7 @@ namespace PP_Desktop.Services
         public const string Staff = "staff";
         public const string Tickets = "tickets";
         public const string ParkingSpots = "parkingSpots";
+        public const string AvailableParkingSpots = "parkingSpots/available";
         public const string CarParks = "carParks";
         public const string VehicleTypes = "vehicleTypes";
         public const string Prices = "prices";

@@ -11,7 +11,7 @@
     Height="800">
 
     <Grid>
-        <StackPanel>
+        <StackPanel DataContext="{x:Bind _viewModel}">
             <TextBlock Text="Add new Ticket" FontSize="25" HorizontalAlignment="Center"/>
             <TextBox Header="Registration Number" PlaceholderText="Enter registration number" Text="{Binding RegNo, Mode=TwoWay}"/>
             <TextBox Header="Retrieval Code" PlaceholderText="Enter Retrieval Code" Text="{Binding RetrievalCode, Mode=TwoWay}"/>
@@ -25,15 +25,16 @@
                       PlaceholderText="Choose Vehicle type"
                       DisplayMemberPath="DepartmentName"/>
 
-            <ComboBox ItemsSource="{Binding TimeEstimates}"
+            <!--<ComboBox ItemsSource="{x:Bind _viewModel.TimeEstimates}"
+                      Text="{Binding TimeEstimates}"
                       SelectedItem="{Binding SelectedTimeEstimate, Mode=TwoWay}"
                       PlaceholderText="Choose Time Estimate"
-                      DisplayMemberPath="DepartmentName"/>
+                      DisplayMemberPath="DepartmentName"/>-->
 
             <ComboBox ItemsSource="{Binding AvailableParkingSpots}"
                       SelectedItem="{Binding SelectedParkingSpot, Mode=TwoWay}"
                       PlaceholderText="Choose Parking Spot"
-                      DisplayMemberPath="DepartmentName"/>
+                      DisplayMemberPath="SpotNo"/>
 
             <!--<ComboBox ItemsSource="{Binding TicketStatuses}"
                       SelectedItem="{Binding SelectedTicketStatus, Mode=TwoWay}"

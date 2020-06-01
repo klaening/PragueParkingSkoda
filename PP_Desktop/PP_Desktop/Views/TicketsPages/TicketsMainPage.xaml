@@ -66,6 +66,7 @@
             Grid.Column="0"
             HorizontalAlignment="Right"
             Content="New ticket"
+            Click="Add_Btn_Click"
             >
             
         </Button>
