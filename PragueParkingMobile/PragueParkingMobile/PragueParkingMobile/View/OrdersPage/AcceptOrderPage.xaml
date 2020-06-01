@@ -31,7 +31,7 @@
                 <Grid>
                     <Button Grid.Row="7" 
                             x:Name="AcceptOrderButton"
-                            Clicked="AcceptOrderButton_Clicked"
+                            Command="{Binding AcceptCommand}"
                             Text="Accept Order"
                             IsVisible="True"/>
 
