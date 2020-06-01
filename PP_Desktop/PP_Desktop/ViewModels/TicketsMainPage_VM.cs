@@ -59,12 +59,12 @@ namespace PP_Desktop.ViewModels
         public TicketsMainPage_VM()
         {
             // Tickets
-            var result = Requests.GetRequest(Paths.tickets);
+            var result = Requests.GetRequest(Paths.Tickets);
             var ticketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
             TicketList = ticketList;
 
-            var result_ticketInfoView = Requests.GetRequest(Paths.ticketInfoView);
+            var result_ticketInfoView = Requests.GetRequest(Paths.TicketInfoView);
             var ticketInfoView = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result_ticketInfoView);
 
             TicketInfoViews = ticketInfoView;

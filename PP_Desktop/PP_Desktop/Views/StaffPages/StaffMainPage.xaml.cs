@@ -59,7 +59,7 @@ namespace PP_Desktop.Views
 
         private void Update_Btn_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UpdateStaff), _viewModel.SelectedItem);
+            Frame.Navigate(typeof(UpdateStaff), _viewModel.SelectedStaff);
         }
     }
 }
