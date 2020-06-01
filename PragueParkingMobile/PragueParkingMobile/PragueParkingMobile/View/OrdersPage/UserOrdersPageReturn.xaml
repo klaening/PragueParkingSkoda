@@ -9,7 +9,7 @@
 
     <ContentPage.Content>
         <ListView x:Name="OrdersReturnPage"
-                  ItemsSource="{Binding TicketList}"
+                  ItemsSource="{Binding ReturnList}"
                   ItemSelected="OrdersReturnPage_ItemSelected">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -18,7 +18,7 @@
                             <Label Text="{Binding RegNo}"
                                    Grid.Column="0"
                                    Grid.Row="0"/>
-                            <Label Text="{Binding ParkingSpotsId}"
+                            <Label Text="{Binding SpotNo}"
                                    Grid.Column="1"
                                    Grid.Row="0"/>
                             <Label Text="2020-05-27 14:21"

@@ -1,0 +1,145 @@
+﻿<Page
+    x:Class="PP_Desktop.Views.TicketsMainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:data="using:PP_Desktop.Models"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <ListView Name="TicketListGrid"
+            ItemsSource = "{Binding TicketInfoViews}"
+            Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"
+                  Margin="17"
+            SelectedItem="{Binding SelectedItemView, Mode=TwoWay}">
+            
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="data:TicketInfoView">
+                    
+                    <StackPanel Orientation='Horizontal'>
+                        <TextBlock Text="{x:Bind RegNo}"
+                                       Name="RegTxt"
+                                       FontSize="18"
+                                       TextWrapping="Wrap"
+                                       Margin="10"/>
+                        <TextBlock Text="{x:Bind StatusName}"
+                                       Name="RetrievalTxt"
+                                       FontSize="18"
+                                       TextWrapping="Wrap"
+                                       Margin="10"/>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    
+
+        <ComboBox
+            Header="Show tickets for:"
+            FontSize="30"
+            Grid.Column="0"
+            Grid.Row="0"
+            Margin="10"
+            >
+            <ComboBoxItem Content="Prague Parking"/>
+        </ComboBox>
+
+        <Button
+            Grid.Row="0"
+            Grid.Column="0"
+            HorizontalAlignment="Right"
+            Content="New ticket"
+            >
+            
+        </Button>
+        
+        <Button
+            Grid.Row="5"
+            Grid.Column="3"
+            Content="Go back"
+            FontSize="30"
+            HorizontalAlignment="Center"
+            Click="Button_Click"
+            >
+
+        </Button>
+
+        <Button
+            Grid.Row="4"
+            Grid.Column="1"
+            Content="Request"
+            HorizontalAlignment="Center"
+            >
+     
+        </Button>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="1"
+            Content="Mark Returned"
+            HorizontalAlignment="Center"
+            >
+            
+        </Button>
+
+        <Button
+            Grid.Row="5"
+            Grid.Column="2"
+            Content="Damage Report"
+            HorizontalAlignment="Center"
+            >
+            
+        </Button>
+        <Border
+            Grid.Row="1"
+            Grid.RowSpan="4"
+            Grid.Column="0"
+            Grid.ColumnSpan="1"
+            BorderBrush="Black"
+            BorderThickness="3"
+            Margin="5"
+            >
+            
+        </Border>
+
+        <StackPanel DataContext="{Binding SelectedItemView, Mode=TwoWay}" 
+                        Grid.Row="1" Grid.Column="1" 
+                        Grid.ColumnSpan="2" Margin="15">
+            
+            <TextBlock Text="Showing ticket for:" FontSize="30" HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding RegNo}" FontSize="40" HorizontalAlignment="center"/>
+        </StackPanel>
+        <StackPanel DataContext="{Binding SelectedItemView, Mode=TwoWay}"
+                    Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="15" HorizontalAlignment="Center">
+            <TextBlock Text="ID: " FontSize="30"/>
+            <TextBlock Text="Status: " FontSize="30"/>
+            <TextBlock Text="Parking spot: : " FontSize="30"/>
+        </StackPanel>
+
+        <StackPanel DataContext="{Binding SelectedItemView, Mode=TwoWay}"
+                    Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Margin="15" HorizontalAlignment="Center">
+            <TextBlock Text="{Binding TicketsID}" FontSize="30"/>
+            <TextBlock Text="{Binding StatusName}" FontSize="30"/>
+            <TextBlock Text="{Binding SpotNo}" FontSize="30"/>
+        </StackPanel>
+
+
+    </Grid>
+</Page>
