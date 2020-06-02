@@ -14,8 +14,20 @@ namespace PPMobile.ViewModel.OrdersPageVM
     {
         public ICommand AcceptCommand { get; }
 
+        private TicketInfoView _selectedTicket;
+        public TicketInfoView SelectedTicket
+        {
+            get { return _selectedTicket; }
+            set
+            {
+                _selectedTicket = value;
+                OnPropertyChanged("SelectedTicket");
+            }
+        }
+
         public AcceptOrderPageVM()
         {
+            SelectedTicket = new TicketInfoView();
             AcceptCommand = new Command(AcceptPressedCommand);
         }
 
