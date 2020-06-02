@@ -12,6 +12,7 @@ namespace WebAPI_PragueParking_Domain.Repository
         Task<IEnumerable<Tickets>> GetTickets();
         Task<Tickets> GetTicket(int id);
         Task<bool> UpdateTicket(Tickets ticket);
+        Task<bool> UpdateTicketStatus(int id, int statusId);
         Task<bool> DeleteTicket(int id);
     }
 }

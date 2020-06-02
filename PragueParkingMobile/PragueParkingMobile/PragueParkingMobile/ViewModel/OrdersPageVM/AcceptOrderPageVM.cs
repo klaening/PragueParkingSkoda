@@ -1,25 +1,27 @@
 ﻿using Newtonsoft.Json.Schema;
+using PPMobile.APIServices;
+using PPMobile.Model;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace PPMobile.ViewModel.OrdersPageVM
 {
     public class AcceptOrderPageVM : BaseViewModel
     {
+        public ICommand AcceptCommand { get; }
 
-        private string _regNo;
-        
-        public string RegNo
+        public AcceptOrderPageVM()
         {
-            get => _regNo;
-            set
-            {
-                _regNo = value;
-                OnPropertyChanged();
-            }
+            AcceptCommand = new Command(AcceptPressedCommand);
         }
 
+        public async void AcceptPressedCommand()
+        {
+            
+        }
     }
 }
