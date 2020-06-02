@@ -8,7 +8,8 @@ namespace PP_Desktop.Services
 {
     public enum StatusNames
     {
-        ParkPending = 1,
+        TicketCreated = 1,
+        ParkPending,
         ParkAccepted,
         Parked,
         ReturnPending,

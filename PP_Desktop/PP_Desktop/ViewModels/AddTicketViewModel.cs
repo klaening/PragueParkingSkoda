@@ -159,8 +159,8 @@ namespace PP_Desktop.ViewModels
 
         private async void AddTicketCommand()
         {
-            int staffID = 3;
-            string path = $"{Paths.Tickets}/{staffID}";
+            int staffID = 3; //Ska tas bort och ersättas med inloggade kundens id
+            string path = $"{Paths.Tickets}{staffID}";
 
             Tickets ticket = new Tickets()
             {
@@ -172,7 +172,7 @@ namespace PP_Desktop.ViewModels
                 Comment = this.Comment,
                 ParkingSpotsID = SelectedParkingSpot.ID,
                 VehicleTypesID = SelectedVehicleType.ID,
-                TicketStatusesID = (int)StatusNames.ParkPending
+                TicketStatusesID = (int)StatusNames.TicketCreated
             };
 
             try

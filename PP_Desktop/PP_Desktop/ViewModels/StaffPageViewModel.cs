@@ -18,7 +18,7 @@ using Windows.UI.Xaml;
 
 namespace PP_Desktop.ViewModels
 {
-    public class StaffPageViewModel : BindableBase, INotifyPropertyChanged
+    public class StaffPageViewModel : BindableBase
     {
         private ObservableCollection<Departments> _departments;
         private Departments _department;

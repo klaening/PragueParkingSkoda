@@ -24,21 +24,6 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    //await c.ExecuteAsync(@"EXECUTE usp_NewTicket_Check 
-                    //@RegNo = 'ABC123', 
-                    //@RetrievalCode, 
-                    //@PhoneNo, 
-                    //@PID, 
-                    //@EstimatedParkingTime, 
-                    //@Comment, 
-                    //@ParkingSpotsID,
-                    //@VehicleTypesID ,
-                    //@TicketStatusesID ,
-                    //@StaffID");
-
-                    //await c.ExecuteAsync("INSERT INTO Tickets (RegNo, RetrievalCode, PhoneNo, PID, EstimatedParkingTime, Comment, ParkingSpotsID, VehicleTypesID, TicketStatusesID) VALUES (@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)",
-                    //    new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketStatusesID });
-
                     var p = new DynamicParameters();
                     p.Add("@RegNo", ticket.RegNo);
                     p.Add("@RetrievalCode", ticket.RetrievalCode);
@@ -94,15 +79,24 @@ namespace WebAPI_PragueParking_Domain.Repository
             }
         }
 
-        public async Task<bool> UpdateTicket(Tickets ticket)
+        public async Task<bool> UpdateTicket(Tickets ticket, int staffID)
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Tickets SET RegNo = @regNo, RetrievalCode = @retrievalCode, PhoneNo = @phoneNo, PID = @PID, EstimatedParkingTime = @estimatedParkingTime, Comment = @comment, ParkingSpotsID = @parkingSpotsID, VehicleTypesID = @vehicleTypesID, TicketStatusesID = @ticketStatusesID WHERE ID = @id", 
-                        new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketStatusesID, ticket.ID });
+                    //await c.ExecuteAsync("UPDATE Tickets SET RegNo = @regNo, RetrievalCode = @retrievalCode, PhoneNo = @phoneNo, PID = @PID, EstimatedParkingTime = @estimatedParkingTime, Comment = @comment, ParkingSpotsID = @parkingSpotsID, VehicleTypesID = @vehicleTypesID, TicketStatusesID = @ticketStatusesID WHERE ID = @id", 
+                    //    new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketStatusesID, ticket.ID });
                     
+                    //return true;
+
+                    var p = new DynamicParameters();
+                    p.Add("@TicketsID", ticket.ID);
+                    p.Add("@TicketStatusesID", ticket.TicketStatusesID);
+                    p.Add("@StaffID", staffID);
+
+                    await c.ExecuteAsync("usp_UpdateTicket", p, commandType: CommandType.StoredProcedure);
+
                     return true;
                 }
                 catch (Exception)
