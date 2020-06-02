@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
+using PP_Desktop.Helpers;
 using PP_Desktop.Models;
 using PP_Desktop.Services;
 using System;
@@ -8,8 +9,11 @@ using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection.Metadata;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.System.UserProfile;
 using Windows.UI.Popups;
 
 namespace PP_Desktop.ViewModels
@@ -17,13 +21,13 @@ namespace PP_Desktop.ViewModels
     public class AddTicketViewModel : BindableBase
     {
         private ObservableCollection<ParkingSpots> _availableParkingSpots;
+        private ObservableCollection<ParkingSpots> _filteredAvailableParkingSpots;
         private ObservableCollection<VehicleTypes> _vehicleTypes;
-        private ObservableCollection<TicketStatuses> _ticketStatuses;
         private ParkingSpots _selectedParkingSpot;
+        private ParkingSpots _suggestedParkingSpot;
         private VehicleTypes _selectedVehicleType;
         private NavigationService _navigationService;
 
-        private int ID;
         private string _regNo;
         private string _retrievalCode;
         private string _phoneNo;
@@ -80,17 +84,27 @@ namespace PP_Desktop.ViewModels
             get => _ticketStatusesID;
             set => SetProperty(ref _ticketStatusesID, value);
         }
-
         #endregion
+
         public ObservableCollection<ParkingSpots> AvailableParkingSpots
         {
             get => _availableParkingSpots;
             set => _availableParkingSpots = value;
         }
+        public ObservableCollection<ParkingSpots> FilteredAvailableParkingSpots
+        {
+            get => _filteredAvailableParkingSpots;
+            set => SetProperty(ref _filteredAvailableParkingSpots, value);
+        }
         public ParkingSpots SelectedParkingSpot
         {
             get => _selectedParkingSpot;
-            set => SetProperty(ref _selectedParkingSpot, value);
+            set 
+            {
+                if (_selectedParkingSpot != null && value != null)
+                    _suggestedParkingSpot = value;
+                SetProperty(ref _selectedParkingSpot, value);
+            }
         }
 
         public ObservableCollection<VehicleTypes> AvailableVehicleTypes
@@ -101,14 +115,20 @@ namespace PP_Desktop.ViewModels
         public VehicleTypes SelectedVehicleType
         {
             get => _selectedVehicleType;
-            set => _selectedVehicleType = value;
-        }
+            set 
+            {
+                _selectedVehicleType = value;
 
-        public ObservableCollection<TicketStatuses> AvailableTicketStatuses
-        {
-            get => _ticketStatuses;
-            set => _ticketStatuses = value;
+                //Ger en inte ett nytt förslag
+                FilteredAvailableParkingSpots = AvailableParkingSpots.FilterList(SelectedVehicleType);
+                SelectedParkingSpot = FilteredAvailableParkingSpots.AssignRandomParkingSpot(ref _suggestedParkingSpot);
+            }
         }
+        //public ObservableCollection<TicketStatuses> AvailableTicketStatuses
+        //{
+        //    get => _ticketStatuses;
+        //    set => _ticketStatuses = value;
+        //}
         //public ObservableCollection<decimal> TimeEstimates = new ObservableCollection<decimal>()
         //{
         //    0.5m, 1, 1.5m, 2, 4, 8, 24 
@@ -139,6 +159,9 @@ namespace PP_Desktop.ViewModels
 
         private async void AddTicketCommand()
         {
+            int staffID = 3;
+            string path = $"{Paths.Tickets}/{staffID}";
+
             Tickets ticket = new Tickets()
             {
                 RegNo = this.RegNo,
@@ -149,12 +172,12 @@ namespace PP_Desktop.ViewModels
                 Comment = this.Comment,
                 ParkingSpotsID = SelectedParkingSpot.ID,
                 VehicleTypesID = SelectedVehicleType.ID,
-                TicketStatusesID = 1 //Kan vi lägga detta i en enum?
+                TicketStatusesID = (int)StatusNames.ParkPending
             };
 
             try
             {
-                var response = await Requests.PostRequestAsync(Paths.Tickets, ticket);
+                var response = await Requests.PostRequestAsync(path, ticket);
                 var statusCode = response.StatusCode;
 
                 if (response.StatusCode == HttpStatusCode.OK)

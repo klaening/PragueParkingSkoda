@@ -31,7 +31,7 @@
                       PlaceholderText="Choose Time Estimate"
                       DisplayMemberPath="DepartmentName"/>-->
 
-            <ComboBox ItemsSource="{Binding AvailableParkingSpots}"
+            <ComboBox ItemsSource="{Binding FilteredAvailableParkingSpots}"
                       SelectedItem="{Binding SelectedParkingSpot, Mode=TwoWay}"
                       PlaceholderText="Choose Parking Spot"
                       DisplayMemberPath="SpotNo"/>

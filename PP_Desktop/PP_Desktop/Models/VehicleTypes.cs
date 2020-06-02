@@ -10,6 +10,6 @@ namespace PP_Desktop.Models
     {
         public int ID { get; set; }
         public string TypeName { get; set; }
-        public decimal ParkSize { get; set; }
+        public int ParkSize { get; set; }
     }
 }

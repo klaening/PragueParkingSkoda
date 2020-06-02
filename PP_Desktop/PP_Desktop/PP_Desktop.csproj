@@ -119,6 +119,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ExtensionMethods.cs" />
+    <Compile Include="Helpers\Randomizer.cs" />
     <Compile Include="Models\Departments.cs" />
     <Compile Include="Models\ParkingSpots.cs" />
     <Compile Include="Models\Staff.cs" />
@@ -131,6 +133,7 @@
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\Requests.cs" />
     <Compile Include="Services\Paths.cs" />
+    <Compile Include="Services\TicketStatuses.cs" />
     <Compile Include="ViewModels\AddStaffPageViewModel.cs" />
     <Compile Include="ViewModels\AddTicketViewModel.cs" />
     <Compile Include="ViewModels\BindableBase.cs" />
