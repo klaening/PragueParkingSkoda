@@ -15,13 +15,14 @@ namespace PPMobile.View.OrdersPage
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class AcceptOrderPage : ContentPage
     {
+        AcceptOrderPageVM _viewModel;
         public AcceptOrderPage(TicketInfoView ticket)
         {
             InitializeComponent();
-            BindingContext = new AcceptOrderPageVM();
-            RegNo_Label.Text = ticket.RegNo;
-            ParkingSpot_Label.Text = ticket.SpotNo;
-            Order_Label.Text = ticket.StatusName;
+            _viewModel = new AcceptOrderPageVM();
+
+            BindingContext = _viewModel;
+            _viewModel.SelectedTicket = ticket;
         }
 
         public void AcceptOrderButton_Clicked(object sender, EventArgs e)
