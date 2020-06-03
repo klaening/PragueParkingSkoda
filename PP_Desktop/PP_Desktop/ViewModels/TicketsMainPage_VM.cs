@@ -12,72 +12,59 @@ namespace PP_Desktop.ViewModels
 {
     public class TicketsMainPage_VM : BindableBase
     {
-        //lista av info från tabellen tickets.
         private ObservableCollection<Tickets> _tickets;
-
-        //Behöver nog ej ticketstatuses
-        //private ObservableCollection<TicketStatuses> _ticketStatuses;
-
-        //en join i databasen med 3 tabeller.
         private ObservableCollection<TicketInfoView> _ticketInfoView;
+        private Tickets _selectedTicket;
+        private TicketInfoView _selectedTicketInfoView;
 
-        private Tickets _selectedItem;
-        
-        private TicketInfoView _selectedItemView;
-
-
-        public ObservableCollection<Tickets> TicketList
+        public ObservableCollection<Tickets> Tickets
         {
             get => _tickets;
             set => SetProperty(ref _tickets, value);
         }
-        public ObservableCollection<TicketInfoView> TicketInfoViews
+        public ObservableCollection<TicketInfoView> TicketInfoView
         {
             get => _ticketInfoView;
             set => SetProperty(ref _ticketInfoView, value);
         }
-
-        //public ObservableCollection<TicketStatuses> TicketStatusesList
-        //{
-        //    get => _ticketStatuses;
-        //    set => SetProperty(ref _ticketStatuses, value);
-        //}
-
-        public Tickets SelectedItem
+        public TicketInfoView SelectedTicketInfoView
         {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
+            get => _selectedTicketInfoView;
+            set => SetProperty(ref _selectedTicketInfoView, value);
         }
-
-        public TicketInfoView SelectedItemView
+        public Tickets SelectedTicket
         {
-            get => _selectedItemView;
-            set => SetProperty(ref _selectedItemView, value);
+            get => _selectedTicket;
+            set 
+            {
+                _selectedTicket = value;
+            }
         }
-
 
         public TicketsMainPage_VM()
         {
-            // Tickets
             var result = Requests.GetRequest(Paths.Tickets);
-            var ticketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
+            var ticketsFromDB = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
-            TicketList = ticketList;
+            Tickets = ticketsFromDB;
 
-            var result_ticketInfoView = Requests.GetRequest(Paths.TicketInfoView);
-            var ticketInfoView = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result_ticketInfoView);
+            result = Requests.GetRequest(Paths.TicketInfoView);
+            var infoViewFromDB = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result);
 
-            TicketInfoViews = ticketInfoView;
+            TicketInfoView = infoViewFromDB;
 
-            // TicketStatuses
+            /*Test 1
+                Jag har en lista med alla Tickets
+                Jag har en lista med alla TicketInfoView med annan info såsom namn på saker
+                Jag vill Binda till ett objekt som håller info från båda sakerna*/
 
-            //var result_ticketStatuses = Requests.GetRequest(Paths.ticketStatuses);
-            //var ticketStatusesList = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(result_ticketStatuses);
+            /*Test 2
+                Jag vill Binda till en Tickets
+                SelectedTicket returnerar annan info*/
 
-            //TicketStatusesList = ticketStatusesList;
-
+            /*Test 3
+                Jag vill Binda till TicketInfoView
+                När man ska till nästa sida så hitta Ticket med samma id och skicka med den till nästa sida*/
         }
-            
-        
     }
 }

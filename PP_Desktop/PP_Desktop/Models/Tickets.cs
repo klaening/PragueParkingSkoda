@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PP_Desktop.Models;
+using PP_Desktop.Services;
 
 namespace PP_Desktop.Models
 {
@@ -21,18 +23,12 @@ namespace PP_Desktop.Models
         public int VehicleTypesID { get; set; }
         public int TicketStatusesID { get; set; }
 
-
-        public static ObservableCollection<Tickets> GetTicketsList()
+        public string TicketInfo
         {
-            ObservableCollection<Tickets> ticket = new ObservableCollection<Tickets>()
+            get
             {
-
-
-            };
-
-            return ticket;
+                return $@"{ID} {RegNo}";
+            }
         }
-
-
     }
 }

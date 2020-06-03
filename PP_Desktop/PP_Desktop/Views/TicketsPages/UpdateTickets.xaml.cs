@@ -1,4 +1,6 @@
-﻿using System;
+﻿using PP_Desktop.Models;
+using PP_Desktop.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,9 +24,18 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class UpdateTickets : Page
     {
+        private readonly UpdateTicketViewModel _viewModel;
         public UpdateTickets()
         {
             this.InitializeComponent();
+
+            _viewModel = new UpdateTicketViewModel();
+            DataContext = _viewModel;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _viewModel.SelectedTicket = (Tickets)e.Parameter;
         }
     }
 }
