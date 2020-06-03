@@ -24,10 +24,13 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class TicketsMainPage : Page
     {
+        private readonly TicketsMainPage_VM _viewModel;
         public TicketsMainPage()
         {
             this.InitializeComponent();
-            this.DataContext = new TicketsMainPage_VM();
+
+            _viewModel = new TicketsMainPage_VM();
+            DataContext = _viewModel;
             
         }
 
@@ -38,7 +41,7 @@ namespace PP_Desktop.Views
 
         private void Update_Btn_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UpdateTickets));
+            Frame.Navigate(typeof(UpdateTickets), _viewModel.SelectedItemView.TicketsID);
         }
     }
 }

@@ -134,6 +134,7 @@
     <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="ViewModels\TicketsMainPage_VM.cs" />
     <Compile Include="ViewModels\UpdateStaffViewModel.cs" />
+    <Compile Include="ViewModels\UpdateTicketsViewModel.cs" />
     <Compile Include="Views\StaffPages\AddStaffPage.xaml.cs">
       <DependentUpon>AddStaffPage.xaml</DependentUpon>
     </Compile>
