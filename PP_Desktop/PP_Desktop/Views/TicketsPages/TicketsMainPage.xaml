@@ -26,10 +26,10 @@
         </Grid.ColumnDefinitions>
 
         <ListView Name="TicketListGrid"
-            ItemsSource = "{Binding TicketInfoViews}"
+            ItemsSource = "{Binding TicketList}"
             Grid.Row="1" Grid.RowSpan="4" Grid.Column="0"
                   Margin="17"
-            SelectedItem="{Binding SelectedItemView, Mode=TwoWay}">
+            SelectedItem="{Binding SelectedTickets, Mode=TwoWay}">
             
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="data:TicketInfoView">

@@ -12,72 +12,111 @@ namespace PP_Desktop.ViewModels
 {
     public class TicketsMainPage_VM : BindableBase
     {
-        //lista av info från tabellen tickets.
+        //lista av info från tabellen Tickets.
         private ObservableCollection<Tickets> _tickets;
+        private Tickets _selectedTickets;
 
-        //Behöver nog ej ticketstatuses
-        //private ObservableCollection<TicketStatuses> _ticketStatuses;
+        //lista av info från tabellen TicketStatuses.
+        private ObservableCollection<TicketStatuses> _ticketStatuses;
+        private TicketStatuses _selectedTicketStatuses;
 
-        //en join i databasen med 3 tabeller.
-        private ObservableCollection<TicketInfoView> _ticketInfoView;
+        //lista av info från tabellen ParkingSpots.
+        private ObservableCollection<ParkingSpots> _parkingSpots;
+        private ParkingSpots _selectedParkingSpots;
 
-        private Tickets _selectedItem;
-        
-        private TicketInfoView _selectedItemView;
+        //lista av info från tabellen VehicleTypes.
+        private ObservableCollection<VehicleTypes> _vehichleTypes;
+        private VehicleTypes _selectedVehicleTypes;
 
 
+        #region Tickets
         public ObservableCollection<Tickets> TicketList
         {
             get => _tickets;
             set => SetProperty(ref _tickets, value);
         }
-        public ObservableCollection<TicketInfoView> TicketInfoViews
+
+        public Tickets SelectedTickets
         {
-            get => _ticketInfoView;
-            set => SetProperty(ref _ticketInfoView, value);
+            get => _selectedTickets;
+            set
+            {
+                SetProperty(ref _selectedTickets, value);
+                //TicketStatuses = TicketStatuses.FirstOrDefault(x => x.ID == _selectedTickets.TicketsID);
+            }
         }
 
-        //public ObservableCollection<TicketStatuses> TicketStatusesList
-        //{
-        //    get => _ticketStatuses;
-        //    set => SetProperty(ref _ticketStatuses, value);
-        //}
+        #endregion Tickets
 
-        public Tickets SelectedItem
+        #region TicketStatuses
+        public ObservableCollection<TicketStatuses> TicketStatusesList
         {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
+            get => _ticketStatuses;
+            set => SetProperty(ref _ticketStatuses, value);
         }
 
-        public TicketInfoView SelectedItemView
+        public TicketStatuses SelectedTicketStatuses
         {
-            get => _selectedItemView;
-            set => SetProperty(ref _selectedItemView, value);
+            get => _selectedTicketStatuses;
+            set => SetProperty(ref _selectedTicketStatuses, value);
         }
 
+        #endregion TicketStatuses
+
+        #region ParkingSpots
+        public ObservableCollection<ParkingSpots> ParkingSpotsList
+        {
+            get => _parkingSpots;
+            set => SetProperty(ref _parkingSpots, value);
+        }
+        public ParkingSpots SelectedParkingSpots
+        {
+            get => _selectedParkingSpots;
+            set => SetProperty(ref _selectedParkingSpots, value);
+        }
+        #endregion ParkingSpots
+
+        #region VehicleTypes
+        public ObservableCollection<VehicleTypes> VehicleTypesList
+        {
+            get => _vehichleTypes;
+            set => SetProperty(ref _vehichleTypes, value);
+        }
+        public VehicleTypes SelectedVehicleTypes
+        {
+            get => _selectedVehicleTypes;
+            set => SetProperty(ref _selectedVehicleTypes, value);
+        }
+        #endregion VehicleTypes
 
         public TicketsMainPage_VM()
         {
-            // Tickets
+
+            //Hämtar info från DB för Tickets
             var result = Requests.GetRequest(Paths.Tickets);
             var ticketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
             TicketList = ticketList;
 
-            var result_ticketInfoView = Requests.GetRequest(Paths.TicketInfoView);
-            var ticketInfoView = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result_ticketInfoView);
+            //Hämtar info från DB för TicketStatuses
+            result = Requests.GetRequest(Paths.TicketStatuses);
+            var ticketStatusesList = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(result);
 
-            TicketInfoViews = ticketInfoView;
+            TicketStatusesList = ticketStatusesList;
 
-            // TicketStatuses
+            //Hämtar info från DB för ParkingSpots
+            result = Requests.GetRequest(Paths.ParkingSpots);
+            var parkingSpotsList = JsonConvert.DeserializeObject<ObservableCollection<ParkingSpots>>(result);
 
-            //var result_ticketStatuses = Requests.GetRequest(Paths.ticketStatuses);
-            //var ticketStatusesList = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(result_ticketStatuses);
+            ParkingSpotsList = parkingSpotsList;
 
-            //TicketStatusesList = ticketStatusesList;
+            //Hämtar info från DB för VehicleTypes
+            result = Requests.GetRequest(Paths.VehicleTypes);
+            var vehicleTypesList = JsonConvert.DeserializeObject<ObservableCollection<VehicleTypes>>(result);
 
+            VehicleTypesList = vehicleTypesList;
         }
-            
-        
+
+
     }
 }

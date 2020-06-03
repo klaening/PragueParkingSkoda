@@ -11,7 +11,7 @@
     Width="400">
 
     <Grid>
-        <StackPanel DataContext="{Binding TicketInfo}">
+        <StackPanel>
             <TextBlock FontSize="25" Text="Showing ticket for TicketID: " HorizontalAlignment="Center"/>
             <TextBlock Text="{Binding TicketsID, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="20"/>
             <TextBox Text="{Binding RegNo, Mode=TwoWay}" Header="Reg number" PlaceholderText="Enter RegNo"/>

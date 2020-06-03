@@ -21,18 +21,5 @@ namespace PP_Desktop.Models
         public int VehicleTypesID { get; set; }
         public int TicketStatusesID { get; set; }
 
-
-        public static ObservableCollection<Tickets> GetTicketsList()
-        {
-            ObservableCollection<Tickets> ticket = new ObservableCollection<Tickets>()
-            {
-
-
-            };
-
-            return ticket;
-        }
-
-
     }
 }

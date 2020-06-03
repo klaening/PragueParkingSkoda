@@ -41,7 +41,7 @@ namespace PP_Desktop.Views
 
         private void Update_Btn_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(UpdateTickets), _viewModel.SelectedItemView.TicketsID);
+            Frame.Navigate(typeof(UpdateTickets));
         }
     }
 }
