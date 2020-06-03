@@ -25,21 +25,5 @@ namespace PPMobile.View.OrdersPage
             _viewModel.SelectedTicket = ticket;
         }
 
-        public void AcceptOrderButton_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        void CarParkedButton_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-        void CarReturnedButton_Clicked(object sender, EventArgs e)
-        {
-
-        }
-
-
     }
 }

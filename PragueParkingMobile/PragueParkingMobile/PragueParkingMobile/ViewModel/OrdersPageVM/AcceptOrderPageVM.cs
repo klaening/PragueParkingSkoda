@@ -15,40 +15,22 @@ namespace PPMobile.ViewModel.OrdersPageVM
     public class AcceptOrderPageVM : BaseViewModel
     {
         public ICommand AcceptCommand { get; }
-        private string _regNo;
-        private string _spotNo;
-        private string _statusName;
-        public string RegNo
-        {
-            get { return _regNo; }
-            set
+        public string ButtonText 
+        { 
+            get
             {
-                _regNo = value;
-                OnPropertyChanged("RegNo");
-            }
-        }
-
-       public string SpotNo
-       {
-            get { return _spotNo; }
-            set
-            {
-                _spotNo = value;
-                OnPropertyChanged("SpotNo");
-            }
-       }
+                if (SelectedTicket != null)
+                {
+                    if (SelectedTicket.StatusName == "Park Accepted")
+                    {
+                        return "Done";
+                    }
+                    return "Accepted";
+                }
+                return "";
+            } 
         
-        public string StatusName
-        {
-            get { return _statusName; }
-            set
-            {
-                _statusName = value;
-                OnPropertyChanged("StatusName");
-            }
         }
-
-
         private TicketInfoView _selectedTicket;
         public TicketInfoView SelectedTicket
         {
@@ -57,10 +39,8 @@ namespace PPMobile.ViewModel.OrdersPageVM
             {
                 _selectedTicket = value;
 
-                RegNo = SelectedTicket.RegNo;
-                SpotNo = SelectedTicket.SpotNo;
-                StatusName = SelectedTicket.StatusName;
                 OnPropertyChanged("SelectedTicket");
+                OnPropertyChanged("ButtonText");
             }
         }
 
@@ -90,10 +70,12 @@ namespace PPMobile.ViewModel.OrdersPageVM
 
         public async void UpdateTicket(Tickets ticket)
         {
-            ticket.TicketStatusesID = (int)StatusNameEnum.Parked;
-            
+
+            ticket.TicketStatusesID += 1;
+
             string path = "tickets/";
             int staffId = 2;
+
             await APIServices.PutRequestAsync(path, ticket, staffId);
         }
     }

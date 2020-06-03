@@ -9,7 +9,7 @@
     <ContentPage.Content>
         <Grid>
             <Frame VerticalOptions="StartAndExpand"  HorizontalOptions="StartAndExpand">
-                <StackLayout>
+                <StackLayout BindingContext="{Binding SelectedTicket}">
                     <Grid>
                         <Label Grid.Row="1" Grid.Column="0" Text="Type of order:" FontSize="Medium"/>
                         <Label Grid.Row="1" Grid.Column="1" Text="{Binding StatusName}" FontSize="Medium"/>
@@ -32,18 +32,16 @@
                     <Button Grid.Row="7" 
                             x:Name="AcceptOrderButton"
                             Command="{Binding AcceptCommand}"
-                            Text="Accept Order"
+                            Text="{Binding ButtonText}"                            
                             IsVisible="True"/>
 
                     <Button Grid.Row="7" 
                             x:Name="CarParkedButton"
-                            Clicked="CarParkedButton_Clicked"
                             Text="Car Parked"
                             IsVisible="False"/>
 
                     <Button Grid.Row="7"
                             x:Name="CarReturned"
-                            Clicked="CarReturnedButton_Clicked"
                             Text="Car Returned"
                             IsVisible="False"/>
 

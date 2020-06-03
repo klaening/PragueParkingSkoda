@@ -56,7 +56,7 @@ namespace PPMobile.Services
 
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync(HOST + path, content);
+            var response = await client.PutAsync(HOST + path + staffId, content);
         }
     }
 }
