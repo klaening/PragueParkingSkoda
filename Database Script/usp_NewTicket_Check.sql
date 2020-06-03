@@ -23,52 +23,55 @@ AS
 		SELECT @PSpotCapacity = ParkCapacity
 		FROM ParkingSpots
 		WHERE ID = @ParkingSpotsID
-
-		BEGIN TRANSACTION SubtractParkCapacity WITH MARK 
-			IF (@PSpotCapacity < @VehicleParkSize)
-			BEGIN
-				PRINT 'Parking Spot`s capacity is smaller than Vehicle Type`s park size
-				'
-				ROLLBACK
-			END
-			ELSE
+		
+		IF (@PSpotCapacity < @VehicleParkSize)
+		BEGIN
+			PRINT 'Parking Spot`s capacity is smaller than Vehicle Type`s park size
+			'
+		END
+		ELSE
+		BEGIN
 			BEGIN TRY
-				INSERT INTO TICKETS
-				VALUES(@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)
-				SELECT @TicketsID = SCOPE_IDENTITY()
+				BEGIN TRANSACTION SubtractParkCapacity WITH MARK
 
-				--usp på denna?
-				--Minska på PSpotCapacity
-				SET @PSpotCapacity = @PSpotCapacity - @VehicleParkSize
+					INSERT INTO TICKETS
+					VALUES(@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)
+					SELECT @TicketsID = SCOPE_IDENTITY()
 
-				--Uppdatera ParkingSpots
-				UPDATE ParkingSpots
-				SET ParkCapacity = @PSpotCapacity
-				WHERE ID = @ParkingSpotsID
+					--Minska på PSpotCapacity
+					SET @PSpotCapacity = @PSpotCapacity - @VehicleParkSize
 
-				--Om kapacitet är 0
-				IF (@PSpotCapacity = 0)
-				BEGIN
+					--Uppdatera ParkingSpots
 					UPDATE ParkingSpots
-					SET ParkingStatusesID = 2 -- 2 = 'Occupied'
+					SET ParkCapacity = @PSpotCapacity
 					WHERE ID = @ParkingSpotsID
-				END
-				--Till hit
 
-				--usp?
-				INSERT INTO StatusChanges(TicketsID, StaffID, TicketStatusesID)
-				VALUES(@TicketsID, @StaffID, @TicketStatusesID)
+					--Om kapacitet är 0
+					IF (@PSpotCapacity = 0)
+					BEGIN
+						UPDATE ParkingSpots
+						SET ParkingStatusesID = 2 -- 2 = 'Occupied'
+						WHERE ID = @ParkingSpotsID
+					END
 
-				SET @TicketStatusesID = @TicketStatusesID + 1
+					--Lagra data i StatusChanges och uppdatera Tickets till nästa status
+					INSERT INTO StatusChanges(TicketsID, StaffID, TicketStatusesID)
+					VALUES(@TicketsID, @StaffID, @TicketStatusesID)
 
-				INSERT INTO StatusChanges(TicketsID, StaffID, TicketStatusesID)
-				VALUES(@TicketsID, @StaffID, @TicketStatusesID)
+					SET @TicketStatusesID = @TicketStatusesID + 1
 
+					UPDATE Tickets
+					SET TicketStatusesID = @TicketStatusesID
+					WHERE ID = @TicketsID
+
+					INSERT INTO StatusChanges(TicketsID, StaffID, TicketStatusesID)
+					VALUES(@TicketsID, @StaffID, @TicketStatusesID)
+						
+				COMMIT TRANSACTION SubtractParkCapacity
 			END TRY
 			BEGIN CATCH 
 				ROLLBACK
 			END CATCH
-
-		COMMIT TRANSACTION SubtractParkCapacity
+		END
 	END
 GO

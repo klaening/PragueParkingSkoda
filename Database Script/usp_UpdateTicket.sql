@@ -18,22 +18,39 @@ AS
 		FROM VehicleTypes
 		WHERE ID = @VehicleTypesID
 
-		IF(@CurrentTicketStatusID != @TicketStatusesID)
+		IF(@CurrentTicketStatusID = 7) --RETURNED
 		BEGIN
-			UPDATE Tickets
-			SET TicketStatusesID = @TicketStatusesID
-			WHERE ID = @TicketsID
-
-			INSERT INTO StatusChanges(TicketsID, TicketStatusesID, StaffID)
-			VALUES(@TicketsID, @TicketStatusesID, @StaffID)
+			PRINT 'Ticket already returned, cannot make further changes to ticket'
 		END
 
-		IF(@TicketStatusesID = 7)
+		ELSE
 		BEGIN
-			UPDATE ParkingSpots
-			SET ParkingStatusesID = 1, --VACANT
-			ParkCapacity = ParkCapacity + @VehicleSize --Addera tillbaka fordonsstorlek
-			WHERE ID = @ParkingSpotsID
+			BEGIN TRAN CheckStatus WITH MARK
+
+			BEGIN TRY
+				IF(@CurrentTicketStatusID != @TicketStatusesID)
+				BEGIN
+					UPDATE Tickets
+					SET TicketStatusesID = @TicketStatusesID
+					WHERE ID = @TicketsID
+
+					INSERT INTO StatusChanges(TicketsID, TicketStatusesID, StaffID)
+					VALUES(@TicketsID, @TicketStatusesID, @StaffID)
+				END
+
+				IF(@TicketStatusesID = 7) --RETURNED
+				BEGIN
+					UPDATE ParkingSpots
+					SET ParkingStatusesID = 1, --VACANT
+					ParkCapacity = ParkCapacity + @VehicleSize --Addera tillbaka fordonsstorlek
+					WHERE ID = @ParkingSpotsID
+				END
+
+				COMMIT TRAN CheckStatus
+			END TRY
+			BEGIN CATCH
+				ROLLBACK
+			END CATCH
 		END
 	END
 GO

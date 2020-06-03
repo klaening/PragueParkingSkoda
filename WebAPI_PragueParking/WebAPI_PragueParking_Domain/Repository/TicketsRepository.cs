@@ -85,6 +85,7 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
+                    var returnStatus = string.Empty;
                     var p = new DynamicParameters();
                     p.Add("@TicketsID", ticket.ID);
                     p.Add("@TicketStatusesID", ticket.TicketStatusesID);
