@@ -5,9 +5,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PPMobile.APIServices
+namespace PPMobile.Services
 {
-    public class Services
+    public class APIServices
     {
         private const string HOST = "http://10.0.2.2:59893/api/";
         public static async Task PostRequestAsync(string path, Object objectclass)

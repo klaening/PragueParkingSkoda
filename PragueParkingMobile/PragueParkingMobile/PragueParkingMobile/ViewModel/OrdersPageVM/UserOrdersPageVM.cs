@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PPMobile.APIServices;
+using PPMobile.Services;
 using PPMobile.Model;
 using System;
 using System.Collections.Generic;
@@ -53,7 +53,7 @@ namespace PPMobile.ViewModel
 
             var path = "ticketinfoview";
 
-            var response = Services.GetRequest(path);
+            var response = APIServices.GetRequest(path);
 
             var tempList = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(response);
 
