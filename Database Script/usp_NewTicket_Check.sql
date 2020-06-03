@@ -35,7 +35,7 @@ AS
 				BEGIN TRANSACTION SubtractParkCapacity WITH MARK
 
 					INSERT INTO TICKETS
-					VALUES(@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)
+					VALUES(@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID, @StaffID)
 					SELECT @TicketsID = SCOPE_IDENTITY()
 
 					--Minska på PSpotCapacity

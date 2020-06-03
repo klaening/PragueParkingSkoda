@@ -35,10 +35,7 @@ namespace PP_Desktop.ViewModels
         public Tickets SelectedTicket
         {
             get => _selectedTicket;
-            set 
-            {
-                _selectedTicket = value;
-            }
+            set => _selectedTicket = value;
         }
 
         public TicketsMainPage_VM()

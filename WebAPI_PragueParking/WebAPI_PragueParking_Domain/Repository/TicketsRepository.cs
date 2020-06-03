@@ -18,7 +18,7 @@ namespace WebAPI_PragueParking_Domain.Repository
             _connectionString = connectionString;
         }
 
-        public async Task<bool> AddTicket(Tickets ticket, int staffID)
+        public async Task<bool> AddTicket(Tickets ticket)
         {
             using (var c = new SqlConnection(_connectionString))
             {
@@ -34,7 +34,7 @@ namespace WebAPI_PragueParking_Domain.Repository
                     p.Add("@ParkingSpotsID", ticket.ParkingSpotsID);
                     p.Add("@VehicleTypesID", ticket.VehicleTypesID);
                     p.Add("@TicketStatusesID", ticket.TicketStatusesID);
-                    p.Add("@StaffID", staffID);
+                    p.Add("@StaffID", ticket.StaffID);
 
                     await c.ExecuteAsync("usp_NewTicket_Check", p, commandType: CommandType.StoredProcedure);
 
@@ -79,7 +79,7 @@ namespace WebAPI_PragueParking_Domain.Repository
             }
         }
 
-        public async Task<bool> UpdateTicket(Tickets ticket, int staffID)
+        public async Task<bool> UpdateTicket(Tickets ticket)
         {
             using (var c = new SqlConnection(_connectionString))
             {
@@ -87,10 +87,16 @@ namespace WebAPI_PragueParking_Domain.Repository
                 {
                     var p = new DynamicParameters();
                     p.Add("@TicketsID", ticket.ID);
-                    p.Add("@TicketStatusesID", ticket.TicketStatusesID);
+                    p.Add("@RegNo", ticket.ID);
+                    p.Add("@RetrievalCode", ticket.ID);
+                    p.Add("@PhoneNo", ticket.ID);
+                    p.Add("@PID", ticket.ID);
+                    p.Add("@EstimatedParkingTime", ticket.ID);
+                    p.Add("@Comment", ticket.ID);
                     p.Add("@ParkingSpotsID", ticket.ParkingSpotsID);
                     p.Add("@VehicleTypesID", ticket.VehicleTypesID);
-                    p.Add("@StaffID", staffID);
+                    p.Add("@TicketStatusesID", ticket.TicketStatusesID);
+                    p.Add("@StaffID", ticket.StaffID);
 
                     await c.ExecuteAsync("usp_UpdateTicket", p, commandType: CommandType.StoredProcedure);
 
