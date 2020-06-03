@@ -43,12 +43,6 @@ namespace WebAPI_PragueParking.Controllers
             return Ok(await _ticketsService.UpdateTicket(ticket, staffID));
         }
 
-        [HttpPut("{id}/ticketStatuses/{statusId}")]
-        public async Task<IActionResult> UpdateTicketStatus(int id, int statusId)
-        {
-            return Ok(await _ticketsService.UpdateTicketStatus(id, statusId));
-        }
-
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
