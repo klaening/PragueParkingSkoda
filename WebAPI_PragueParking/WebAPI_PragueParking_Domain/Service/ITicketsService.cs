@@ -8,11 +8,10 @@ namespace WebAPI_PragueParking_Domain.Service
 {
     public interface ITicketsService
     {
-        Task<bool> AddTicket(Tickets ticket);
+        Task<bool> AddTicket(Tickets ticket, int staffID);
         Task<IEnumerable<Tickets>> GetTickets();
         Task<Tickets> GetTicket(int id);
-        Task<bool> UpdateTicket(Tickets ticket);
-        Task<bool> UpdateTicketStatus(int id, int statusId);
+        Task<bool> UpdateTicket(Tickets ticket, int staffID);
         Task<bool> DeleteTicket(int id);
     }
 }
