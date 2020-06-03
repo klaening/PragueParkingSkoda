@@ -34,7 +34,13 @@ namespace PP_Desktop.Views
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            _viewModel.TicketsID = (int)e.Parameter;
+            _viewModel.SelectedTicket = (Tickets)e.Parameter;
+        }
+
+
+        private void Cancel_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(TicketsMainPage));
         }
     }
 

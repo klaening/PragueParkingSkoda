@@ -11,7 +11,7 @@
     Width="400">
 
     <Grid>
-        <StackPanel DataContext="{Binding TicketInfo}">
+        <StackPanel>
             <TextBlock FontSize="25" Text="Showing ticket for TicketID: " HorizontalAlignment="Center"/>
             <TextBlock Text="{Binding TicketsID, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="20"/>
             <TextBox Text="{Binding RegNo, Mode=TwoWay}" Header="Reg number" PlaceholderText="Enter RegNo"/>
@@ -24,8 +24,11 @@
             <TextBox Text="{Binding ParkingSpotsID, Mode=TwoWay}" Header="Parkingspot ID" PlaceholderText="Enter Parkingspot ID"/>
             <TextBox Text="{Binding VehicleTypesID, Mode=TwoWay}" Header="Vehicletype ID" PlaceholderText="Enter Vehicletype ID"/>
             <TextBox Text="{Binding TicketStatusID, Mode=TwoWay}" Header="Ticketstatus ID" PlaceholderText="Enter Ticketstatus ID"/>
-            <Button x:Name="SaveUpdate_Btn" Content="Save" HorizontalAlignment="Center" Margin="50"/>
-            <Button x:Name="Cancel_Btn" Content="Cancel" HorizontalAlignment="Center" />
+            
+            <Button x:Name="SaveUpdate_Btn" Content="Save" HorizontalAlignment="Center" Margin="50"
+                    Command="{Binding UpdateCommand}"/>
+            <Button x:Name="Cancel_Btn" Content="Cancel" HorizontalAlignment="Center" 
+                    Click="Cancel_Btn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

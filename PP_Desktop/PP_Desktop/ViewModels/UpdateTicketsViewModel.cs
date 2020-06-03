@@ -1,5 +1,4 @@
-﻿using GalaSoft.MvvmLight.Views;
-using PP_Desktop.Models;
+﻿using PP_Desktop.Models;
 using PP_Desktop.Services;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Command;
-using NavigationService = PP_Desktop.Services.NavigationService;
 using System.Net;
 using Windows.UI.Popups;
 using Newtonsoft.Json;
@@ -20,7 +18,7 @@ namespace PP_Desktop.ViewModels
     {
         private ObservableCollection<Tickets> _ticketInfo;
         private NavigationService _navigationService;
-        private Tickets _selectedItemView;
+        private Tickets _selectedTicket;
         private int _ticketsID;
         private string _regNo;
         private string _retrievalCode;
@@ -32,22 +30,22 @@ namespace PP_Desktop.ViewModels
         private int _ticketStatusID;
 
         #region Properties
-        public Tickets SelectedItemView
+        public Tickets SelectedTicket
         {
            
-            get => _selectedItemView;
+            get => _selectedTicket;
             set
             {
-                _selectedItemView = value;
-                TicketsID = _selectedItemView.ID;
-                RegNo = _selectedItemView.RegNo;
-                RetrievalCode = _selectedItemView.RetrievalCode;
-                PhoneNo = _selectedItemView.PhoneNo;
-                PersonalID = _selectedItemView.PID;
-                Comment = _selectedItemView.Comment;
-                ParkingSpotsID = _selectedItemView.ParkingSpotsID;
-                VehicleTypesID = _selectedItemView.VehicleTypesID;
-                TicketStatusID = _selectedItemView.TicketStatusesID;
+                _selectedTicket = value;
+                TicketsID = _selectedTicket.ID;
+                RegNo = _selectedTicket.RegNo;
+                RetrievalCode = _selectedTicket.RetrievalCode;
+                PhoneNo = _selectedTicket.PhoneNo;
+                PersonalID = _selectedTicket.PID;
+                Comment = _selectedTicket.Comment;
+                ParkingSpotsID = _selectedTicket.ParkingSpotsID;
+                VehicleTypesID = _selectedTicket.VehicleTypesID;
+                TicketStatusID = _selectedTicket.TicketStatusesID;
 
             }
         }
@@ -104,6 +102,48 @@ namespace PP_Desktop.ViewModels
             get => _ticketInfo;
             set => SetProperty(ref _ticketInfo, value);
         }
+
+        public RelayCommand UpdateCommand { get; private set; }
+
+        private async void UpdateTicketCommand()
+        {
+            //staff id för ej något inlogg för tillfället.
+            var staffID = 1;
+            Tickets ticket = new Tickets()
+            {
+                ID = TicketsID,
+                RegNo = RegNo,
+                RetrievalCode = RetrievalCode,
+                PhoneNo = PhoneNo,
+                PID = PersonalID,
+                Comment = Comment,
+                ParkingSpotsID = ParkingSpotsID,
+                VehicleTypesID = VehicleTypesID,
+                TicketStatusesID = TicketStatusID,
+                StaffID = staffID
+
+            };
+            try
+            {
+                var response = await Requests.PutRequestAsync(Paths.Tickets, ticket);
+                var responseCode = response;
+
+                if(responseCode.StatusCode == HttpStatusCode.OK)
+                {
+                    var dialog = new MessageDialog("Ticket successfully updated", "Success");
+                    await dialog.ShowAsync();
+                    _navigationService.GoBack();
+                }
+            }
+            catch (Exception)
+            {
+                var dialog = new MessageDialog("Something went wrong", "Error");
+                await dialog.ShowAsync();
+                throw;
+            }
+           
+        }
+
         public UpdateTicketsViewModel()
         {
             _navigationService = new NavigationService();
@@ -112,6 +152,8 @@ namespace PP_Desktop.ViewModels
             var ticketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
             TicketInfo = ticketList;
+
+            UpdateCommand = new RelayCommand(UpdateTicketCommand, () => true);
         }
 
 

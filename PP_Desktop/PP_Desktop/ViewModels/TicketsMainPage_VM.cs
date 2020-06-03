@@ -15,44 +15,39 @@ namespace PP_Desktop.ViewModels
         //lista av info från tabellen tickets.
         private ObservableCollection<Tickets> _tickets;
 
-        //Behöver nog ej ticketstatuses
-        //private ObservableCollection<TicketStatuses> _ticketStatuses;
+        private Tickets _selectedTicket;
 
         //en join i databasen med 3 tabeller.
         private ObservableCollection<TicketInfoView> _ticketInfoView;
 
-        private Tickets _selectedItem;
-        
-        private TicketInfoView _selectedItemView;
+        private TicketInfoView _selectedTicketInfoView;
 
 
-        public ObservableCollection<Tickets> TicketList
+        public ObservableCollection<Tickets> Tickets
         {
             get => _tickets;
             set => SetProperty(ref _tickets, value);
         }
-        public ObservableCollection<TicketInfoView> TicketInfoViews
+        public ObservableCollection<TicketInfoView> TicketInfoView
         {
             get => _ticketInfoView;
             set => SetProperty(ref _ticketInfoView, value);
         }
 
-        //public ObservableCollection<TicketStatuses> TicketStatusesList
-        //{
-        //    get => _ticketStatuses;
-        //    set => SetProperty(ref _ticketStatuses, value);
-        //}
 
-        public Tickets SelectedItem
+        public Tickets SelectedTicket
         {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
+            get => _selectedTicket;
+            set
+            {
+                _selectedTicket = value;
+            }
         }
 
-        public TicketInfoView SelectedItemView
+        public TicketInfoView SelectedTicketInfoView
         {
-            get => _selectedItemView;
-            set => SetProperty(ref _selectedItemView, value);
+            get => _selectedTicketInfoView;
+            set => SetProperty(ref _selectedTicketInfoView, value);
         }
 
 
@@ -60,14 +55,14 @@ namespace PP_Desktop.ViewModels
         {
             // Tickets
             var result = Requests.GetRequest(Paths.Tickets);
-            var ticketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
+            var tickets = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
-            TicketList = ticketList;
+            Tickets = tickets;
 
             var result_ticketInfoView = Requests.GetRequest(Paths.TicketInfoView);
             var ticketInfoView = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result_ticketInfoView);
 
-            TicketInfoViews = ticketInfoView;
+            TicketInfoView = ticketInfoView;
 
             // TicketStatuses
 
