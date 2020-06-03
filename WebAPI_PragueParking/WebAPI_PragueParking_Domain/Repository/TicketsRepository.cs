@@ -93,6 +93,8 @@ namespace WebAPI_PragueParking_Domain.Repository
                     var p = new DynamicParameters();
                     p.Add("@TicketsID", ticket.ID);
                     p.Add("@TicketStatusesID", ticket.TicketStatusesID);
+                    p.Add("@ParkingSpotsID", ticket.ParkingSpotsID);
+                    p.Add("@VehicleTypesID", ticket.VehicleTypesID);
                     p.Add("@StaffID", staffID);
 
                     await c.ExecuteAsync("usp_UpdateTicket", p, commandType: CommandType.StoredProcedure);
