@@ -23,14 +23,16 @@ namespace PPMobile.Services
             var response = await client.PostAsync(HOST + path, content);
         }
 
-        public static HttpResponseMessage GetRequest(string path, string source)
+        public static string GetRequest(string path, string source)
         {
             var client = new HttpClient();
 
             var response = client.GetAsync(HOST + path + source);
             var statusCode = response.Result;
 
-            return statusCode;
+            string result = statusCode.Content.ReadAsStringAsync().Result;
+
+            return result;
         }
         public static string GetRequest(string path)
         {
@@ -44,7 +46,7 @@ namespace PPMobile.Services
             return result;
         }
 
-        public static async Task PutRequestAsync(string path, Object objectclass)
+        public static async Task PutRequestAsync(string path, Object objectclass, int staffId)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(objectclass, new JsonSerializerSettings
