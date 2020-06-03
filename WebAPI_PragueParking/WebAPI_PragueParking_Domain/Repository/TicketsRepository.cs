@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,15 +18,26 @@ namespace WebAPI_PragueParking_Domain.Repository
             _connectionString = connectionString;
         }
 
-        public async Task<bool> AddTicket(Tickets ticket)
+        public async Task<bool> AddTicket(Tickets ticket, int staffID)
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    await c.ExecuteAsync("INSERT INTO Tickets (RegNo, RetrievalCode, PhoneNo, PID, EstimatedParkingTime, Comment, ParkingSpotsID, VehicleTypesID) VALUES (@RegNo, @RetrievalCode, @PhoneNo, @PID, @EstimatedParkingTime, @Comment, @ParkingSpotsID, @VehicleTypesID, @TicketStatusesID)",
-                        new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketStatusesID });
-                    
+                    var p = new DynamicParameters();
+                    p.Add("@RegNo", ticket.RegNo);
+                    p.Add("@RetrievalCode", ticket.RetrievalCode);
+                    p.Add("@PhoneNo", ticket.PhoneNo);
+                    p.Add("@PID", ticket.PID);
+                    p.Add("@EstimatedParkingTime", ticket.EstimatedParkingTime);
+                    p.Add("@Comment", ticket.Comment);
+                    p.Add("@ParkingSpotsID", ticket.ParkingSpotsID);
+                    p.Add("@VehicleTypesID", ticket.VehicleTypesID);
+                    p.Add("@TicketStatusesID", ticket.TicketStatusesID);
+                    p.Add("@StaffID", staffID);
+
+                    await c.ExecuteAsync("usp_NewTicket_Check", p, commandType: CommandType.StoredProcedure);
+
                     return true;
                 }
                 catch (Exception)
@@ -67,15 +79,21 @@ namespace WebAPI_PragueParking_Domain.Repository
             }
         }
 
-        public async Task<bool> UpdateTicket(Tickets ticket)
+        public async Task<bool> UpdateTicket(Tickets ticket, int staffID)
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    await c.ExecuteAsync("UPDATE Tickets SET RegNo = @regNo, RetrievalCode = @retrievalCode, PhoneNo = @phoneNo, PID = @PID, EstimatedParkingTime = @estimatedParkingTime, Comment = @comment, ParkingSpotsID = @parkingSpotsID, VehicleTypesID = @vehicleTypesID, TicketStatusesID = @ticketStatusesID WHERE ID = @id", 
-                        new { ticket.RegNo, ticket.RetrievalCode, ticket.PhoneNo, ticket.PID, ticket.EstimatedParkingTime, ticket.Comment, ticket.ParkingSpotsID, ticket.VehicleTypesID, ticket.TicketStatusesID, ticket.ID });
-                    
+                    var p = new DynamicParameters();
+                    p.Add("@TicketsID", ticket.ID);
+                    p.Add("@TicketStatusesID", ticket.TicketStatusesID);
+                    p.Add("@ParkingSpotsID", ticket.ParkingSpotsID);
+                    p.Add("@VehicleTypesID", ticket.VehicleTypesID);
+                    p.Add("@StaffID", staffID);
+
+                    await c.ExecuteAsync("usp_UpdateTicket", p, commandType: CommandType.StoredProcedure);
+
                     return true;
                 }
                 catch (Exception)

@@ -16,9 +16,9 @@ namespace WebAPI_PragueParking_Domain.Service
             _ticketsRepository = ticketsRepository;
         }
 
-        public async Task<bool> AddTicket(Tickets ticket)
+        public async Task<bool> AddTicket(Tickets ticket, int staffID)
         {
-            return await _ticketsRepository.AddTicket(ticket);
+            return await _ticketsRepository.AddTicket(ticket, staffID);
         }
 
         public async Task<IEnumerable<Tickets>> GetTickets()
@@ -31,9 +31,9 @@ namespace WebAPI_PragueParking_Domain.Service
             return await _ticketsRepository.GetTicket(id);
         }
 
-        public async Task<bool> UpdateTicket(Tickets ticket)
+        public async Task<bool> UpdateTicket(Tickets ticket, int staffID)
         {
-            return await _ticketsRepository.UpdateTicket(ticket);
+            return await _ticketsRepository.UpdateTicket(ticket, staffID);
         }
 
         public async Task<bool> UpdateTicketStatus(int id, int statusId)
