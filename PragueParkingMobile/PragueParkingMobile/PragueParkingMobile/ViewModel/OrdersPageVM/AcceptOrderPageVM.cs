@@ -9,12 +9,14 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.IO;
 using Newtonsoft.Json;
+using PPMobile.View.OrdersPage;
 
 namespace PPMobile.ViewModel.OrdersPageVM
 {
     public class AcceptOrderPageVM : BaseViewModel
     {
         public ICommand AcceptCommand { get; }
+        public INavigation Navigation { get; set; }
         public string ButtonText 
         { 
             get
@@ -25,7 +27,7 @@ namespace PPMobile.ViewModel.OrdersPageVM
                     {
                         return "Done";
                     }
-                    return "Accepted";
+                    return "Accept";
                 }
                 return "";
             } 
@@ -52,8 +54,12 @@ namespace PPMobile.ViewModel.OrdersPageVM
         public void AcceptPressedCommand()
         {
             var ticket = GetTicketFromId();
-
             UpdateTicket(ticket);
+
+            if (ticket.TicketStatusesID == (int)StatusNameEnum.Parked || ticket.TicketStatusesID == (int)StatusNameEnum.Returned)
+            {
+                Navigation.PushAsync(new UserTabbedPage());
+            }           
         }
 
         public Tickets GetTicketFromId()

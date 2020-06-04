@@ -20,7 +20,7 @@
                 </Grid>
                 <Button x:Name="AcceptOrderButton"
                         Command="{Binding AcceptCommand}"
-                        Text="{Binding ButtonText}"/>
+                        Text="{Binding ButtonText, Mode=TwoWay}"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

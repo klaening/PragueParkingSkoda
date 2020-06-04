@@ -23,6 +23,7 @@ namespace PPMobile.View.OrdersPage
 
             BindingContext = _viewModel;
             _viewModel.SelectedTicket = ticket;
+            _viewModel.Navigation = Navigation;
         }
 
     }
