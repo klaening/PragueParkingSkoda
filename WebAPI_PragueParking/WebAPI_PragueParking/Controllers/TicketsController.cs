@@ -19,10 +19,10 @@ namespace WebAPI_PragueParking.Controllers
             _ticketsService = ticketsService;
         }
 
-        [HttpPost(/*staffID=*/"{staffID}")]
-        public async Task<IActionResult> Add([FromBody] Tickets ticket, int staffID)
+        [HttpPost]
+        public async Task<IActionResult> Add([FromBody] Tickets ticket)
         {
-            return Ok(await _ticketsService.AddTicket(ticket, staffID));
+            return Ok(await _ticketsService.AddTicket(ticket));
         }
 
         [HttpGet]
@@ -37,10 +37,10 @@ namespace WebAPI_PragueParking.Controllers
             return Ok(await _ticketsService.GetTicket(id));
         }
 
-        [HttpPut(/*staffID=*/"{staffID}")]
-        public async Task<IActionResult> Update([FromBody] Tickets ticket, int staffID)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] Tickets ticket)
         {
-            return Ok(await _ticketsService.UpdateTicket(ticket, staffID));
+            return Ok(await _ticketsService.UpdateTicket(ticket));
         }
 
         [HttpDelete("{id}")]
