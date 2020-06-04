@@ -16,5 +16,6 @@ namespace PPMobile.Model
         public int ParkingSpotsId { get; set; }
         public int VehicleTypesId { get; set; }
         public int TicketStatusesID { get; set; }
+        public int StaffId { get; set; }
     }
 }

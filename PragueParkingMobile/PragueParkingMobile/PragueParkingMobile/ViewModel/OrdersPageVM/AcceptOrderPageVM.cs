@@ -72,7 +72,6 @@ namespace PPMobile.ViewModel.OrdersPageVM
             else
             {
                 OnPropertyChanged("ButtonText");
-                OnPropertyChanged("SelectedTicket");
                 Application.Current.MainPage.DisplayAlert("Accepted","Ticket status have been updated!","Ok");
             }
         }
@@ -95,9 +94,8 @@ namespace PPMobile.ViewModel.OrdersPageVM
             ticket.TicketStatusesID += 1;
 
             string path = "tickets/";
-            int staffId = 2;
 
-            await APIServices.PutRequestAsync(path, ticket, staffId);
+            await APIServices.PutRequestAsync(path, ticket);
         }
     }
 }

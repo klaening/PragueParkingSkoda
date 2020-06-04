@@ -46,7 +46,7 @@ namespace PPMobile.Services
             return result;
         }
 
-        public static async Task PutRequestAsync(string path, Object objectclass, int staffId)
+        public static async Task PutRequestAsync(string path, Object objectclass)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(objectclass, new JsonSerializerSettings
@@ -56,7 +56,7 @@ namespace PPMobile.Services
 
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync(HOST + path + staffId, content);
+            var response = await client.PutAsync(HOST + path, content);
         }
     }
 }
