@@ -16,14 +16,13 @@ namespace WebAPI_PragueParking_Domain.Repository
         {
             _connectionString = connectionString;
         }
-
-        public async Task<IEnumerable<ParkingSpots>> GetParkingSpots()
+        public async Task<IEnumerable<ParkingSpots>> GetVacantParkingSpots()
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    return await c.QueryAsync<ParkingSpots>("SELECT * FROM ParkingSpots");
+                    return await c.QueryAsync<ParkingSpots>("SELECT * FROM ParkingSpots WHERE ParkCapacity > 0 AND ParkingStatusesID = 1");
                 }
                 catch (Exception)
                 {
@@ -32,14 +31,13 @@ namespace WebAPI_PragueParking_Domain.Repository
                 }
             }
         }
-
-        public async Task<ParkingSpots> GetParkingSpot(int id)
+        public async Task<IEnumerable<ParkingSpots>> GetParkingSpots()
         {
             using (var c = new SqlConnection(_connectionString))
             {
                 try
                 {
-                    return await c.QueryFirstOrDefaultAsync<ParkingSpots>("SELECT * FROM ParkingSpots WHERE ID = @id", new { id });
+                    return await c.QueryAsync<ParkingSpots>("SELECT * FROM ParkingSpots");
                 }
                 catch (Exception)
                 {

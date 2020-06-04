@@ -8,7 +8,7 @@ namespace WebAPI_PragueParking_Domain.Repository
 {
     public interface IParkingSpotsRepository
     {
+        Task<IEnumerable<ParkingSpots>> GetVacantParkingSpots();
         Task<IEnumerable<ParkingSpots>> GetParkingSpots();
-        Task<ParkingSpots> GetParkingSpot(int id);
     }
 }

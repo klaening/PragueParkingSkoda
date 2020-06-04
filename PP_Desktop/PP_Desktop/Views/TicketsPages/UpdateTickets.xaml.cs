@@ -24,12 +24,24 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class UpdateTickets : Page
     {
+        private UpdateTicketsViewModel _viewModel;
         public UpdateTickets()
         {
             this.InitializeComponent();
-            
+            _viewModel = new UpdateTicketsViewModel();
+            DataContext = _viewModel;
         }
 
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            _viewModel.SelectedTicket = (Tickets)e.Parameter;
+        }
+
+
+        private void Cancel_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(TicketsMainPage));
+        }
     }
 
  

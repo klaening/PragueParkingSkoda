@@ -20,6 +20,7 @@ namespace PP_Desktop.Models
         public int ParkingSpotsID { get; set; }
         public int VehicleTypesID { get; set; }
         public int TicketStatusesID { get; set; }
+        public int StaffID { get; set; }
 
     }
 }
