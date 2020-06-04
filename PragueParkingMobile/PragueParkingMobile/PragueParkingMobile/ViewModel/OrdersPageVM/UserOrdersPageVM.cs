@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text;
+using PPMobile.Utility;
 
 namespace PPMobile.ViewModel
 {
@@ -51,9 +52,7 @@ namespace PPMobile.ViewModel
             ReturnList = new ObservableCollection<TicketInfoView>();
             ActiveList = new ObservableCollection<TicketInfoView>();
 
-            var path = "ticketinfoview";
-
-            var response = APIServices.GetRequest(path);
+            var response = APIServices.GetRequest(ApiPaths.ticketInfoView);
 
             var tempList = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(response);
 

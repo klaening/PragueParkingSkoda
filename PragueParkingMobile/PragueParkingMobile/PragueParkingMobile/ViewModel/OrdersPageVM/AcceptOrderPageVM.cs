@@ -11,6 +11,7 @@ using System.IO;
 using Newtonsoft.Json;
 using PPMobile.View.OrdersPage;
 using PPMobile.View.MainPage;
+using PPMobile.Utility;
 
 namespace PPMobile.ViewModel.OrdersPageVM
 {
@@ -78,10 +79,9 @@ namespace PPMobile.ViewModel.OrdersPageVM
 
         public Tickets GetTicketFromId()
         {
-            string path = "tickets/";
             string source = SelectedTicket.TicketsID.ToString();
 
-            var response = APIServices.GetRequest(path, source);
+            var response = APIServices.GetRequest(ApiPaths.tickets, source);
 
             var ticket = JsonConvert.DeserializeObject<Tickets>(response);
 
@@ -93,9 +93,7 @@ namespace PPMobile.ViewModel.OrdersPageVM
 
             ticket.TicketStatusesID += 1;
 
-            string path = "tickets/";
-
-            await APIServices.PutRequestAsync(path, ticket);
+            await APIServices.PutRequestAsync(ApiPaths.tickets, ticket);
         }
     }
 }
