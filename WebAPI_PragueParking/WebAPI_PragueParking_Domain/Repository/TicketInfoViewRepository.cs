@@ -22,7 +22,7 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    return await c.QueryAsync<TicketInfoView>("Select Tickets.ID as TicketsID, Tickets.RegNo,TicketStatuses.StatusName, ParkingSpots.SpotNo From Tickets Inner join TicketStatuses on Tickets.TicketStatusesID = TicketStatuses.ID Inner join ParkingSpots on Tickets.ParkingSpotsID = ParkingSpots.ID");
+                    return await c.QueryAsync<TicketInfoView>("Select Tickets.ID as TicketsID, Tickets.RegNo, Tickets.TicketStatusesID,TicketStatuses.StatusName, ParkingSpots.SpotNo From Tickets Inner join TicketStatuses on Tickets.TicketStatusesID = TicketStatuses.ID Inner join ParkingSpots on Tickets.ParkingSpotsID = ParkingSpots.ID");
                 }
                 catch (Exception)
                 {
