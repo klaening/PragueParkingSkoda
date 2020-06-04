@@ -12,6 +12,7 @@ CREATE PROCEDURE usp_UpdateTicket
 @StaffID INT
 AS
 	BEGIN
+
 		DECLARE 
 		@CurrentTicketStatusID INT,
 		@VehicleSize INT
@@ -44,5 +45,6 @@ AS
 				ROLLBACK
 			END CATCH
 		END
+
 	END
 GO

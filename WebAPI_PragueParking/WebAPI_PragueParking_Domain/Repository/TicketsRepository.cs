@@ -115,7 +115,10 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    await c.ExecuteAsync("DELETE Tickets WHERE ID = @id", new { id });
+                    var p = new DynamicParameters();
+                    p.Add("@TicketsID", id);
+
+                    await c.ExecuteAsync("usp_DeleteTicket", p, commandType: CommandType.StoredProcedure);
 
                     return true;
                 }

@@ -2,7 +2,6 @@ CREATE TRIGGER tr_Tickets_AfterUpdate
 ON Tickets
 AFTER UPDATE
 AS
-
 	BEGIN
 
 		DECLARE @TicketStatus INT
@@ -36,12 +35,6 @@ AS
 		--TA BORT FRÅN TICKETS TABELL
 			DELETE Tickets
 			WHERE ID = (@TicketID)
-
-		--UPPDATERA PARKINGSPLATSEN TILL LEDIG
-			UPDATE ParkingSpots
-			SET ParkingStatusesID = 1, --VACANT
-			ParkCapacity = ParkCapacity + @VehicleSize --Addera tillbaka fordonsstorlek
-			WHERE ID = @ParkingSpotsID
 		END
 	END
 GO

@@ -11,6 +11,7 @@ CREATE PROCEDURE usp_NewTicket_Check
 @StaffID INT
 AS
 	BEGIN
+
 		DECLARE
 		@TicketsID INT,
 		@VehicleParkSize INT,	--Fordonets storlek
@@ -46,14 +47,6 @@ AS
 					SET ParkCapacity = @PSpotCapacity
 					WHERE ID = @ParkingSpotsID
 
-					--Om kapacitet är 0
-					IF (@PSpotCapacity = 0)
-					BEGIN
-						UPDATE ParkingSpots
-						SET ParkingStatusesID = 2 -- 2 = 'Occupied'
-						WHERE ID = @ParkingSpotsID
-					END
-
 					--Lagra data i StatusChanges och uppdatera Tickets till nästa status
 					INSERT INTO StatusChanges(TicketsID, StaffID, TicketStatusesID)
 					VALUES(@TicketsID, @StaffID, @TicketStatusesID)
@@ -73,5 +66,6 @@ AS
 				ROLLBACK
 			END CATCH
 		END
+
 	END
 GO

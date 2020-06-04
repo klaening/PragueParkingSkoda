@@ -87,6 +87,11 @@
      
         </Button>
 
+        <Button Grid.Row="4" Grid.Column="2"
+                HorizontalAlignment="Center"
+                Content="Delete Ticket"
+                Command="{x:Bind _viewModel.DeleteCommand}"/>
+
         <Button
             Grid.Row="5"
             Grid.Column="1"

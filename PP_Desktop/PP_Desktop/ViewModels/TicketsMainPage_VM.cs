@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using PP_Desktop.Models;
 using PP_Desktop.Services;
+using Windows.UI.Popups;
 
 namespace PP_Desktop.ViewModels
 {
@@ -16,6 +19,7 @@ namespace PP_Desktop.ViewModels
         private ObservableCollection<TicketInfoView> _ticketInfoView;
         private Tickets _selectedTicket;
         private TicketInfoView _selectedTicketInfoView;
+        private NavigationService _navigationService;
 
         public ObservableCollection<Tickets> Tickets
         {
@@ -38,8 +42,12 @@ namespace PP_Desktop.ViewModels
             set => _selectedTicket = value;
         }
 
+        public RelayCommand DeleteCommand { get; private set; }
+
         public TicketsMainPage_VM()
         {
+            _navigationService = new NavigationService();
+
             var result = Requests.GetRequest(Paths.Tickets);
             var ticketsFromDB = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
@@ -50,18 +58,29 @@ namespace PP_Desktop.ViewModels
 
             TicketInfoView = infoViewFromDB;
 
-            /*Test 1
-                Jag har en lista med alla Tickets
-                Jag har en lista med alla TicketInfoView med annan info såsom namn på saker
-                Jag vill Binda till ett objekt som håller info från båda sakerna*/
+            DeleteCommand = new RelayCommand(DeleteTicketCommand, () => true);
+        }
 
-            /*Test 2
-                Jag vill Binda till en Tickets
-                SelectedTicket returnerar annan info*/
+        private async void DeleteTicketCommand()
+        {
+            try
+            {
+                var response = await Requests.DeleteRequestAsync(Paths.Tickets, SelectedTicketInfoView.TicketsID);
+                var statusCode = response.StatusCode;
 
-            /*Test 3
-                Jag vill Binda till TicketInfoView
-                När man ska till nästa sida så hitta Ticket med samma id och skicka med den till nästa sida*/
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var dialog = new MessageDialog("Ticket successfully deleted", "Success");
+                    await dialog.ShowAsync();
+
+                    _navigationService.GoBack();
+                }
+            }
+            catch (Exception)
+            {
+                var dialog = new MessageDialog("Something went wrong", "Error");
+                await dialog.ShowAsync();
+            }
         }
     }
 }
