@@ -12,19 +12,23 @@
 
     <Grid>
         <StackPanel>
-            <TextBlock FontSize="25" Text="Showing ticket for TicketID: "/>
-            <TextBox Header="Reg number" PlaceholderText="Enter RegNo"/>
-            <TextBox Header="Retrieval code" PlaceholderText="Enter Retrieval code"/>
-            <TextBox Header="Phone number" PlaceholderText="Enter Phone number"/>
-            <TextBox Header="Personal ID" PlaceholderText="Enter Personal ID"/>
-            <TextBox Header="Comment" PlaceholderText="Enter comment"
+            <TextBlock FontSize="25" Text="Showing ticket for TicketID: " HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding TicketsID, Mode=TwoWay}" HorizontalAlignment="Center" FontSize="20"/>
+            <TextBox Text="{Binding RegNo, Mode=TwoWay}" Header="Reg number" PlaceholderText="Enter RegNo"/>
+            <TextBox Text="{Binding RetrievalCode, Mode=TwoWay}" Header="Retrieval code" PlaceholderText="Enter Retrieval code"/>
+            <TextBox Text="{Binding PhoneNo, Mode=TwoWay}" Header="Phone number" PlaceholderText="Enter Phone number"/>
+            <TextBox Text="{Binding PersonalID, Mode=TwoWay}" Header="Personal ID" PlaceholderText="Enter Personal ID"/>
+            <TextBox Text="{Binding Comment, Mode=TwoWay}" Header="Comment" PlaceholderText="Enter comment"
                      Height="140" MaxHeight="140" TextWrapping="Wrap" 
                      ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            <TextBox Header="Parkingspot ID" PlaceholderText="Enter Parkingspot ID"/>
-            <TextBox Header="Vehicletype ID" PlaceholderText="Enter Vehicletype ID"/>
-            <TextBox Header="Ticketstatus ID" PlaceholderText="Enter Ticketstatus ID"/>
-            <Button x:Name="SaveUpdate_Btn" Content="Save" HorizontalAlignment="Center" Margin="50"/>
-            <Button x:Name="Cancel_Btn" Content="Cancel" HorizontalAlignment="Center" />
+            <TextBox Text="{Binding ParkingSpotsID, Mode=TwoWay}" Header="Parkingspot ID" PlaceholderText="Enter Parkingspot ID"/>
+            <TextBox Text="{Binding VehicleTypesID, Mode=TwoWay}" Header="Vehicletype ID" PlaceholderText="Enter Vehicletype ID"/>
+            <TextBox Text="{Binding TicketStatusID, Mode=TwoWay}" Header="Ticketstatus ID" PlaceholderText="Enter Ticketstatus ID"/>
+            
+            <Button x:Name="SaveUpdate_Btn" Content="Save" HorizontalAlignment="Center" Margin="50"
+                    Command="{Binding UpdateCommand}"/>
+            <Button x:Name="Cancel_Btn" Content="Cancel" HorizontalAlignment="Center" 
+                    Click="Cancel_Btn_Click"/>
         </StackPanel>
     </Grid>
 </Page>

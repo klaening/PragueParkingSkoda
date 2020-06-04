@@ -16,10 +16,17 @@ namespace PP_Desktop.ViewModels
     public class TicketsMainPage_VM : BindableBase
     {
         private ObservableCollection<Tickets> _tickets;
+
+        private Tickets _selectedTicket;
+
+        //en join i databasen med 3 tabeller.
         private ObservableCollection<TicketInfoView> _ticketInfoView;
         private Tickets _selectedTicket;
         private TicketInfoView _selectedTicketInfoView;
         private NavigationService _navigationService;
+
+        private TicketInfoView _selectedTicketInfoView;
+
 
         public ObservableCollection<Tickets> Tickets
         {
@@ -31,15 +38,21 @@ namespace PP_Desktop.ViewModels
             get => _ticketInfoView;
             set => SetProperty(ref _ticketInfoView, value);
         }
+
+
+        public Tickets SelectedTicket
+        {
+            get => _selectedTicket;
+            set
+            {
+                _selectedTicket = value;
+            }
+        }
+
         public TicketInfoView SelectedTicketInfoView
         {
             get => _selectedTicketInfoView;
             set => SetProperty(ref _selectedTicketInfoView, value);
-        }
-        public Tickets SelectedTicket
-        {
-            get => _selectedTicket;
-            set => _selectedTicket = value;
         }
 
         public RelayCommand DeleteCommand { get; private set; }
@@ -49,14 +62,14 @@ namespace PP_Desktop.ViewModels
             _navigationService = new NavigationService();
 
             var result = Requests.GetRequest(Paths.Tickets);
-            var ticketsFromDB = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
+            var tickets = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
-            Tickets = ticketsFromDB;
+            Tickets = tickets;
 
-            result = Requests.GetRequest(Paths.TicketInfoView);
-            var infoViewFromDB = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result);
+            var result_ticketInfoView = Requests.GetRequest(Paths.TicketInfoView);
+            var ticketInfoView = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(result_ticketInfoView);
 
-            TicketInfoView = infoViewFromDB;
+            TicketInfoView = ticketInfoView;
 
             DeleteCommand = new RelayCommand(DeleteTicketCommand, () => true);
         }

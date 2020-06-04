@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -87,19 +88,20 @@ namespace WebAPI_PragueParking_Domain.Repository
                 {
                     var p = new DynamicParameters();
                     p.Add("@TicketsID", ticket.ID);
-                    p.Add("@RegNo", ticket.ID);
-                    p.Add("@RetrievalCode", ticket.ID);
-                    p.Add("@PhoneNo", ticket.ID);
-                    p.Add("@PID", ticket.ID);
-                    p.Add("@EstimatedParkingTime", ticket.ID);
-                    p.Add("@Comment", ticket.ID);
+                    p.Add("@RegNo", ticket.RegNo);
+                    p.Add("@RetrievalCode", ticket.RetrievalCode);
+                    p.Add("@PhoneNo", ticket.PhoneNo);
+                    p.Add("@PID", ticket.PID);
+                    p.Add("@EstimatedParkingTime", ticket.EstimatedParkingTime);
+                    p.Add("@Comment", ticket.Comment);
                     p.Add("@ParkingSpotsID", ticket.ParkingSpotsID);
                     p.Add("@VehicleTypesID", ticket.VehicleTypesID);
                     p.Add("@TicketStatusesID", ticket.TicketStatusesID);
                     p.Add("@StaffID", ticket.StaffID);
 
-                    await c.ExecuteAsync("usp_UpdateTicket", p, commandType: CommandType.StoredProcedure);
 
+                    await c.ExecuteAsync("usp_UpdateTicket", p, commandType: CommandType.StoredProcedure);
+                    
                     return true;
                 }
                 catch (Exception)

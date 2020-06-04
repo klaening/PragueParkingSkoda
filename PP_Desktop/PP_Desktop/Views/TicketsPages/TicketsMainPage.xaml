@@ -33,6 +33,7 @@
             
             <ListView.ItemTemplate>
                 <DataTemplate>
+                    
                     <StackPanel Orientation='Horizontal'>
                         <TextBlock Text="{Binding TicketInfo}"
                                        Name="RegTxt"
@@ -126,21 +127,26 @@
                         Grid.ColumnSpan="2" Margin="15">
             
             <TextBlock Text="Showing ticket for:" FontSize="30" HorizontalAlignment="Center"/>
-            <TextBlock Text="{Binding RegNo}" FontSize="40" HorizontalAlignment="center"/>
+            <TextBlock Text="{Binding RegNo, Mode=TwoWay}" FontSize="40" HorizontalAlignment="center"/>
         </StackPanel>
-        <StackPanel Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="15" HorizontalAlignment="Center">
+        <StackPanel DataContext="{Binding SelectedTicketInfoView, Mode=TwoWay}"
+                    Grid.Row="2" Grid.RowSpan="2" Grid.Column="1" Margin="15" HorizontalAlignment="Center">
             <TextBlock Text="ID: " FontSize="30"/>
             <TextBlock Text="Status: " FontSize="30"/>
             <TextBlock Text="Parking spot: " FontSize="30"/>
+            <TextBlock Text="RegNumber: " FontSize="30"/>
         </StackPanel>
-
-        <StackPanel DataContext="{Binding SelectedTicketInfoView, Mode=TwoWay}"
+        <ListView Grid.Row="2" Grid.RowSpan="2" Grid.Column="2"
+                  
+                  SelectedItem="{Binding SelectedTicketInfoView, Mode=TwoWay}">
+            <StackPanel DataContext="{Binding SelectedTicketInfoView, Mode=TwoWay}"
                     Grid.Row="2" Grid.RowSpan="2" Grid.Column="2" Margin="15" HorizontalAlignment="Center">
-            <TextBlock Text="{Binding TicketsID}" FontSize="30"/>
-            <TextBlock Text="{Binding StatusName}" FontSize="30"/>
-            <TextBlock Text="{Binding SpotNo}" FontSize="30"/>
+            <TextBlock Text="{Binding TicketsID, Mode=TwoWay}" FontSize="30"/>
+            <TextBlock Text="{Binding StatusName, Mode=TwoWay}" FontSize="30"/>
+            <TextBlock Text="{Binding SpotNo, Mode=TwoWay}" FontSize="30"/>
+            <TextBlock Text="{Binding RegNo, Mode=TwoWay}" FontSize="30"/>
         </StackPanel>
-
+        </ListView>
 
     </Grid>
 </Page>

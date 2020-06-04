@@ -24,13 +24,14 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class TicketsMainPage : Page
     {
-        TicketsMainPage_VM _viewModel;
+        private readonly TicketsMainPage_VM _viewModel;
         public TicketsMainPage()
         {
             this.InitializeComponent();
 
             _viewModel = new TicketsMainPage_VM();
             DataContext = _viewModel;
+            
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

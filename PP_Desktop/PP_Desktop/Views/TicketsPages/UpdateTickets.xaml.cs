@@ -28,8 +28,7 @@ namespace PP_Desktop.Views
         public UpdateTickets()
         {
             this.InitializeComponent();
-
-            _viewModel = new UpdateTicketViewModel();
+            _viewModel = new UpdateTicketsViewModel();
             DataContext = _viewModel;
         }
 
@@ -37,5 +36,13 @@ namespace PP_Desktop.Views
         {
             _viewModel.SelectedTicket = (Tickets)e.Parameter;
         }
+
+
+        private void Cancel_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(TicketsMainPage));
+        }
     }
+
+ 
 }

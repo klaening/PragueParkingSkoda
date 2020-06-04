@@ -140,10 +140,10 @@
     <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="ViewModels\TicketsMainPage_VM.cs" />
     <Compile Include="ViewModels\UpdateStaffViewModel.cs" />
-    <Compile Include="ViewModels\UpdateTicketViewModel.cs" />
     <Compile Include="Views\AddTicketPage.xaml.cs">
       <DependentUpon>AddTicketPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\UpdateTicketsViewModel.cs" />
     <Compile Include="Views\StaffPages\AddStaffPage.xaml.cs">
       <DependentUpon>AddStaffPage.xaml</DependentUpon>
     </Compile>
