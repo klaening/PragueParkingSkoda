@@ -10,5 +10,6 @@ namespace WebAPI_PragueParking_Domain.Models
         public string RegNo{ get; set; }
         public string StatusName { get; set; }
         public string SpotNo { get; set; }
+        public int TicketStatusesId { get; set; }
     }
 }
