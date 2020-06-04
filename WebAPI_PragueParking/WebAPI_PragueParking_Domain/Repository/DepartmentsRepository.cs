@@ -23,7 +23,7 @@ namespace WebAPI_PragueParking_Domain.Repository
             {
                 try
                 {
-                    return await c.QueryAsync<Departments>("SELECT * FROM Departments");
+                    return await c.QueryAsync<Departments>("SELECT * FROM Departments ORDER BY ID");
                 }
                 catch (Exception)
                 {
