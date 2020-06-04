@@ -13,20 +13,11 @@ AS
 		BEGIN
 		
 			DECLARE 
-				@TicketID INT,
-				@VehicleTypesID INT,
-				@VehicleSize INT,
-				@ParkingSpotsID INT
+				@TicketID INT
 	
 			SELECT 
-				@TicketID = ID,
-				@VehicleTypesID = VehicleTypesID,
-				@ParkingSpotsID = ParkingSpotsID
+				@TicketID = ID
 			FROM INSERTED
-
-			SELECT @VehicleSize = ParkSize
-			FROM VehicleTypes
-			WHERE ID = @VehicleTypesID
 		
 		--LÄGG ÖVER FRÅN TICKETS TILL RETURNEDTICKETS TABELL
 			INSERT INTO ReturnedTickets(TicketsID, RegNo, PhoneNo, PID, Comment, ParkingSpotsID, VehicleTypesID, StaffID)
