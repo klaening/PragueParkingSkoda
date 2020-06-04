@@ -23,13 +23,5 @@ namespace PP_Desktop.Models
         public int VehicleTypesID { get; set; }
         public int TicketStatusesID { get; set; }
         public int StaffID { get; set; }
-
-        public string TicketInfo
-        {
-            get
-            {
-                return $@"{ID} {RegNo}";
-            }
-        }
     }
 }
