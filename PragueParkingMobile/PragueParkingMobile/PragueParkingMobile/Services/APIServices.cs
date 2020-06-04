@@ -5,9 +5,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PPMobile.APIServices
+namespace PPMobile.Services
 {
-    public class Services
+    public class APIServices
     {
         private const string HOST = "http://10.0.2.2:59893/api/";
         public static async Task PostRequestAsync(string path, Object objectclass)
@@ -23,14 +23,16 @@ namespace PPMobile.APIServices
             var response = await client.PostAsync(HOST + path, content);
         }
 
-        public static HttpResponseMessage GetRequest(string path, string source)
+        public static string GetRequest(string path, string source)
         {
             var client = new HttpClient();
 
             var response = client.GetAsync(HOST + path + source);
             var statusCode = response.Result;
 
-            return statusCode;
+            string result = statusCode.Content.ReadAsStringAsync().Result;
+
+            return result;
         }
         public static string GetRequest(string path)
         {
@@ -44,7 +46,7 @@ namespace PPMobile.APIServices
             return result;
         }
 
-        public static async Task PutRequestAsync(string path, Object objectclass)
+        public static async Task PutRequestAsync(string path, Object objectclass, int staffId)
         {
             var client = new HttpClient();
             var json = JsonConvert.SerializeObject(objectclass, new JsonSerializerSettings
@@ -54,7 +56,7 @@ namespace PPMobile.APIServices
 
             HttpContent content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await client.PutAsync(HOST + path, content);
+            var response = await client.PutAsync(HOST + path + staffId, content);
         }
     }
 }

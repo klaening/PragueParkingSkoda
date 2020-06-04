@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json.Schema;
-using PPMobile.APIServices;
+using PPMobile.Services;
 using PPMobile.Model;
 using System;
 using System.Collections.Generic;
@@ -7,46 +7,30 @@ using System.Text;
 using System.Threading;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.IO;
+using Newtonsoft.Json;
 
 namespace PPMobile.ViewModel.OrdersPageVM
 {
     public class AcceptOrderPageVM : BaseViewModel
     {
         public ICommand AcceptCommand { get; }
-        private string _regNo;
-        private string _spotNo;
-        private string _statusName;
-        public string RegNo
-        {
-            get { return _regNo; }
-            set
+        public string ButtonText 
+        { 
+            get
             {
-                _regNo = value;
-                OnPropertyChanged("RegNo");
-            }
-        }
-
-       public string SpotNo
-       {
-            get { return _spotNo; }
-            set
-            {
-                _spotNo = value;
-                OnPropertyChanged("SpotNo");
-            }
-       }
+                if (SelectedTicket != null)
+                {
+                    if (SelectedTicket.TicketStatusesId == (int)StatusNameEnum.ParkAccepted || SelectedTicket.TicketStatusesId == (int)StatusNameEnum.ReturnAccepted)
+                    {
+                        return "Done";
+                    }
+                    return "Accepted";
+                }
+                return "";
+            } 
         
-        public string StatusName
-        {
-            get { return _statusName; }
-            set
-            {
-                _statusName = value;
-                OnPropertyChanged("StatusName");
-            }
         }
-
-
         private TicketInfoView _selectedTicket;
         public TicketInfoView SelectedTicket
         {
@@ -55,10 +39,8 @@ namespace PPMobile.ViewModel.OrdersPageVM
             {
                 _selectedTicket = value;
 
-                RegNo = SelectedTicket.RegNo;
-                SpotNo = SelectedTicket.SpotNo;
-                StatusName = SelectedTicket.StatusName;
                 OnPropertyChanged("SelectedTicket");
+                OnPropertyChanged("ButtonText");
             }
         }
 
@@ -67,9 +49,34 @@ namespace PPMobile.ViewModel.OrdersPageVM
             AcceptCommand = new Command(AcceptPressedCommand);
         }
 
-        public async void AcceptPressedCommand()
+        public void AcceptPressedCommand()
         {
-           
+            var ticket = GetTicketFromId();
+
+            UpdateTicket(ticket);
+        }
+
+        public Tickets GetTicketFromId()
+        {
+            string path = "tickets/";
+            string source = SelectedTicket.TicketsID.ToString();
+
+            var response = APIServices.GetRequest(path, source);
+
+            var ticket = JsonConvert.DeserializeObject<Tickets>(response);
+
+            return ticket;
+        }
+
+        public async void UpdateTicket(Tickets ticket)
+        {
+
+            ticket.TicketStatusesID += 1;
+
+            string path = "tickets/";
+            int staffId = 2;
+
+            await APIServices.PutRequestAsync(path, ticket, staffId);
         }
     }
 }

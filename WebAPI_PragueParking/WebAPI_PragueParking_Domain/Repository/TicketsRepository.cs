@@ -104,24 +104,6 @@ namespace WebAPI_PragueParking_Domain.Repository
             }
         }
 
-        public async Task<bool> UpdateTicketStatus(int id, int statusId)
-        {
-            using (var c = new SqlConnection(_connectionString))
-            {
-                try
-                {
-                    await c.ExecuteAsync("UPDATE Tickets SET TicketStatusesID = @statusID WHERE ID = @id",
-                        new { statusId, id });
-
-                    return true;
-                }
-                catch (Exception)
-                {
-                    return false;
-                }
-            }
-        }
-
         public async Task<bool> DeleteTicket(int id)
         {
             using (var c = new SqlConnection(_connectionString))

@@ -1,5 +1,5 @@
 ﻿using Newtonsoft.Json;
-using PPMobile.APIServices;
+using PPMobile.Services;
 using PPMobile.Model;
 using System;
 using System.Collections.Generic;
@@ -53,17 +53,17 @@ namespace PPMobile.ViewModel
 
             var path = "ticketinfoview";
 
-            var response = Services.GetRequest(path);
+            var response = APIServices.GetRequest(path);
 
             var tempList = JsonConvert.DeserializeObject<ObservableCollection<TicketInfoView>>(response);
 
             foreach (var ticket in tempList)
             {
-                if (ticket.StatusName == "Park Pending")
+                if (ticket.TicketStatusesId == (int)StatusNameEnum.ParkPending)
                     ParkList.Add(ticket);
-                if (ticket.StatusName == "Park Accepted" || ticket.StatusName == "Return Accepted")
+                if (ticket.TicketStatusesId == (int)StatusNameEnum.ParkAccepted || ticket.TicketStatusesId == (int)StatusNameEnum.ReturnAccepted)
                     ActiveList.Add(ticket);
-                if (ticket.StatusName == "Return Pending")
+                if (ticket.TicketStatusesId == (int)StatusNameEnum.ReturnPending)
                     ReturnList.Add(ticket);
             }
         }
