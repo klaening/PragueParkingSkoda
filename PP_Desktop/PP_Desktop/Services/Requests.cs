@@ -44,6 +44,18 @@ namespace PP_Desktop.Services
             return result;
         }
 
+        public static string GetRequest_ID(string path, int id)
+        {
+            var client = new HttpClient();
+
+            var response = client.GetAsync(HOST + path + id);
+            var statusCode = response.Result;
+
+            string result = statusCode.Content.ReadAsStringAsync().Result;
+
+            return result;
+        }
+
         public async static Task<HttpResponseMessage> PutRequestAsync(string path, Object objectClass)
         {
             var client = new HttpClient();

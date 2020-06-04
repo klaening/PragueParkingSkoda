@@ -125,21 +125,13 @@ namespace PP_Desktop.ViewModels
         public ObservableCollection<Departments> Departments
         {
             get => _departments;
-            set
-            {
-                _departments = value;
-            }
+            set => _departments = value;
         }
 
-        public RelayCommand UpdateCommand
-        {
-            get;
-            private set;
-        }
+        public RelayCommand UpdateCommand { get; private set; }
 
         private async void UpdateStaffCommand()
         {
-            //Vi behöver ID:t också
             Staff staff = new Staff
             {
                 ID = SelectedStaff.ID,

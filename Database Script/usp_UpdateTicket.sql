@@ -1,11 +1,18 @@
 CREATE PROCEDURE usp_UpdateTicket
 @TicketsID INT,
-@TicketStatusesID INT,
+@RegNo VARCHAR(50),
+@RetrievalCode VARCHAR(50),
+@PhoneNo VARCHAR(50),
+@PID VARCHAR(50),
+@EstimatedParkingTime DECIMAL(18,0),
+@Comment VARCHAR(500),
 @ParkingSpotsID INT,
 @VehicleTypesID INT,
+@TicketStatusesID INT,
 @StaffID INT
 AS
 	BEGIN
+
 		DECLARE 
 		@CurrentTicketStatusID INT,
 		@VehicleSize INT
@@ -14,18 +21,12 @@ AS
 		FROM Tickets
 		WHERE ID = @TicketsID
 
-		SELECT @VehicleSize = ParkSize
-		FROM VehicleTypes
-		WHERE ID = @VehicleTypesID
-
-		IF(@CurrentTicketStatusID = 7) --RETURNED
-		BEGIN
-			PRINT 'Ticket already returned, cannot make further changes to ticket'
-		END
-
-		ELSE
 		BEGIN
 			BEGIN TRAN CheckStatus WITH MARK
+
+			UPDATE Tickets
+			SET RegNo = @RegNo, RetrievalCode = @RetrievalCode, PhoneNo = @PhoneNo, PID = @PID, EstimatedParkingTime = @EstimatedParkingTime, Comment = @Comment, ParkingSpotsID = @ParkingSpotsID, VehicleTypesID = @VehicleTypesID, StaffID = @StaffID
+			WHERE ID = @TicketsID
 
 			BEGIN TRY
 				IF(@CurrentTicketStatusID != @TicketStatusesID)
@@ -38,19 +39,12 @@ AS
 					VALUES(@TicketsID, @TicketStatusesID, @StaffID)
 				END
 
-				IF(@TicketStatusesID = 7) --RETURNED
-				BEGIN
-					UPDATE ParkingSpots
-					SET ParkingStatusesID = 1, --VACANT
-					ParkCapacity = ParkCapacity + @VehicleSize --Addera tillbaka fordonsstorlek
-					WHERE ID = @ParkingSpotsID
-				END
-
 				COMMIT TRAN CheckStatus
 			END TRY
 			BEGIN CATCH
 				ROLLBACK
 			END CATCH
 		END
+
 	END
 GO

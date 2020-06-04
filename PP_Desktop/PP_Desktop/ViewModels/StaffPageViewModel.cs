@@ -18,20 +18,23 @@ using Windows.UI.Xaml;
 
 namespace PP_Desktop.ViewModels
 {
-    public class StaffPageViewModel : BindableBase, INotifyPropertyChanged
+    public class StaffPageViewModel : BindableBase
     {
+        private ObservableCollection<Departments> _departments;
+        private Departments _department;
         private ObservableCollection<Staff> _staff;
-        private Staff _selectedItem;
-        private ObservableCollection<Staff> staffList;
+        private Staff _selectedStaff;
 
-        public StaffPageViewModel()
+        public ObservableCollection<Departments> Departments
         {
-            var result = Requests.GetRequest(Paths.Staff);
-            staffList = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
+            get => _departments;
+            set => SetProperty(ref _departments, value);
+        }
 
-            Staff = staffList;
-
-            DeleteCommand = new RelayCommand(DeleteStaffCommand, () => true);
+        public Departments Department
+        {
+            get => _department;
+            set => SetProperty(ref _department, value);
         }
 
         public ObservableCollection<Staff> Staff 
@@ -40,21 +43,35 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _staff, value);
         }
 
-        public Staff SelectedItem
+        public Staff SelectedStaff
         {
-            get => _selectedItem;
-            set => SetProperty(ref _selectedItem, value);
+            get => _selectedStaff;
+            set
+            {
+                SetProperty(ref _selectedStaff, value);
+                Department = Departments.FirstOrDefault(x => x.ID == _selectedStaff.DepartmentsID);
+            }
         }
 
-        public RelayCommand DeleteCommand
+        public RelayCommand DeleteCommand { get; private set; }
+
+        public StaffPageViewModel()
         {
-            get;
-            private set;
+            var result = Requests.GetRequest(Paths.Staff);
+            var staffFromDB = JsonConvert.DeserializeObject<ObservableCollection<Staff>>(result);
+
+            result = Requests.GetRequest(Paths.Departments);
+            var departmentsFromDB = JsonConvert.DeserializeObject<ObservableCollection<Departments>>(result);
+
+            Staff = staffFromDB;
+            Departments = departmentsFromDB;
+
+            DeleteCommand = new RelayCommand(DeleteStaffCommand, () => true);
         }
 
         private async void DeleteStaffCommand()
         {
-            int id = SelectedItem.ID;
+            int id = SelectedStaff.ID;
 
             try
             {

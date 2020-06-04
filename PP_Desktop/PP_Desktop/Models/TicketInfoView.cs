@@ -14,15 +14,14 @@ namespace PP_Desktop.Models
         public string StatusName { get; set; }
         public string SpotNo { get; set; }
 
-        public static ObservableCollection<TicketInfoView> GetTicketInfoView()
+
+        public string TicketInfo 
         {
-            ObservableCollection<TicketInfoView> ticketInfoView = new ObservableCollection<TicketInfoView>()
+            get
             {
-
-
-            };
-
-            return ticketInfoView;
+                return $@"{TicketsID} {RegNo}
+{StatusName}";
+            }
         }
     }
 }
