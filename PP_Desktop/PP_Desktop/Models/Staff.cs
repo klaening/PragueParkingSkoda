@@ -20,6 +20,7 @@ namespace PP_Desktop.Models
         public string UserName { get; set; }
         public string UserPassword { get; set; }
         public int DepartmentsID { get; set; }
+        public string DepartmentName { get; set; }
 
         public string FullName
         {

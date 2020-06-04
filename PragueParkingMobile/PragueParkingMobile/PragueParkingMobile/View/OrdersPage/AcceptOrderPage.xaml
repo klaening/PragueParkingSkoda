@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PPMobile.View.OrdersPage.AcceptOrderPage"
+             NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout>
+                <Grid BindingContext="{Binding SelectedTicket}">
+                    <Label Grid.Row="1" Grid.Column="0" Text="Type of order:" FontSize="Medium"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="{Binding StatusName}" FontSize="Medium"/>
+
+                    <Label Grid.Row="2" Grid.Column="0" Text="Registration number" FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="{Binding RegNo}" FontSize="Medium"/>
+
+                    <Label Grid.Row="3" Grid.Column="0" Text="Parking spot:" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="{Binding SpotNo}" FontSize="Medium"/>
+                </Grid>
+                <Button x:Name="AcceptOrderButton"
+                        Command="{Binding AcceptCommand}"
+                        Text="{Binding ButtonText}"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

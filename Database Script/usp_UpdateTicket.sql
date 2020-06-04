@@ -15,20 +15,38 @@ AS
 
 		DECLARE 
 		@CurrentTicketStatusID INT,
-		@VehicleSize INT
+		@VehicleSize INT,
+		@CurrentParkingSpot INT
 
-		SELECT @CurrentTicketStatusID = TicketStatusesID
+		SELECT	
+		@CurrentTicketStatusID = TicketStatusesID,
+		@CurrentParkingSpot = ParkingSpotsID
 		FROM Tickets
 		WHERE ID = @TicketsID
 
-		BEGIN
-			BEGIN TRAN CheckStatus WITH MARK
+		SELECT @VehicleSize = ParkSize
+		FROM VehicleTypes
+		WHERE ID = @VehicleTypesID
+
+		BEGIN TRAN CheckStatus WITH MARK
 
 			UPDATE Tickets
 			SET RegNo = @RegNo, RetrievalCode = @RetrievalCode, PhoneNo = @PhoneNo, PID = @PID, EstimatedParkingTime = @EstimatedParkingTime, Comment = @Comment, ParkingSpotsID = @ParkingSpotsID, VehicleTypesID = @VehicleTypesID, StaffID = @StaffID
 			WHERE ID = @TicketsID
 
 			BEGIN TRY
+			--Kollar om parkeringsplatsen behöver uppdateras
+				IF(@CurrentParkingSpot != @ParkingSpotsID)
+				BEGIN
+					UPDATE ParkingSpots
+					SET ParkCapacity = ParkCapacity + @VehicleSize
+					WHERE ID = @CurrentParkingSpot
+
+					UPDATE ParkingSpots
+					SET ParkCapacity = ParkCapacity - @VehicleSize
+					WHERE ID = @ParkingSpotsID
+				END
+
 				IF(@CurrentTicketStatusID != @TicketStatusesID)
 				BEGIN
 					UPDATE Tickets
@@ -44,7 +62,6 @@ AS
 			BEGIN CATCH
 				ROLLBACK
 			END CATCH
-		END
 
 	END
 GO

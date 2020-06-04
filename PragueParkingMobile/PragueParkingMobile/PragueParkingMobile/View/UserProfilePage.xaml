@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PPMobile.View.UserProfilePage">
+    <ContentPage.Content>
+        <Grid>
+            <!--HEADER-->
+            <StackLayout Padding="0" Margin="0">
+                <Grid>
+                    <Label Text="User Information" 
+                       FontSize="35" 
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" 
+                       Margin="0,20"/>
+                </Grid>
+            </StackLayout>
+
+            <!--USER DETAIL INFO-->
+            <StackLayout Spacing="10" Padding="40" Margin="0,30,0,0">
+                <Grid>
+                    <Image Source="" Margin="0,0,0,15"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Name:" FontSize="Medium"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="Claes Claesson" FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="Username:" FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="C.claesson" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="0"  Text="Employee ID:" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="0927162" FontSize="Medium"/>
+                    <Label Grid.Row="4" Grid.Column="0" Text="Employed since:" FontSize="Medium"/>
+                    <Label Grid.Row="4" Grid.Column="1" Text="2020-01-01" FontSize="Medium"/>
+                    <Label Grid.Row="5" Grid.Column="0" Text="Phone:" FontSize="Medium"/>
+                    <Label Grid.Row="5" Grid.Column="1" Text="0729901826" FontSize="Medium"/>
+                    <Label Grid.Row="6" Grid.Column="0" Text="E-mail:" FontSize="Medium"/>
+                    <Label Grid.Row="6" Grid.Column="1" Text="C.claesson@mailmail.com" FontSize="Medium"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
