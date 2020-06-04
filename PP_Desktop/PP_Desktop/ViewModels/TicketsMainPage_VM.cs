@@ -17,16 +17,11 @@ namespace PP_Desktop.ViewModels
     {
         private ObservableCollection<Tickets> _tickets;
 
-        private Tickets _selectedTicket;
-
         //en join i databasen med 3 tabeller.
         private ObservableCollection<TicketInfoView> _ticketInfoView;
         private Tickets _selectedTicket;
         private TicketInfoView _selectedTicketInfoView;
         private NavigationService _navigationService;
-
-        private TicketInfoView _selectedTicketInfoView;
-
 
         public ObservableCollection<Tickets> Tickets
         {

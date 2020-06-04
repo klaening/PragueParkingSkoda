@@ -24,7 +24,7 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class UpdateTickets : Page
     {
-        private readonly UpdateTicketViewModel _viewModel;
+        private readonly UpdateTicketsViewModel _viewModel;
         public UpdateTickets()
         {
             this.InitializeComponent();
