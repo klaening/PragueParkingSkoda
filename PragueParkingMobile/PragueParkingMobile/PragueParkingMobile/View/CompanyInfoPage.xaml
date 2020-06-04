@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="PPMobile.View.CompanyInfoPage">
+    <ContentPage.Content>
+        <Grid>
+            <!--HEADER-->
+            <StackLayout Padding="0" Margin="0">
+                <Grid>
+                    <Label Text="Company Info" 
+                       FontSize="35" 
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center" 
+                       Margin="0,20"/>
+                </Grid>
+            </StackLayout>
+
+            <!--USER DETAIL INFO-->
+            <StackLayout Spacing="10" Padding="40" Margin="0,90,0,0">
+                <Grid>
+                    <Image Source="" Margin="0,0,0,15"/>
+                    <Label Grid.Row="1" Grid.Column="0" Text="Reception:" FontSize="Medium"/>
+                    <Label Grid.Row="1" Grid.Column="1" Text="072891823" FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="0" Text="Administration:" FontSize="Medium"/>
+                    <Label Grid.Row="2" Grid.Column="1" Text="0789256182" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="0" Text="Technical Issues:" FontSize="Medium"/>
+                    <Label Grid.Row="3" Grid.Column="1" Text="08877199" FontSize="Medium"/>
+                    <Label Grid.Row="4" Grid.Column="0" Text="Mail:" FontSize="Medium"/>
+                    <Label Grid.Row="4" Grid.Column="1" Text="pragueparking@gmail.cz" FontSize="Medium"/>
+                </Grid>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

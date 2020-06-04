@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             mc:Ignorable="d"
+             x:Class="PPMobile.View.OrdersPage.UserOrdersPagePark"
+             Title="Park Orders">
+
+    <ContentPage.Content>
+        <ListView x:Name="OrdersParkPage"
+                    ItemsSource="{Binding ParkList}"
+                    ItemSelected="OrdersParkPage_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Label Text="{Binding RegNo}"
+                                   Grid.Column="0"
+                                   Grid.Row="0"/>
+                            <Label Text="{Binding SpotNo}"
+                                   Grid.Column="1"
+                                   Grid.Row="0"/>
+                            <Label Text="2020-05-27 14:21"
+                                   Grid.Column="0"
+                                   Grid.Row="1"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </ContentPage.Content>
+</ContentPage>
