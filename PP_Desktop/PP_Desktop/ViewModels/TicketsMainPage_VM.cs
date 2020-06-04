@@ -17,7 +17,6 @@ namespace PP_Desktop.ViewModels
     {
         private ObservableCollection<Tickets> _tickets;
 
-        //en join i databasen med 3 tabeller.
         private ObservableCollection<TicketInfoView> _ticketInfoView;
         private Tickets _selectedTicket;
         private TicketInfoView _selectedTicketInfoView;
@@ -38,10 +37,7 @@ namespace PP_Desktop.ViewModels
         public Tickets SelectedTicket
         {
             get => _selectedTicket;
-            set
-            {
-                _selectedTicket = value;
-            }
+            set => _selectedTicket = value;
         }
 
         public TicketInfoView SelectedTicketInfoView
@@ -80,6 +76,8 @@ namespace PP_Desktop.ViewModels
                 {
                     var dialog = new MessageDialog("Ticket successfully deleted", "Success");
                     await dialog.ShowAsync();
+
+                    TicketInfoView.Remove(TicketInfoView.FirstOrDefault(x => x.TicketsID == SelectedTicketInfoView.TicketsID));
                 }
             }
             catch (Exception)

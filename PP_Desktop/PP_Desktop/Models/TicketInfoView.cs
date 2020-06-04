@@ -19,7 +19,7 @@ namespace PP_Desktop.Models
         {
             get
             {
-                return $@"{TicketsID} {RegNo}
+                return $@"{RegNo}
 {StatusName}";
             }
         }
