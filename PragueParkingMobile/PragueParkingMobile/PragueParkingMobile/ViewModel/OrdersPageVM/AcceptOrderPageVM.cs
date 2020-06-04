@@ -72,13 +72,13 @@ namespace PPMobile.ViewModel.OrdersPageVM
 
             SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
 
-            //var status = Statuses.FirstOrDefault(x => x.Id == SelectedTicket.TicketStatusesId);
+            var status = Statuses.FirstOrDefault(x => x.Id == SelectedTicket.TicketStatusesId);
 
-            //var tempTicket = SelectedTicket;
-            //tempTicket.StatusName = status.StatusName;
+            var tempTicket = SelectedTicket;
+            tempTicket.StatusName = status.StatusName;
 
-            //SelectedTicket = tempTicket;
-            
+            SelectedTicket = tempTicket;
+
             if (ticket.TicketStatusesID == (int)StatusNameEnum.Parked || ticket.TicketStatusesID == (int)StatusNameEnum.Returned)
             {
                 Navigation.PushAsync(new UserTabbedPage());
