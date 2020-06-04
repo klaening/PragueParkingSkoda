@@ -21,7 +21,7 @@ namespace PPMobile.ViewModel.OrdersPageVM
             {
                 if (SelectedTicket != null)
                 {
-                    if (SelectedTicket.StatusName == "Park Accepted")
+                    if (SelectedTicket.TicketStatusesId == (int)StatusNameEnum.ParkAccepted || SelectedTicket.TicketStatusesId == (int)StatusNameEnum.ReturnAccepted)
                     {
                         return "Done";
                     }
