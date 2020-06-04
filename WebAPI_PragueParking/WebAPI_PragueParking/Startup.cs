@@ -45,6 +45,9 @@ namespace WebAPI_PragueParking
             services.AddSingleton<ITicketInfoViewService, TicketInfoViewService>();
             services.AddSingleton<ITicketInfoViewRepository>(c => new TicketInfoViewRepository(Configuration["ConnectionString"]));
 
+            services.AddSingleton<ITicketStatusesService, TicketStatusesService>();
+            services.AddSingleton<ITicketStatusesRepository>(c => new TicketStatusesRepository(Configuration["ConnectionString"]));
+
             services.AddControllers();
         }
 
