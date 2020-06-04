@@ -64,6 +64,7 @@ namespace PPMobile.ViewModel.OrdersPageVM
 
             SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
 
+            
             if (ticket.TicketStatusesID == (int)StatusNameEnum.Parked || ticket.TicketStatusesID == (int)StatusNameEnum.Returned)
             {
                 Navigation.PushAsync(new UserTabbedPage());
@@ -71,6 +72,7 @@ namespace PPMobile.ViewModel.OrdersPageVM
             else
             {
                 OnPropertyChanged("ButtonText");
+                OnPropertyChanged("SelectedTicket");
                 Application.Current.MainPage.DisplayAlert("Accepted","Ticket status have been updated!","Ok");
             }
         }

@@ -37,7 +37,7 @@ namespace PPMobile.View.MainPage
                     new UserMainPageMasterMenuItem { Id = 0, Title = "Work", TargetType = typeof(UserMainPageDetail)},
                     new UserMainPageMasterMenuItem { Id = 1, Title = "My Profile", TargetType = typeof(UserProfilePage)},
                     new UserMainPageMasterMenuItem { Id = 2, Title = "Company", TargetType = typeof(CompanyInfoPage)},
-                    new UserMainPageMasterMenuItem { Id = 3, Title = "Sign Out", TargetType = typeof(LoginPage)},
+                    new UserMainPageMasterMenuItem { Id = 3, Title = "Sign Out", TargetType = typeof(SignOutPage)},
                 });
             }
 
@@ -51,11 +51,6 @@ namespace PPMobile.View.MainPage
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
             }
             #endregion
-        }
-
-        private void MenuItemsListView_ItemTapped(object sender, ItemTappedEventArgs e)
-        {           
-            //Kanske en ItemTapped för att navigera? 
         }
     }
 }
