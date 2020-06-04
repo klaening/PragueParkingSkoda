@@ -43,7 +43,13 @@ namespace PP_Desktop.Views
         {
             var ticket = _viewModel.Tickets.FirstOrDefault(x => x.ID == _viewModel.SelectedTicketInfoView.TicketsID);
             _viewModel.SelectedTicket = ticket;
+
             Frame.Navigate(typeof(UpdateTickets), _viewModel.SelectedTicket);
+        }
+
+        private void Add_Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(AddTicketPage));
         }
     }
 }

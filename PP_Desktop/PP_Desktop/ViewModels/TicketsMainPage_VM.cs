@@ -2,26 +2,25 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Command;
 using Newtonsoft.Json;
 using PP_Desktop.Models;
 using PP_Desktop.Services;
+using Windows.UI.Popups;
 
 namespace PP_Desktop.ViewModels
 {
     public class TicketsMainPage_VM : BindableBase
     {
-        //lista av info från tabellen tickets.
         private ObservableCollection<Tickets> _tickets;
 
-        private Tickets _selectedTicket;
-
-        //en join i databasen med 3 tabeller.
         private ObservableCollection<TicketInfoView> _ticketInfoView;
-
+        private Tickets _selectedTicket;
         private TicketInfoView _selectedTicketInfoView;
-
+        private NavigationService _navigationService;
 
         public ObservableCollection<Tickets> Tickets
         {
@@ -38,10 +37,7 @@ namespace PP_Desktop.ViewModels
         public Tickets SelectedTicket
         {
             get => _selectedTicket;
-            set
-            {
-                _selectedTicket = value;
-            }
+            set => _selectedTicket = value;
         }
 
         public TicketInfoView SelectedTicketInfoView
@@ -50,10 +46,12 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _selectedTicketInfoView, value);
         }
 
+        public RelayCommand DeleteCommand { get; private set; }
 
         public TicketsMainPage_VM()
         {
-            // Tickets
+            _navigationService = new NavigationService();
+
             var result = Requests.GetRequest(Paths.Tickets);
             var tickets = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
@@ -64,15 +62,29 @@ namespace PP_Desktop.ViewModels
 
             TicketInfoView = ticketInfoView;
 
-            // TicketStatuses
-
-            //var result_ticketStatuses = Requests.GetRequest(Paths.ticketStatuses);
-            //var ticketStatusesList = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(result_ticketStatuses);
-
-            //TicketStatusesList = ticketStatusesList;
-
+            DeleteCommand = new RelayCommand(DeleteTicketCommand, () => true);
         }
-            
-        
+
+        private async void DeleteTicketCommand()
+        {
+            try
+            {
+                var response = await Requests.DeleteRequestAsync(Paths.Tickets, SelectedTicketInfoView.TicketsID);
+                var statusCode = response.StatusCode;
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    var dialog = new MessageDialog("Ticket successfully deleted", "Success");
+                    await dialog.ShowAsync();
+
+                    TicketInfoView.Remove(TicketInfoView.FirstOrDefault(x => x.TicketsID == SelectedTicketInfoView.TicketsID));
+                }
+            }
+            catch (Exception)
+            {
+                var dialog = new MessageDialog("Something went wrong", "Error");
+                await dialog.ShowAsync();
+            }
+        }
     }
 }

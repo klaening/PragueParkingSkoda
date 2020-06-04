@@ -1,5 +1,4 @@
-﻿using PP_Desktop.Models;
-using PP_Desktop.ViewModels;
+﻿using PP_Desktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -22,27 +21,20 @@ namespace PP_Desktop.Views
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class UpdateTickets : Page
+    public sealed partial class AddTicketPage : Page
     {
-        private readonly UpdateTicketsViewModel _viewModel;
-        public UpdateTickets()
+        private readonly AddTicketViewModel _viewModel;
+        public AddTicketPage()
         {
             this.InitializeComponent();
-            _viewModel = new UpdateTicketsViewModel();
+
+            _viewModel = new AddTicketViewModel();
             DataContext = _viewModel;
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        private void Cancel_Clicked(object sender, RoutedEventArgs e)
         {
-            _viewModel.SelectedTicket = (Tickets)e.Parameter;
-        }
-
-
-        private void Cancel_Btn_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Navigate(typeof(TicketsMainPage));
+            Frame.GoBack();
         }
     }
-
- 
 }
