@@ -59,7 +59,16 @@ namespace PP_Desktop.ViewModels
                 TicketStatusID = _selectedTicket.TicketStatusesID;
                 SelectedTicketStatus = TicketStatusList.FirstOrDefault(x => x.ID == SelectedTicket.TicketStatusesID);
                 SelectedVehicleTypes = VehicleTypesList.FirstOrDefault(x => x.ID == SelectedTicket.VehicleTypesID);
-                SelectedParkingSpots = ParkingSpotsList.FirstOrDefault(x => x.ID == SelectedTicket.ParkingSpotsID);
+                var currentPSpot = ParkingSpotsList.FirstOrDefault(x => x.ID == SelectedTicket.ParkingSpotsID);
+
+                var tempList = ParkingSpotsList.Where(x => x.ParkCapacity > 0).Where(y => y.ParkCapacity >= SelectedVehicleTypes.ParkSize);
+
+                ParkingSpotsList = new ObservableCollection<ParkingSpots>(tempList);
+
+                currentPSpot.SpotNo += " (Current)";
+                ParkingSpotsList.Add(currentPSpot);
+
+                SelectedParkingSpots = currentPSpot;
             }
         }
 
@@ -176,7 +185,6 @@ namespace PP_Desktop.ViewModels
                 VehicleTypesID = SelectedVehicleTypes.ID,
                 TicketStatusesID = SelectedTicketStatus.ID,
                 StaffID = staffID
-
             };
             try
             {
@@ -196,7 +204,6 @@ namespace PP_Desktop.ViewModels
                 await dialog.ShowAsync();
                 throw;
             }
-           
         }
 
         public UpdateTicketsViewModel()
@@ -218,15 +225,12 @@ namespace PP_Desktop.ViewModels
 
             VehicleTypesList = vehicleTypesDB;
 
-            result = Requests.GetRequest(Paths.AvailableParkingSpots);
+            result = Requests.GetRequest(Paths.ParkingSpots);
             var availableParkingSpots = JsonConvert.DeserializeObject<ObservableCollection<ParkingSpots>>(result);
 
             ParkingSpotsList = availableParkingSpots;
 
             UpdateCommand = new RelayCommand(UpdateTicketCommand, () => true);
         }
-
-
-
     }
 }
