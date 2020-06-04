@@ -10,11 +10,13 @@ using Xamarin.Forms;
 using System.IO;
 using Newtonsoft.Json;
 using PPMobile.View.OrdersPage;
+using PPMobile.View.MainPage;
 
 namespace PPMobile.ViewModel.OrdersPageVM
 {
     public class AcceptOrderPageVM : BaseViewModel
     {
+        private string _buttonText;
         public ICommand AcceptCommand { get; }
         public INavigation Navigation { get; set; }
         public string ButtonText 
@@ -30,8 +32,12 @@ namespace PPMobile.ViewModel.OrdersPageVM
                     return "Accept";
                 }
                 return "";
-            } 
-        
+            }
+            set
+            {
+                _buttonText = value;
+                OnPropertyChanged("ButtonText");
+            }
         }
         private TicketInfoView _selectedTicket;
         public TicketInfoView SelectedTicket
@@ -56,10 +62,17 @@ namespace PPMobile.ViewModel.OrdersPageVM
             var ticket = GetTicketFromId();
             UpdateTicket(ticket);
 
+            SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
+
             if (ticket.TicketStatusesID == (int)StatusNameEnum.Parked || ticket.TicketStatusesID == (int)StatusNameEnum.Returned)
             {
                 Navigation.PushAsync(new UserTabbedPage());
-            }           
+            }
+            else
+            {
+                OnPropertyChanged("ButtonText");
+                Application.Current.MainPage.DisplayAlert("Accepted","Ticket status have been updated!","Ok");
+            }
         }
 
         public Tickets GetTicketFromId()
