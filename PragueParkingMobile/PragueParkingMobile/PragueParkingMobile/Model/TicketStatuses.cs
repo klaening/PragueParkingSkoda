@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PPMobile.Model
 {
-    class TicketStatuses
+    public class TicketStatuses
     {
         public int Id { get; set; }
         public string StatusName { get; set; }

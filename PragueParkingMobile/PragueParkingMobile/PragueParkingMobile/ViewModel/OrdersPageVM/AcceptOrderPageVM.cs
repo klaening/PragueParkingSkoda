@@ -12,6 +12,8 @@ using Newtonsoft.Json;
 using PPMobile.View.OrdersPage;
 using PPMobile.View.MainPage;
 using PPMobile.Utility;
+using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace PPMobile.ViewModel.OrdersPageVM
 {
@@ -20,6 +22,8 @@ namespace PPMobile.ViewModel.OrdersPageVM
         private string _buttonText;
         public ICommand AcceptCommand { get; }
         public INavigation Navigation { get; set; }
+
+        public ObservableCollection<TicketStatuses> Statuses { get; set; }
         public string ButtonText 
         { 
             get
@@ -56,6 +60,9 @@ namespace PPMobile.ViewModel.OrdersPageVM
         public AcceptOrderPageVM()
         {
             AcceptCommand = new Command(AcceptPressedCommand);
+
+            var response = APIServices.GetRequest(ApiPaths.ticketStatuses);
+            Statuses = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(response);
         }
 
         public void AcceptPressedCommand()
@@ -65,6 +72,12 @@ namespace PPMobile.ViewModel.OrdersPageVM
 
             SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
 
+            //var status = Statuses.FirstOrDefault(x => x.Id == SelectedTicket.TicketStatusesId);
+
+            //var tempTicket = SelectedTicket;
+            //tempTicket.StatusName = status.StatusName;
+
+            //SelectedTicket = tempTicket;
             
             if (ticket.TicketStatusesID == (int)StatusNameEnum.Parked || ticket.TicketStatusesID == (int)StatusNameEnum.Returned)
             {
@@ -72,7 +85,6 @@ namespace PPMobile.ViewModel.OrdersPageVM
             }
             else
             {
-                OnPropertyChanged("ButtonText");
                 Application.Current.MainPage.DisplayAlert("Accepted","Ticket status have been updated!","Ok");
             }
         }
