@@ -35,13 +35,8 @@
                 <DataTemplate>
                     
                     <StackPanel Orientation='Horizontal'>
-                        <TextBlock Text="{Binding RegNo, Mode=TwoWay}"
+                        <TextBlock Text="{Binding TicketInfo}"
                                        Name="RegTxt"
-                                       FontSize="18"
-                                       TextWrapping="Wrap"
-                                       Margin="10"/>
-                        <TextBlock Text="{Binding StatusName, Mode=TwoWay}"
-                                       Name="StatusTxt"
                                        FontSize="18"
                                        TextWrapping="Wrap"
                                        Margin="10"/>
@@ -66,6 +61,7 @@
             Grid.Column="0"
             HorizontalAlignment="Right"
             Content="New ticket"
+            Click="Add_Btn_Click"
             >
             
         </Button>
@@ -91,6 +87,11 @@
             >
      
         </Button>
+
+        <Button Grid.Row="4" Grid.Column="2"
+                HorizontalAlignment="Center"
+                Content="Delete Ticket"
+                Command="{x:Bind _viewModel.DeleteCommand}"/>
 
         <Button
             Grid.Row="5"

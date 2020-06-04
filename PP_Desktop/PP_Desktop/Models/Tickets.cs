@@ -4,7 +4,9 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 using PP_Desktop.Models;
+using PP_Desktop.Services;
 
 namespace PP_Desktop.Models
 {
@@ -22,5 +24,12 @@ namespace PP_Desktop.Models
         public int TicketStatusesID { get; set; }
         public int StaffID { get; set; }
 
+        public string TicketInfo
+        {
+            get
+            {
+                return $@"{ID} {RegNo}";
+            }
+        }
     }
 }
