@@ -80,8 +80,6 @@ namespace PP_Desktop.ViewModels
                 {
                     var dialog = new MessageDialog("Ticket successfully deleted", "Success");
                     await dialog.ShowAsync();
-
-                    _navigationService.GoBack();
                 }
             }
             catch (Exception)
