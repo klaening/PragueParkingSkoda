@@ -17,8 +17,10 @@ namespace PP_Desktop.ViewModels
     public class UpdateTicketsViewModel : BindableBase
     {
         private ObservableCollection<Tickets> _ticketInfo;
-        private NavigationService _navigationService;
         private Tickets _selectedTicket;
+        private ObservableCollection<TicketStatuses> _ticketStatusList;
+        private TicketStatuses _selectedTicketStatus;
+        private NavigationService _navigationService;
         private int _ticketsID;
         private string _regNo;
         private string _retrievalCode;
@@ -46,7 +48,7 @@ namespace PP_Desktop.ViewModels
                 ParkingSpotsID = _selectedTicket.ParkingSpotsID;
                 VehicleTypesID = _selectedTicket.VehicleTypesID;
                 TicketStatusID = _selectedTicket.TicketStatusesID;
-
+                SelectedTicketStatus = TicketStatusList.FirstOrDefault(x => x.ID == SelectedTicket.TicketStatusesID);
             }
         }
 
@@ -103,6 +105,21 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _ticketInfo, value);
         }
 
+        public ObservableCollection<TicketStatuses> TicketStatusList
+        {
+            get => _ticketStatusList;
+            set
+            {
+                _ticketStatusList = value;
+            }
+        }
+
+        public TicketStatuses SelectedTicketStatus
+        {
+            get => _selectedTicketStatus;
+            set => SetProperty(ref _selectedTicketStatus, value);
+        }
+
         public RelayCommand UpdateCommand { get; private set; }
 
         private async void UpdateTicketCommand()
@@ -152,6 +169,11 @@ namespace PP_Desktop.ViewModels
             var ticketList = JsonConvert.DeserializeObject<ObservableCollection<Tickets>>(result);
 
             TicketInfo = ticketList;
+
+            result = Requests.GetRequest(Paths.TicketStatuses);
+            var ticketStatusDB = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(result);
+
+            TicketStatusList = ticketStatusDB;
 
             UpdateCommand = new RelayCommand(UpdateTicketCommand, () => true);
         }
