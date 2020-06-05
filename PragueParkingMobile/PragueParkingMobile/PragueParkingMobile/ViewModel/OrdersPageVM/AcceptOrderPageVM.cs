@@ -70,7 +70,7 @@ namespace PPMobile.ViewModel.OrdersPageVM
             var ticket = GetTicketFromId();
             UpdateTicket(ticket);
 
-            //SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
+            SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
 
             //var status = Statuses.FirstOrDefault(x => x.Id == SelectedTicket.TicketStatusesId);
 
