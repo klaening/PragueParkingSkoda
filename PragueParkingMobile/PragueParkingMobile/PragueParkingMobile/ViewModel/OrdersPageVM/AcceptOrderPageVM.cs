@@ -70,14 +70,16 @@ namespace PPMobile.ViewModel.OrdersPageVM
             var ticket = GetTicketFromId();
             UpdateTicket(ticket);
 
-            SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
+            //SelectedTicket.TicketStatusesId = ticket.TicketStatusesID;
 
-            var status = Statuses.FirstOrDefault(x => x.Id == SelectedTicket.TicketStatusesId);
+            //var status = Statuses.FirstOrDefault(x => x.Id == SelectedTicket.TicketStatusesId);
 
-            var tempTicket = SelectedTicket;
-            tempTicket.StatusName = status.StatusName;
+            //var tempTicket = SelectedTicket;
+            //tempTicket.StatusName = status.StatusName;
 
-            SelectedTicket = tempTicket;
+            //SelectedTicket = tempTicket;
+
+            OnPropertyChanged("ButtonText");
 
             if (ticket.TicketStatusesID == (int)StatusNameEnum.Parked || ticket.TicketStatusesID == (int)StatusNameEnum.Returned)
             {
