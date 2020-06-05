@@ -68,6 +68,10 @@ namespace PP_Desktop.ViewModels
                 currentPSpot.SpotNo += " (Current)";
                 ParkingSpotsList.Add(currentPSpot);
 
+                tempList = ParkingSpotsList.OrderBy(x => x.ID);
+
+                ParkingSpotsList = new ObservableCollection<ParkingSpots>(tempList);
+
                 SelectedParkingSpots = currentPSpot;
             }
         }
@@ -158,7 +162,10 @@ namespace PP_Desktop.ViewModels
         public VehicleTypes SelectedVehicleTypes
         {
             get => _selectedVehicleTypes;
-            set => SetProperty(ref _selectedVehicleTypes, value);
+            set 
+            { 
+                SetProperty(ref _selectedVehicleTypes, value); 
+            }
         }
 
         public ParkingSpots SelectedParkingSpots
