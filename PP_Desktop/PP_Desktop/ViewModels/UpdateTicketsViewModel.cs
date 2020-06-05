@@ -61,7 +61,7 @@ namespace PP_Desktop.ViewModels
                 SelectedVehicleTypes = VehicleTypesList.FirstOrDefault(x => x.ID == SelectedTicket.VehicleTypesID);
                 var currentPSpot = ParkingSpotsList.FirstOrDefault(x => x.ID == SelectedTicket.ParkingSpotsID);
 
-                var tempList = ParkingSpotsList.Where(x => x.ParkCapacity > 0).Where(y => y.ParkCapacity >= SelectedVehicleTypes.ParkSize);
+                var tempList = ParkingSpotsList.Where(x => x.ParkCapacity >= SelectedVehicleTypes.ParkSize);
 
                 ParkingSpotsList = new ObservableCollection<ParkingSpots>(tempList);
 
