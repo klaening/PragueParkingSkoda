@@ -21,10 +21,14 @@
             <TextBox Text="{Binding Comment, Mode=TwoWay}" Header="Comment" PlaceholderText="Enter comment"
                      Height="140" MaxHeight="140" TextWrapping="Wrap" 
                      ScrollViewer.VerticalScrollBarVisibility="Auto"/>
-            <TextBox Text="{Binding ParkingSpotsID, Mode=TwoWay}" Header="Parkingspot ID" PlaceholderText="Enter Parkingspot ID"/>
-            <TextBox Text="{Binding VehicleTypesID, Mode=TwoWay}" Header="Vehicletype ID" PlaceholderText="Enter Vehicletype ID"/>
-            <TextBox Text="{Binding TicketStatusID, Mode=TwoWay}" Header="Ticketstatus ID" PlaceholderText="Enter Ticketstatus ID"/>
             
+            <ComboBox x:Name="VehicleTypes" Header="Vehicletype" SelectedItem="{Binding SelectedVehicleTypes, Mode=TwoWay}" ItemsSource="{Binding VehicleTypesList}"
+                      Text="{Binding SelectedVehicleTypes}" DisplayMemberPath="TypeName"/>
+            <ComboBox x:Name="TicketStatus" Header="Ticket status" SelectedItem="{Binding SelectedTicketStatus, Mode=TwoWay}" ItemsSource="{Binding TicketStatusList}"
+                      Text="{Binding SelectedTicketStatus}" DisplayMemberPath="StatusName"/>
+            <ComboBox x:Name="AviableParkingSpots" Header="Parkingspot" SelectedItem="{Binding SelectedParkingSpots, Mode=TwoWay}" ItemsSource="{Binding ParkingSpotsList}"
+                      Text="{Binding SelectedParkingSpots}" DisplayMemberPath="SpotNo"/>
+
             <Button x:Name="SaveUpdate_Btn" Content="Save" HorizontalAlignment="Center" Margin="50"
                     Command="{Binding UpdateCommand}"/>
             <Button x:Name="Cancel_Btn" Content="Cancel" HorizontalAlignment="Center" 

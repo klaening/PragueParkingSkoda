@@ -58,7 +58,8 @@
                 <TextBlock Grid.Row="2" Grid.Column="0" 
                            Text="Department:"/>
                 <TextBlock Grid.Row="2" Grid.Column="1"
-                           Text="{x:Bind _viewModel.Department.DepartmentName, Mode=TwoWay}"/>
+                           DataContext="{x:Bind _viewModel.Department, Mode=TwoWay}"
+                           Text="{Binding DepartmentName}"/>
 
                 <TextBlock Grid.Row="3" Grid.Column="0" 
                            Text="Username:"/>

@@ -24,6 +24,7 @@ namespace PP_Desktop.Views
     /// </summary>
     public sealed partial class UpdateTickets : Page
     {
+        private int PassingCurrSpotID { get; set; }
         private readonly UpdateTicketsViewModel _viewModel;
         public UpdateTickets()
         {

@@ -140,7 +140,7 @@
     <Compile Include="ViewModels\StaffPageViewModel.cs" />
     <Compile Include="ViewModels\TicketsMainPage_VM.cs" />
     <Compile Include="ViewModels\UpdateStaffViewModel.cs" />
-    <Compile Include="Views\AddTicketPage.xaml.cs">
+    <Compile Include="Views\TicketsPages\AddTicketPage.xaml.cs">
       <DependentUpon>AddTicketPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\UpdateTicketsViewModel.cs" />
@@ -189,7 +189,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\AddTicketPage.xaml">
+    <Page Include="Views\TicketsPages\AddTicketPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

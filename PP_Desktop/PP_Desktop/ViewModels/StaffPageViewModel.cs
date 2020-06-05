@@ -49,7 +49,10 @@ namespace PP_Desktop.ViewModels
             set
             {
                 SetProperty(ref _selectedStaff, value);
-                Department = Departments.FirstOrDefault(x => x.ID == _selectedStaff.DepartmentsID);
+                if (_selectedStaff != null)
+                    Department = Departments.FirstOrDefault(x => x.ID == _selectedStaff.DepartmentsID);
+                else
+                    Department = null;
             }
         }
 
@@ -80,6 +83,10 @@ namespace PP_Desktop.ViewModels
 
                 var dialog = new MessageDialog("Successfully deleted staff", "Success");
                 await dialog.ShowAsync();
+
+                Staff.Remove(Staff.FirstOrDefault(x => x.ID == SelectedStaff.ID));
+                //Department = null;
+                //Är den bindad till SelectedItem och därför ändras inte värdet?
             }
             catch (Exception)
             {

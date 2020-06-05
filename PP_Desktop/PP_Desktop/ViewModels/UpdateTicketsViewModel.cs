@@ -17,8 +17,19 @@ namespace PP_Desktop.ViewModels
     public class UpdateTicketsViewModel : BindableBase
     {
         private ObservableCollection<Tickets> _ticketInfo;
-        private NavigationService _navigationService;
         private Tickets _selectedTicket;
+
+        private ObservableCollection<TicketStatuses> _ticketStatusList;
+        private TicketStatuses _selectedTicketStatus;
+
+        private ObservableCollection<VehicleTypes> _vehicleTypesList;
+        private VehicleTypes _selectedVehicleTypes;
+
+        private ObservableCollection<ParkingSpots> _parkingSpotsList;
+        private ParkingSpots _selectedParkingSpots;
+
+        private NavigationService _navigationService;
+
         private int _ticketsID;
         private string _regNo;
         private string _retrievalCode;
@@ -46,7 +57,18 @@ namespace PP_Desktop.ViewModels
                 ParkingSpotsID = _selectedTicket.ParkingSpotsID;
                 VehicleTypesID = _selectedTicket.VehicleTypesID;
                 TicketStatusID = _selectedTicket.TicketStatusesID;
+                SelectedTicketStatus = TicketStatusList.FirstOrDefault(x => x.ID == SelectedTicket.TicketStatusesID);
+                SelectedVehicleTypes = VehicleTypesList.FirstOrDefault(x => x.ID == SelectedTicket.VehicleTypesID);
+                var currentPSpot = ParkingSpotsList.FirstOrDefault(x => x.ID == SelectedTicket.ParkingSpotsID);
 
+                var tempList = ParkingSpotsList.Where(x => x.ParkCapacity > 0).Where(y => y.ParkCapacity >= SelectedVehicleTypes.ParkSize);
+
+                ParkingSpotsList = new ObservableCollection<ParkingSpots>(tempList);
+
+                currentPSpot.SpotNo += " (Current)";
+                ParkingSpotsList.Add(currentPSpot);
+
+                SelectedParkingSpots = currentPSpot;
             }
         }
 
@@ -103,6 +125,48 @@ namespace PP_Desktop.ViewModels
             set => SetProperty(ref _ticketInfo, value);
         }
 
+        public ObservableCollection<TicketStatuses> TicketStatusList
+        {
+            get => _ticketStatusList;
+            set
+            {
+                _ticketStatusList = value;
+            }
+        }
+
+        public ObservableCollection<VehicleTypes> VehicleTypesList
+        {
+            get => _vehicleTypesList;
+            set
+            {
+                _vehicleTypesList = value;
+            }
+        }
+
+        public ObservableCollection<ParkingSpots> ParkingSpotsList
+        {
+            get => _parkingSpotsList;
+            set => SetProperty(ref _parkingSpotsList, value);
+        }
+
+        public TicketStatuses SelectedTicketStatus
+        {
+            get => _selectedTicketStatus;
+            set => SetProperty(ref _selectedTicketStatus, value);
+        }
+
+        public VehicleTypes SelectedVehicleTypes
+        {
+            get => _selectedVehicleTypes;
+            set => SetProperty(ref _selectedVehicleTypes, value);
+        }
+
+        public ParkingSpots SelectedParkingSpots
+        {
+            get => _selectedParkingSpots;
+            set => SetProperty(ref _selectedParkingSpots, value);
+        }
+
         public RelayCommand UpdateCommand { get; private set; }
 
         private async void UpdateTicketCommand()
@@ -117,11 +181,10 @@ namespace PP_Desktop.ViewModels
                 PhoneNo = PhoneNo,
                 PID = PersonalID,
                 Comment = Comment,
-                ParkingSpotsID = ParkingSpotsID,
-                VehicleTypesID = VehicleTypesID,
-                TicketStatusesID = TicketStatusID,
+                ParkingSpotsID = SelectedParkingSpots.ID,
+                VehicleTypesID = SelectedVehicleTypes.ID,
+                TicketStatusesID = SelectedTicketStatus.ID,
                 StaffID = staffID
-
             };
             try
             {
@@ -141,7 +204,6 @@ namespace PP_Desktop.ViewModels
                 await dialog.ShowAsync();
                 throw;
             }
-           
         }
 
         public UpdateTicketsViewModel()
@@ -153,10 +215,22 @@ namespace PP_Desktop.ViewModels
 
             TicketInfo = ticketList;
 
+            result = Requests.GetRequest(Paths.TicketStatuses);
+            var ticketStatusDB = JsonConvert.DeserializeObject<ObservableCollection<TicketStatuses>>(result);
+
+            TicketStatusList = ticketStatusDB;
+
+            result = Requests.GetRequest(Paths.VehicleTypes);
+            var vehicleTypesDB = JsonConvert.DeserializeObject<ObservableCollection<VehicleTypes>>(result);
+
+            VehicleTypesList = vehicleTypesDB;
+
+            result = Requests.GetRequest(Paths.ParkingSpots);
+            var availableParkingSpots = JsonConvert.DeserializeObject<ObservableCollection<ParkingSpots>>(result);
+
+            ParkingSpotsList = availableParkingSpots;
+
             UpdateCommand = new RelayCommand(UpdateTicketCommand, () => true);
         }
-
-
-
     }
 }
